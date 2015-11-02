@@ -23,22 +23,9 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MyReservations"
-            android:label="@string/title_activity_my_reservations"
-            android:parentActivityName=".LoginActivity"
+            android:name=".AppMenu"
+            android:label="@string/title_activity_app_menu"
             android:theme="@style/AppTheme.NoActionBar" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="nf.co.markyourspace.markyourspace.LoginActivity" />
-        </activity>
-        <activity
-            android:name=".MainActivity"
-            android:label="@string/title_activity_main"
-            android:parentActivityName=".LoginActivity"
-            android:theme="@style/AppTheme.NoActionBar" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="nf.co.markyourspace.markyourspace.LoginActivity" />
         </activity>
     </application>
 
