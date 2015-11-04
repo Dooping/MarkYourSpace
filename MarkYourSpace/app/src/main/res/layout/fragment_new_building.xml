@@ -8,18 +8,53 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/fgh"/>
+        android:text="Name"/>
     <EditText
         android:layout_width="fill_parent"
         android:layout_height="50dp"
-        android:id="@+id/editInp"
+        android:layout_marginTop="20dp"
+        android:id="@+id/editName"
         android:inputType="text"/>
-
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="70dp"
+        android:text="Address"/>
     <EditText
         android:layout_width="fill_parent"
         android:layout_height="50dp"
-        android:id="@+id/editDig"
+        android:layout_marginTop="90dp"
+        android:id="@+id/editAddress"
         android:inputType="text" />
-
-
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="140dp"
+        android:text="City"/>
+    <EditText
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="160dp"
+        android:id="@+id/editCity"
+        android:inputType="text" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="210dp"
+        android:text="ZipCode"/>
+    <EditText
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="230dp"
+        android:id="@+id/editZipCode"
+        android:inputType="text" />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add"
+        android:id="@+id/button2"
+        android:layout_gravity="center_horizontal|bottom"
+        android:layout_marginBottom="50dp"
+        android:textColor="#FFFFFF"
+        android:background="#552CA3" />
 </FrameLayout>
