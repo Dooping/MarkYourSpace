@@ -4,8 +4,24 @@
     android:layout_height="match_parent"
     tools:context="nf.co.markyourspace.markyourspace.reservationsFragment">
 
-    <ListView android:id="@android:id/list" android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <SearchView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/searchView"
+            android:orientation="horizontal"
+            android:baselineAligned="false"
+            android:gravity="end"
+            android:layout_gravity="right"
+            android:layout_weight="1" />
+
+        <ListView android:id="@android:id/list" android:layout_width="match_parent"
+            android:layout_height="fill_parent" />
+    </LinearLayout>
 
     <TextView android:id="@android:id/empty" android:layout_width="match_parent"
         android:layout_height="match_parent" android:gravity="center" />
