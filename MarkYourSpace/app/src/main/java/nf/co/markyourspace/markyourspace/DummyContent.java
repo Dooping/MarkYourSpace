@@ -1,4 +1,4 @@
-package nf.co.markyourspace.markyourspace.dummy;
+package nf.co.markyourspace.markyourspace;
 
 import java.util.ArrayList;
 import java.util.HashMap;

@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,9 +13,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.TextView;
-import android.support.v4.app.*;
-
-import nf.co.markyourspace.markyourspace.dummy.DummyContent;
 
 /**
  * A fragment representing a list of Items.
@@ -96,7 +94,7 @@ public class reservationsFragment extends Fragment implements AbsListView.OnItem
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                Snackbar.make(view, "Go to Add", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
         });

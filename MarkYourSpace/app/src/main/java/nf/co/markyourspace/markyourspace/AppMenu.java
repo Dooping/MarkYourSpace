@@ -1,6 +1,7 @@
 package nf.co.markyourspace.markyourspace;
 
 import android.app.Fragment;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -13,9 +14,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.PopupWindow;
 
 public class AppMenu extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, reservationsFragment.OnFragmentInteractionListener {
+        implements NavigationView.OnNavigationItemSelectedListener, reservationsFragment.OnFragmentInteractionListener, newBuildingFragment.OnFragmentInteractionListener, myBuildingsFragment.OnFragmentInteractionListener{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,9 +44,9 @@ public class AppMenu extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        android.support.v4.app.Fragment firstFragment = new reservationsFragment();
+        android.support.v4.app.Fragment fragment = new reservationsFragment();
         getSupportFragmentManager().beginTransaction()
-                .add(R.id.fragment_container, firstFragment).commit();
+                .add(R.id.fragment_container, fragment).commit();
     }
 
     @Override
@@ -86,9 +88,13 @@ public class AppMenu extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_home) {
-            System.out.println("Ya ta fixe ou que ate se anda bem na vida");
+            android.support.v4.app.Fragment fragment = new reservationsFragment();
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.fragment_container, fragment).commit();
         } else if (id == R.id.nav_my_buildings) {
-
+            android.support.v4.app.Fragment fragment = new newBuildingFragment();
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.fragment_container, fragment).commit();
         } else if (id == R.id.nav_find) {
 
         } else if (id == R.id.nav_history) {
@@ -106,6 +112,11 @@ public class AppMenu extends AppCompatActivity
 
     @Override
     public void onFragmentInteraction(String id) {
+
+    }
+
+    @Override
+    public void onFragmentInteraction(Uri uri) {
 
     }
 }
