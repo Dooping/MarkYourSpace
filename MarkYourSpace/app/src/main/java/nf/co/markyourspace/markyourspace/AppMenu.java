@@ -47,6 +47,7 @@ public class AppMenu extends AppCompatActivity
         android.support.v4.app.Fragment fragment = new reservationsFragment();
         getSupportFragmentManager().beginTransaction()
                 .add(R.id.fragment_container, fragment).commit();
+
     }
 
     @Override
@@ -96,7 +97,9 @@ public class AppMenu extends AppCompatActivity
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.fragment_container, fragment).commit();
         } else if (id == R.id.nav_find) {
-
+            android.support.v4.app.Fragment fragment = new myBuildingsFragment();
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.fragment_container, fragment).commit();
         } else if (id == R.id.nav_history) {
 
         } else if (id == R.id.nav_settings) {

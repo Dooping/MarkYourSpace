@@ -4,7 +4,26 @@
     tools:context="nf.co.markyourspace.markyourspace.dummy.MyBuildings">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView android:layout_width="match_parent" android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+
+
+    <ImageButton
+        android:id="@+id/moreImageButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:src="@android:drawable/ic_input_add"
+        android:layout_gravity="right|top" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ADD"
+        android:id="@+id/button2"
+        android:layout_gravity="center_horizontal|bottom"
+        android:textColor="#FFFFFF"
+        android:background="#552CA3" />
+
 
 </FrameLayout>
