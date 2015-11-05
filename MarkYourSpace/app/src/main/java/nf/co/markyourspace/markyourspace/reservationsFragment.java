@@ -12,6 +12,7 @@ import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
+import android.widget.SearchView;
 import android.widget.TextView;
 
 /**
@@ -45,7 +46,7 @@ public class reservationsFragment extends Fragment implements AbsListView.OnItem
      * The Adapter which will be used to populate the ListView/GridView with
      * Views.
      */
-    private ListAdapter mAdapter;
+    private ArrayAdapter mAdapter;
 
     // TODO: Rename and change types of parameters
     public static reservationsFragment newInstance(String param1, String param2) {
@@ -82,6 +83,7 @@ public class reservationsFragment extends Fragment implements AbsListView.OnItem
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_reservations, container, false);
+        SearchView inputSearch = (SearchView) view.findViewById(R.id.searchView);
 
         // Set the adapter
         mListView = (AbsListView) view.findViewById(android.R.id.list);
@@ -89,6 +91,20 @@ public class reservationsFragment extends Fragment implements AbsListView.OnItem
 
         // Set OnItemClickListener so we can be notified on item clicks
         mListView.setOnItemClickListener(this);
+
+        inputSearch.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                mAdapter.getFilter().filter(newText);
+                //mListView.setFilterText(newText);
+                return true;
+            }
+        });
 
         FloatingActionButton fab = (FloatingActionButton) view.findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
