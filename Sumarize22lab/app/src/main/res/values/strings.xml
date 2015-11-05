@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Sumarize22lab</string>
+    <string name="text_message">Output</string>
+    <string name="button_message">Click Me!</string>
+</resources>
