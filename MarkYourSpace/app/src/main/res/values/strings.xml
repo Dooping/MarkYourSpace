@@ -111,6 +111,11 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="title_activity_app_menu">Mark Your Space</string>
 
+
+    <!-- Butoes-->
+    <string name ="button_cancel">Cancel</string>
+    <string name ="button_add">Add</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

@@ -67,11 +67,12 @@ public class newBuildingFragment extends Fragment{
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.fragment_new_building, container, false);
-        EditText name, address, city, zipcode;
+        EditText name, address, city, zipcode,type;
         name = (EditText) view.findViewById(R.id.editName);
         address = (EditText) view.findViewById(R.id.editAddress);
         city = (EditText) view.findViewById(R.id.editCity);
         zipcode = (EditText) view.findViewById(R.id.editZipCode);
+        type = (EditText) view.findViewById(R.id.editType);
         return view;
     }
 
