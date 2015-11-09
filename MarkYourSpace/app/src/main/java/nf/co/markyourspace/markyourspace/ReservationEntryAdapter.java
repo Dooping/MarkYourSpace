@@ -19,16 +19,15 @@ public class ReservationEntryAdapter extends ArrayAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        LayoutInflater buildingEntryInflater =LayoutInflater.from(getContext());
-        View customView = buildingEntryInflater.inflate(R.layout.reservation_entry, parent, false);
-
+        View customView;
+        if (convertView == null)
+            customView = LayoutInflater.from(getContext()).inflate(R.layout.reservation_entry, parent, false);
+        else
+            customView = convertView;
 
         String singleReservationItem = (String) getItem(position);
         TextView reservationName = (TextView)customView.findViewById(R.id.reservationProperties);
-        ImageView reservationIcon = (ImageView)customView.findViewById(R.id.reservationIcon);
-
         reservationName.setText(singleReservationItem);
-        reservationIcon.setImageResource(R.drawable.reservation);
         return customView;
     }
 }

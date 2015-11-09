@@ -89,8 +89,8 @@ public class myBuildingsFragment extends Fragment {
                     new AdapterView.OnItemClickListener() {
                         @Override
                         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                            String food = String.valueOf(parent.getItemAtPosition(position));
-                            Toast.makeText(context, food, Toast.LENGTH_LONG).show();
+                            String building = String.valueOf(parent.getItemAtPosition(position));
+                            Toast.makeText(context, building, Toast.LENGTH_LONG).show();
                         }
                     }
 

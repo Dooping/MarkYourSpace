@@ -25,10 +25,8 @@ public class BuildingEntryAdapter  extends ArrayAdapter {
         else
             customView = convertView;
 
-
         String singleBuildingItem = (String) getItem(position);
         TextView buildingName = (TextView)customView.findViewById(R.id.buildingProperties);
-
         buildingName.setText(singleBuildingItem);
         return customView;
     }
