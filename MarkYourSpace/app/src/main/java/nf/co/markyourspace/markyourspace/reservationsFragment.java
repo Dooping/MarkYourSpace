@@ -87,10 +87,13 @@ public class reservationsFragment extends Fragment implements AbsListView.OnItem
 
         // Set the adapter
         mListView = (AbsListView) view.findViewById(android.R.id.list);
+        mListView.setEmptyView(view.findViewById(android.R.id.empty));
         ((AdapterView<ListAdapter>) mListView).setAdapter(mAdapter);
 
         // Set OnItemClickListener so we can be notified on item clicks
         mListView.setOnItemClickListener(this);
+
+        this.setEmptyText("No Reservations");
 
         inputSearch.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
