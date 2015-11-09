@@ -11,23 +11,23 @@ import android.widget.TextView;
 /**
  * Created by Guilherme on 09/11/2015.
  */
-public class BuildingEntryAdapter  extends ArrayAdapter {
+public class ReservationEntryAdapter extends ArrayAdapter {
 
-    public BuildingEntryAdapter(Context context, String [] buildings) {
-        super(context,R.layout.building_entry ,buildings);
+    public ReservationEntryAdapter(Context context, String [] reservations) {
+        super(context,R.layout.reservation_entry ,reservations);
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         View customView;
         if (convertView == null)
-            customView = LayoutInflater.from(getContext()).inflate(R.layout.building_entry, parent, false);
+            customView = LayoutInflater.from(getContext()).inflate(R.layout.reservation_entry, parent, false);
         else
             customView = convertView;
 
-        String singleBuildingItem = (String) getItem(position);
-        TextView buildingName = (TextView)customView.findViewById(R.id.buildingProperties);
-        buildingName.setText(singleBuildingItem);
+        String singleReservationItem = (String) getItem(position);
+        TextView reservationName = (TextView)customView.findViewById(R.id.reservationProperties);
+        reservationName.setText(singleReservationItem);
         return customView;
     }
 }

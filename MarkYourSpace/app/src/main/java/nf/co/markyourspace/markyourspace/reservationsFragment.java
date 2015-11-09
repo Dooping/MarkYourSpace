@@ -12,8 +12,10 @@ import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
+import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 /**
  * A fragment representing a list of Items.
@@ -108,6 +110,8 @@ public class reservationsFragment extends Fragment implements AbsListView.OnItem
                 return true;
             }
         });
+
+
 
         FloatingActionButton fab = (FloatingActionButton) view.findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
