@@ -5,16 +5,21 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Guilherme on 09/11/2015.
  */
 public class ReservationEntryAdapter extends ArrayAdapter {
 
-    public ReservationEntryAdapter(Context context, String [] reservations) {
-        super(context,R.layout.reservation_entry ,reservations);
+    public ReservationEntryAdapter(Context context, List<MyReservation> reservations) {
+        super(context, R.layout.reservation_entry, reservations);
     }
 
     @Override
@@ -26,8 +31,9 @@ public class ReservationEntryAdapter extends ArrayAdapter {
             customView = convertView;
 
         String singleReservationItem = (String) getItem(position);
-        TextView reservationName = (TextView)customView.findViewById(R.id.reservationProperties);
+        TextView reservationName = (TextView) customView.findViewById(R.id.reservationProperties);
         reservationName.setText(singleReservationItem);
         return customView;
     }
+
 }
