@@ -1,5 +1,7 @@
 package nf.co.markyourspace.markyourspace;
 
+import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -14,13 +16,14 @@ import android.view.MenuItem;
 public class AppMenu extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, reservationsFragment.OnFragmentInteractionListener, newBuildingFragment.OnFragmentInteractionListener, myBuildingsFragment.OnFragmentInteractionListener{
 
+    static Context applicationContext;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_app_menu);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
+        applicationContext = getApplicationContext();
         /*FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -84,20 +87,25 @@ public class AppMenu extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_home) {
+            setActionBarTitle("Home");
             android.support.v4.app.Fragment fragment = new reservationsFragment();
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.fragment_container, fragment).commit();
         } else if (id == R.id.nav_my_buildings) {
+            setActionBarTitle("My Buildings");
             android.support.v4.app.Fragment fragment = new newBuildingFragment();
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.fragment_container, fragment).commit();
         } else if (id == R.id.nav_find) {
+setActionBarTitle("Find a Space");
             android.support.v4.app.Fragment fragment = new myBuildingsFragment();
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.fragment_container, fragment).commit();
         } else if (id == R.id.nav_history) {
+            setActionBarTitle("History");
 
         } else if (id == R.id.nav_settings) {
+            setActionBarTitle("Settings");
 
         } else if (id == R.id.nav_logout) {
 
@@ -106,6 +114,10 @@ public class AppMenu extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    public void setActionBarTitle(String title){
+        setTitle(title);
     }
 
     @Override
