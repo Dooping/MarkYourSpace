@@ -3,10 +3,11 @@ package nf.co.markyourspace.markyourspace;
 import android.app.Activity;
 import android.net.Uri;
 import android.os.Bundle;
-import android.app.Fragment;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 
 /**
@@ -63,8 +64,15 @@ public class newSpace extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_new_space, container, false);
+        View view = inflater.inflate(R.layout.fragment_new_space, container, false);
+        Button cancel = (Button) view.findViewById(R.id.button3);
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getActivity().onBackPressed();
+            }
+        });
+        return view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
