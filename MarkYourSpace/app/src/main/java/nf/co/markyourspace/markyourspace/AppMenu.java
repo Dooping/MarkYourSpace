@@ -14,7 +14,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 public class AppMenu extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, reservationsFragment.OnFragmentInteractionListener, newBuildingFragment.OnFragmentInteractionListener, myBuildingsFragment.OnFragmentInteractionListener{
+        implements NavigationView.OnNavigationItemSelectedListener,newSpace.OnFragmentInteractionListener, reservationsFragment.OnFragmentInteractionListener, newBuildingFragment.OnFragmentInteractionListener, myBuildingsFragment.OnFragmentInteractionListener{
 
     static Context applicationContext;
     @Override
@@ -24,14 +24,6 @@ public class AppMenu extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         applicationContext = getApplicationContext();
-        /*FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });*/
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -44,7 +36,7 @@ public class AppMenu extends AppCompatActivity
 
         android.support.v4.app.Fragment fragment = new reservationsFragment();
         getSupportFragmentManager().beginTransaction()
-                .add(R.id.fragment_container, fragment).commit();
+                .replace(R.id.fragment_container, fragment).commit();
 
     }
 
@@ -90,12 +82,12 @@ public class AppMenu extends AppCompatActivity
             setActionBarTitle("Mark my Space");
             android.support.v4.app.Fragment fragment = new reservationsFragment();
             getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.fragment_container, fragment).commit();
+                    .replace(R.id.fragment_container, fragment).addToBackStack(null).commit();
         } else if (id == R.id.nav_my_buildings) {
             setActionBarTitle("My Buildings");
             android.support.v4.app.Fragment fragment = new myBuildingsFragment();
             getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.fragment_container, fragment).commit();
+                    .replace(R.id.fragment_container, fragment).addToBackStack(null).commit();
         } else if (id == R.id.nav_find) {
 setActionBarTitle("Find a Space");
             
@@ -106,7 +98,8 @@ setActionBarTitle("Find a Space");
             setActionBarTitle("Settings");
 
         } else if (id == R.id.nav_logout) {
-
+            Intent intent = new Intent(AppMenu.this, LoginActivity.class);
+            startActivity(intent);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -125,6 +118,14 @@ setActionBarTitle("Find a Space");
 
     @Override
     public void onFragmentInteraction(Uri uri) {
+
+    }
+
+    public void newSpace() {
+        setActionBarTitle("New Space");
+        android.support.v4.app.Fragment fragment = new newSpace();
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fragment_container, fragment).addToBackStack("main").commit();
 
     }
 }

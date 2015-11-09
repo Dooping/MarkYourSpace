@@ -122,8 +122,7 @@ public class reservationsFragment extends Fragment implements AbsListView.OnItem
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Go to Add", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                ((AppMenu)getActivity()).newSpace();
             }
         });
 
