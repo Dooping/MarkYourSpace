@@ -12,10 +12,12 @@ import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
-import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A fragment representing a list of Items.
@@ -38,6 +40,8 @@ public class reservationsFragment extends Fragment implements AbsListView.OnItem
     private String mParam2;
 
     private OnFragmentInteractionListener mListener;
+
+    private static List<MyReservation> reservations = new ArrayList<>();
 
     /**
      * The fragment's ListView/GridView.
@@ -77,8 +81,9 @@ public class reservationsFragment extends Fragment implements AbsListView.OnItem
         }
 
         // TODO: Change Adapter to display your content
-        mAdapter = new ArrayAdapter<DummyContent.DummyItem>(getActivity(),
-                android.R.layout.simple_list_item_1, android.R.id.text1, DummyContent.ITEMS);
+        /*mAdapter = new ArrayAdapter<MyReservation>(getActivity(),
+                android.R.layout.simple_list_item_1, android.R.id.text1, reservations);*/
+        mAdapter = new ReservationEntryAdapter(getActivity(), reservations);
     }
 
     @Override
@@ -117,8 +122,7 @@ public class reservationsFragment extends Fragment implements AbsListView.OnItem
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Go to Add", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                ((AppMenu)getActivity()).newSpace();
             }
         });
 
