@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">MemeCreator</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="button_text">Click me</string>
+    <string name="bot_message">Bottom</string>
+    <string name="top_message">Top</string>
+
+</resources>
