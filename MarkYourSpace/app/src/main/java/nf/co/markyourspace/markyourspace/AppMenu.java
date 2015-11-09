@@ -87,20 +87,18 @@ public class AppMenu extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_home) {
-            setActionBarTitle("Home");
+            setActionBarTitle("Mark my Space");
             android.support.v4.app.Fragment fragment = new reservationsFragment();
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.fragment_container, fragment).commit();
         } else if (id == R.id.nav_my_buildings) {
             setActionBarTitle("My Buildings");
-            android.support.v4.app.Fragment fragment = new newBuildingFragment();
+            android.support.v4.app.Fragment fragment = new myBuildingsFragment();
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.fragment_container, fragment).commit();
         } else if (id == R.id.nav_find) {
 setActionBarTitle("Find a Space");
-            android.support.v4.app.Fragment fragment = new myBuildingsFragment();
-            getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.fragment_container, fragment).commit();
+            
         } else if (id == R.id.nav_history) {
             setActionBarTitle("History");
 
