@@ -70,6 +70,7 @@ public class myBuildingsFragment extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
 
+        setHasOptionsMenu(true);
     }
 
     @Override
@@ -141,6 +142,8 @@ public class myBuildingsFragment extends Fragment {
     public void onCreateOptionsMenu(
             Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.app_menu, menu);
+        if(menu!=null)
+            menu.findItem(R.id.action_settings).setVisible(false);
     }
 
 }
