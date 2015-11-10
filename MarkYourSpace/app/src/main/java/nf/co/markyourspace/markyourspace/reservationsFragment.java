@@ -3,7 +3,6 @@ package nf.co.markyourspace.markyourspace;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,7 +13,6 @@ import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.SearchView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,6 +40,8 @@ public class reservationsFragment extends Fragment implements AbsListView.OnItem
     private OnFragmentInteractionListener mListener;
 
     private static List<MyReservation> reservations = new ArrayList<>();
+
+    SearchView inputSearch;
 
     /**
      * The fragment's ListView/GridView.
@@ -90,12 +90,14 @@ public class reservationsFragment extends Fragment implements AbsListView.OnItem
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_reservations, container, false);
-        SearchView inputSearch = (SearchView) view.findViewById(R.id.searchView);
+        inputSearch = (SearchView) view.findViewById(R.id.searchView);
 
         // Set the adapter
         mListView = (AbsListView) view.findViewById(android.R.id.list);
         mListView.setEmptyView(view.findViewById(android.R.id.empty));
         ((AdapterView<ListAdapter>) mListView).setAdapter(mAdapter);
+
+        reservations.add(new MyReservation("asjhgfk", "12345", "eu", null, null, 0, 0));
 
         // Set OnItemClickListener so we can be notified on item clicks
         mListView.setOnItemClickListener(this);
@@ -111,12 +113,9 @@ public class reservationsFragment extends Fragment implements AbsListView.OnItem
             @Override
             public boolean onQueryTextChange(String newText) {
                 mAdapter.getFilter().filter(newText);
-                //mListView.setFilterText(newText);
                 return true;
             }
         });
-
-
 
         FloatingActionButton fab = (FloatingActionButton) view.findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -127,6 +126,13 @@ public class reservationsFragment extends Fragment implements AbsListView.OnItem
         });
 
         return view;
+    }
+
+    @Override
+    public void onResume() {
+        inputSearch.setQuery("", false);
+        inputSearch.setIconified(true);
+        super.onResume();
     }
 
     @Override
