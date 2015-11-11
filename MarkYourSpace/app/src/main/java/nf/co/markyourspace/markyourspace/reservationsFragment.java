@@ -88,14 +88,14 @@ public class reservationsFragment extends Fragment implements AbsListView.OnItem
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
 
-        reservations = new ArrayList<>();
-        read();
+        reservations = ((MYSApp)(getActivity().getApplication())).getReservations();
 
         // TODO: Change Adapter to display your content
         /*mAdapter = new ArrayAdapter<MyReservation>(getActivity(),
                 android.R.layout.simple_list_item_1, android.R.id.text1, reservations);*/
         mAdapter = new ReservationEntryAdapter(getActivity(), reservations);
 
+        //((MYSApp)(getActivity().getApplication())).addReservation(new MyReservation("asjhgfk", "12345", "eu", null, null, 0, 0));
         //reservations.add(new MyReservation("asjhgfk", "12345", "eu", null, null, 0, 0));
     }
 
@@ -143,7 +143,7 @@ public class reservationsFragment extends Fragment implements AbsListView.OnItem
     public void onResume() {
         inputSearch.setQuery("", false);
         inputSearch.setIconified(true);
-        read();
+        reservations = ((MYSApp)(getActivity().getApplication())).getReservations();
         super.onResume();
     }
 
@@ -199,38 +199,6 @@ public class reservationsFragment extends Fragment implements AbsListView.OnItem
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         public void onFragmentInteraction(String id);
-    }
-
-    public void read(){
-        ObjectInputStream input;
-        String filename = "reservationFile.srl";
-
-        try {
-            input = new ObjectInputStream(new FileInputStream(new File(new File(getActivity().getFilesDir(),"")+File.separator+filename)));
-            reservations = (ArrayList<MyReservation>) input.readObject();
-            input.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        for(int i = 0; i<reservations.size(); i++)
-            if(!reservations.get(i).getUser().equals(((MYSApp) getActivity().getApplication()).getUsername()))
-                reservations.remove(i);
-    }
-
-    public void write(){
-        String filename = "reservationFile.srl";
-        ObjectOutput out;
-
-        try {
-            out = new ObjectOutputStream(new FileOutputStream(new File(new File(getActivity().getFilesDir(),"")+File.separator+filename)));
-            out.writeObject(reservations);
-            out.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
 }
