@@ -14,6 +14,14 @@ import android.widget.ListAdapter;
 import android.widget.SearchView;
 import android.widget.TextView;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutput;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,7 +47,7 @@ public class reservationsFragment extends Fragment implements AbsListView.OnItem
 
     private OnFragmentInteractionListener mListener;
 
-    private static List<MyReservation> reservations = new ArrayList<>();
+    private static List<MyReservation> reservations;
 
     SearchView inputSearch;
 
@@ -80,10 +88,15 @@ public class reservationsFragment extends Fragment implements AbsListView.OnItem
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
 
+        reservations = new ArrayList<>();
+        read();
+
         // TODO: Change Adapter to display your content
         /*mAdapter = new ArrayAdapter<MyReservation>(getActivity(),
                 android.R.layout.simple_list_item_1, android.R.id.text1, reservations);*/
         mAdapter = new ReservationEntryAdapter(getActivity(), reservations);
+
+        //reservations.add(new MyReservation("asjhgfk", "12345", "eu", null, null, 0, 0));
     }
 
     @Override
@@ -96,8 +109,6 @@ public class reservationsFragment extends Fragment implements AbsListView.OnItem
         mListView = (AbsListView) view.findViewById(android.R.id.list);
         mListView.setEmptyView(view.findViewById(android.R.id.empty));
         ((AdapterView<ListAdapter>) mListView).setAdapter(mAdapter);
-
-        reservations.add(new MyReservation("asjhgfk", "12345", "eu", null, null, 0, 0));
 
         // Set OnItemClickListener so we can be notified on item clicks
         mListView.setOnItemClickListener(this);
@@ -121,7 +132,7 @@ public class reservationsFragment extends Fragment implements AbsListView.OnItem
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ((AppMenu)getActivity()).newSpace();
+                ((AppMenu) getActivity()).newSpace();
             }
         });
 
@@ -132,6 +143,7 @@ public class reservationsFragment extends Fragment implements AbsListView.OnItem
     public void onResume() {
         inputSearch.setQuery("", false);
         inputSearch.setIconified(true);
+        read();
         super.onResume();
     }
 
@@ -187,6 +199,38 @@ public class reservationsFragment extends Fragment implements AbsListView.OnItem
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         public void onFragmentInteraction(String id);
+    }
+
+    public void read(){
+        ObjectInputStream input;
+        String filename = "reservationFile.srl";
+
+        try {
+            input = new ObjectInputStream(new FileInputStream(new File(new File(getActivity().getFilesDir(),"")+File.separator+filename)));
+            reservations = (ArrayList<MyReservation>) input.readObject();
+            input.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        for(int i = 0; i<reservations.size(); i++)
+            if(!reservations.get(i).getUser().equals(((MYSApp) getActivity().getApplication()).getUsername()))
+                reservations.remove(i);
+    }
+
+    public void write(){
+        String filename = "reservationFile.srl";
+        ObjectOutput out;
+
+        try {
+            out = new ObjectOutputStream(new FileOutputStream(new File(new File(getActivity().getFilesDir(),"")+File.separator+filename)));
+            out.writeObject(reservations);
+            out.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 }
