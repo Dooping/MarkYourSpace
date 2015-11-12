@@ -14,7 +14,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 public class AppMenu extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener,newSpace.OnFragmentInteractionListener, reservationsFragment.OnFragmentInteractionListener, newBuildingFragment.OnFragmentInteractionListener, myBuildingsFragment.OnFragmentInteractionListener{
+        implements NavigationView.OnNavigationItemSelectedListener,newSpace.OnFragmentInteractionListener, reservationsFragment.OnFragmentInteractionListener, newBuildingFragment.OnFragmentInteractionListener, myBuildingsFragment.OnFragmentInteractionListener,findSpaceFragment.OnFragmentInteractionListener{
 
     static Context applicationContext;
     @Override
@@ -90,6 +90,9 @@ public class AppMenu extends AppCompatActivity
                     .replace(R.id.fragment_container, fragment).addToBackStack(null).commit();
         } else if (id == R.id.nav_find) {
 setActionBarTitle("Find a Space");
+            android.support.v4.app.Fragment fragment = new findSpaceFragment();
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.fragment_container, fragment).addToBackStack(null).commit();
             
         } else if (id == R.id.nav_history) {
             setActionBarTitle("History");

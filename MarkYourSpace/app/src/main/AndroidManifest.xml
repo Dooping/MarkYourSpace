@@ -27,8 +27,6 @@
             android:label="@string/title_activity_app_menu"
             android:theme="@style/AppTheme.NoActionBar" >
         </activity>
-        <activity android:name=".myBuildingsActivity" >
-        </activity>
     </application>
 
 </manifest>
