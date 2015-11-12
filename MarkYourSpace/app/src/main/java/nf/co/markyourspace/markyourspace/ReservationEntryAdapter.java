@@ -31,8 +31,12 @@ public class ReservationEntryAdapter extends ArrayAdapter {
             customView = convertView;
 
         MyReservation singleReservationItem = (MyReservation) getItem(position);
-        TextView reservationName = (TextView) customView.findViewById(R.id.reservationProperties);
-        reservationName.setText(singleReservationItem.getSpaceName());
+        TextView reservationLabel = (TextView) customView.findViewById(R.id.reservationProperties);
+        TextView buildingLabel = (TextView) customView.findViewById(R.id.reservationBuilding);
+        TextView dateLabel = (TextView) customView.findViewById(R.id.reservationDate);
+        reservationLabel.setText(singleReservationItem.getSpaceName());
+        buildingLabel.setText(singleReservationItem.getBuildingName());
+        dateLabel.setText("12/11/2015 22:00 - 13/11/2015 13:00");
         return customView;
     }
 
