@@ -1,9 +1,7 @@
 package nf.co.markyourspace.markyourspace;
 
-import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -12,7 +10,6 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -40,17 +37,6 @@ public class AppMenu extends AppCompatActivity
         android.support.v4.app.Fragment fragment = new reservationsFragment();
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fragment_container, fragment).commit();
-
-        IntentFilter intentFilter = new IntentFilter();
-        intentFilter.addAction("com.package.ACTION_LOGOUT");
-        registerReceiver(new BroadcastReceiver() {
-            @Override
-            public void onReceive(Context context, Intent intent) {
-                Log.d("onReceive", "Logout in progress");
-                //At this point you should start the login activity and finish this one
-                finish();
-            }
-        }, intentFilter);
 
     }
 
@@ -115,9 +101,10 @@ setActionBarTitle("Find a Space");
             setActionBarTitle("Settings");
 
         } else if (id == R.id.nav_logout) {
-            Intent broadcastIntent = new Intent();
-            broadcastIntent.setAction("com.package.ACTION_LOGOUT");
-            sendBroadcast(broadcastIntent);
+            /*Intent intent = new Intent(AppMenu.this, LoginActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP); // To clean up all activities
+            startActivity(intent);*/
+            finish();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
