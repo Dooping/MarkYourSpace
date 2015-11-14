@@ -16,7 +16,8 @@
         android:orientation="vertical"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical">
+        android:layout_gravity="center_vertical"
+        android:layout_weight="1">
 
         <LinearLayout
             android:orientation="horizontal"
@@ -56,5 +57,18 @@
         </LinearLayout>
 
     </LinearLayout>
+
+    <ImageButton
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:id="@+id/deleteButton"
+        android:src="@drawable/abc_ic_clear_mtrl_alpha"
+        android:tint="#000000"
+        android:layout_gravity="center_vertical"
+        android:adjustViewBounds="false"
+        android:layout_weight="0"
+        android:layout_margin="16dp"
+        android:background="@null"
+        android:clickable="true" />
 
 </LinearLayout>

@@ -118,4 +118,8 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="remove">Remove Reservation</string>
+    <string name="really_remove">Do you really want to remove this reservation?</string>
 </resources>
