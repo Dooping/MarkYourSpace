@@ -120,6 +120,8 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
-    <string name="remove">Remove Reservation</string>
-    <string name="really_remove">Do you really want to remove this reservation?</string>
+    <string name="remove_reservation">Remove Reservation</string>
+    <string name="really_remove_reservation">Do you really want to remove this reservation?</string>
+    <string name="remove_building">Remove Building</string>
+    <string name="really_remove_building">Do you really want to remove this building?</string>
 </resources>

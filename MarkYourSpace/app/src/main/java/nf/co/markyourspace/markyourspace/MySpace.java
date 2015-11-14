@@ -1,11 +1,15 @@
 package nf.co.markyourspace.markyourspace;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by Guilherme on 12/11/2015.
  */
-public class MySpace {
+public class MySpace implements Serializable{
+
+    private static final long serialVersionUID = 0L;
+
     private String name;
     private int floor;
     private int seats;

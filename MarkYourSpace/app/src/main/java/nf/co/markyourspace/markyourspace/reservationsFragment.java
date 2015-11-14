@@ -1,8 +1,6 @@
 package nf.co.markyourspace.markyourspace;
 
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
@@ -12,20 +10,9 @@ import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.ImageButton;
 import android.widget.ListAdapter;
 import android.widget.SearchView;
 import android.widget.TextView;
-
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutput;
-import java.io.ObjectOutputStream;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -93,12 +80,9 @@ public class reservationsFragment extends Fragment implements AbsListView.OnItem
 
         reservations = ((MYSApp)(getActivity().getApplication())).getReservations();
 
-        // TODO: Change Adapter to display your content
-        /*mAdapter = new ArrayAdapter<MyReservation>(getActivity(),
-                android.R.layout.simple_list_item_1, android.R.id.text1, reservations);*/
-        MyReservation teste = new MyReservation("asjhgfk", "12345", "eu", null, null, 0, 0);
+        /*MyReservation teste = new MyReservation("asjhgfk", "12345", null, null, 0, 0);
         ((MYSApp) (getActivity().getApplication())).addReservation(teste);
-        reservations.add(teste);
+        reservations.add(teste);*/
         mAdapter = new ReservationEntryAdapter(getActivity(), reservations);
 
     }

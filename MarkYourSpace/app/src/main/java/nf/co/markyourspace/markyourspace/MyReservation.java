@@ -21,7 +21,7 @@ public class MyReservation implements Serializable{
     private int endHourInMinutes;
 
 
-    public MyReservation(String spaceName, String buildingName, String user, Date startDate, Date endDate, int startHourInMinutes, int endHourInMinutes) {
+    public MyReservation(String spaceName, String buildingName, Date startDate, Date endDate, int startHourInMinutes, int endHourInMinutes) {
         this.guid = UUID.randomUUID().toString();
         this.spaceName = spaceName;
         this.buildingName = buildingName;
@@ -62,6 +62,10 @@ public class MyReservation implements Serializable{
 
     public String getGuid() {
         return guid;
+    }
+
+    public void setUser(String user) {
+        this.user = user;
     }
 
     @Override

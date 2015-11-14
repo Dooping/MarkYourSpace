@@ -17,6 +17,8 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import java.util.List;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -39,6 +41,8 @@ public class myBuildingsFragment extends Fragment {
     private OnFragmentInteractionListener mListener;
 
     private Context context;
+
+    private static List<MyBuilding> buildings;
 
     /**
      * Use this factory method to create a new instance of
@@ -70,6 +74,12 @@ public class myBuildingsFragment extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
 
+        buildings = ((MYSApp)(getActivity().getApplication())).getBuildings();
+
+        /*MyBuilding teste = new MyBuilding("asjhgfk"+buildings.size(), "rua dos bixos","city","private",12345);
+        ((MYSApp) (getActivity().getApplication())).addBuilding(teste);
+        buildings.add(teste);*/
+
         setHasOptionsMenu(true);
     }
 
@@ -81,7 +91,7 @@ public class myBuildingsFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_my_buildings, container, false);
 
         context=getActivity();
-        String[] buildings = {"Building1","Building2", "Building3", "Building4", "Building5","Building6"};
+        //String[] buildings = {"Building1","Building2", "Building3", "Building4", "Building5","Building6"};
         ListAdapter buildingEntryAdapter = new BuildingEntryAdapter(context,buildings);
 
             ListView buildingsList = (ListView) view.findViewById(R.id.buildingsList);

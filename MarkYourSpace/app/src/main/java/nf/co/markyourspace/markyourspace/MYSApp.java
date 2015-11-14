@@ -18,6 +18,7 @@ import java.util.ArrayList;
 public class MYSApp extends Application {
 
     private static final String RESERVATION_FILE = "reservationFile.srl";
+    private static final String BUILDING_FILE = "buildingFile.srl";
 
     private String username;
 
@@ -52,6 +53,7 @@ public class MYSApp extends Application {
     public void addReservation(MyReservation reservation){
         ObjectOutput out;
         ArrayList<MyReservation> reservations = getReservations();
+        reservation.setUser(username);
         reservations.add(reservation);
 
         try {
@@ -72,6 +74,58 @@ public class MYSApp extends Application {
 
         try {
             out = new ObjectOutputStream(new FileOutputStream(new File(new File(getFilesDir(),"")+File.separator+RESERVATION_FILE)));
+            out.writeObject(reservations);
+            out.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public ArrayList<MyBuilding> getBuildings(){
+        ObjectInputStream input;
+
+        ArrayList<MyBuilding> buildings = new ArrayList<>();
+
+        try {
+            input = new ObjectInputStream(new FileInputStream(new File(new File(getFilesDir(),"")+File.separator+BUILDING_FILE)));
+            buildings = (ArrayList<MyBuilding>) input.readObject();
+            input.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        for(int i = 0; i<buildings.size(); i++)
+            if(!buildings.get(i).getUser().equals(username))
+                buildings.remove(i);
+        return buildings;
+    }
+
+    public void addBuilding(MyBuilding building){
+        ObjectOutput out;
+        building.setUser(username);
+        ArrayList<MyBuilding> buildings = getBuildings();
+        buildings.add(building);
+
+        try {
+            out = new ObjectOutputStream(new FileOutputStream(new File(new File(getFilesDir(),"")+File.separator+BUILDING_FILE)));
+            out.writeObject(buildings);
+            out.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void deleteBuilding(MyBuilding reservation){
+        ObjectOutput out;
+        ArrayList<MyBuilding> reservations = getBuildings();
+        reservations.remove(reservation);
+
+        try {
+            out = new ObjectOutputStream(new FileOutputStream(new File(new File(getFilesDir(),"")+File.separator+BUILDING_FILE)));
             out.writeObject(reservations);
             out.close();
         } catch (FileNotFoundException e) {

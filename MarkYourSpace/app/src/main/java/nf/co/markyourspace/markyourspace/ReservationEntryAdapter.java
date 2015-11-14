@@ -44,8 +44,8 @@ public class ReservationEntryAdapter extends ArrayAdapter {
             public void onClick(View v) {
                 new AlertDialog.Builder(getContext())
                         .setIcon(android.R.drawable.ic_dialog_alert)
-                        .setTitle(R.string.remove)
-                        .setMessage(R.string.really_remove)
+                        .setTitle(R.string.remove_reservation)
+                        .setMessage(R.string.really_remove_reservation)
                         .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
 
                             @Override
