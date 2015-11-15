@@ -91,7 +91,6 @@ public class myBuildingsFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_my_buildings, container, false);
 
         context=getActivity();
-        //String[] buildings = {"Building1","Building2", "Building3", "Building4", "Building5","Building6"};
         ListAdapter buildingEntryAdapter = new BuildingEntryAdapter(context,buildings);
 
             ListView buildingsList = (ListView) view.findViewById(R.id.buildingsList);
@@ -100,7 +99,7 @@ public class myBuildingsFragment extends Fragment {
                     new AdapterView.OnItemClickListener() {
                         @Override
                         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                            String building = String.valueOf(parent.getItemAtPosition(position));
+                            String building = ((MyBuilding)parent.getItemAtPosition(position)).getName();
                             Toast.makeText(context, building, Toast.LENGTH_LONG).show();
                         }
                     }

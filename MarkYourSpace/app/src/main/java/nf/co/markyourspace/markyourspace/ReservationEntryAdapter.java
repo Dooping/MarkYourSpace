@@ -38,6 +38,7 @@ public class ReservationEntryAdapter extends ArrayAdapter {
 
 
         ImageButton remove = (ImageButton) customView.findViewById(R.id.deleteButton);
+        remove.setFocusable(false);
         remove.setOnClickListener(new View.OnClickListener() {
 
             @Override

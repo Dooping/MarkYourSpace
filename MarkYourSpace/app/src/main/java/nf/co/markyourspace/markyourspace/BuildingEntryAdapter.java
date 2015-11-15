@@ -34,6 +34,7 @@ public class BuildingEntryAdapter  extends ArrayAdapter {
             customView = convertView;
 
         ImageButton remove = (ImageButton) customView.findViewById(R.id.deleteButton);
+        remove.setFocusable(false);
         remove.setOnClickListener(new View.OnClickListener() {
 
             @Override
