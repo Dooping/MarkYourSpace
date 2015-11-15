@@ -106,8 +106,7 @@ public class myBuildingsFragment extends Fragment {
                 new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        String building = ((MyBuilding) parent.getItemAtPosition(position)).getName();
-                        Toast.makeText(context, building, Toast.LENGTH_LONG).show();
+                        itemClicked(((MyBuilding) parent.getItemAtPosition(position)).getName());
                     }
                 }
 
@@ -182,6 +181,25 @@ public class myBuildingsFragment extends Fragment {
             menu.findItem(R.id.action_settings).setVisible(false);
             menu.findItem(R.id.action_search_icon).setVisible(false);
         }
+    }
+
+    public void itemClicked(String buildingName){
+        buildingDetailView(buildingName);
+    }
+
+    //mudar e falar dos buildings (nao devem estar na AppMenu?????)
+    public void buildingDetailView(String buildingName){
+        MyBuilding mb= buildings.get(findBuildingPosition(buildingName));
+        ((AppMenu) getActivity()).buildingDetailViewFragment(mb.getName(), mb.getAddress(), mb.getCity(), mb.getType(), mb.getZipCode());
+    }
+
+    private int findBuildingPosition(String buildingName){
+        for(int i=0;i<buildings.size();i++){
+            if(buildings.get(i).getName().equals(buildingName)) {
+                return i;
+            }
+        }
+        return -1;
     }
 
 }

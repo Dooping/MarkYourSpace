@@ -13,8 +13,15 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import java.util.Iterator;
+import java.util.List;
+
 public class AppMenu extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,newSpace.OnFragmentInteractionListener, reservationsFragment.OnFragmentInteractionListener, newBuildingFragment.OnFragmentInteractionListener, myBuildingsFragment.OnFragmentInteractionListener,findSpaceFragment.OnFragmentInteractionListener,detailBuildingViewFragment.OnFragmentInteractionListener{
+
+    private static List<MyBuilding> buildings;
+    private static List<MyReservation> reservations;
+
 
     static Context applicationContext;
     @Override
@@ -141,7 +148,7 @@ public class AppMenu extends AppCompatActivity
     }
 
 
-    public void newBuilding(String name, String address, String city, String type,String zipCode) {
+    public void buildingDetailViewFragment(String name, String address, String city, String type,String zipCode) {
         setActionBarTitle(name);
         android.support.v4.app.Fragment fragment = new detailBuildingViewFragment();
         Bundle args = new Bundle();
@@ -151,11 +158,9 @@ public class AppMenu extends AppCompatActivity
         args.putString("type", type);
         args.putString("zipCode", zipCode);
         fragment.setArguments(args);
-
-        //((detailBuildingViewFragment) fragment).setInfo(name, address, zipCode);
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fragment_container, fragment).addToBackStack("main").commit();
-
-
     }
+
+
 }

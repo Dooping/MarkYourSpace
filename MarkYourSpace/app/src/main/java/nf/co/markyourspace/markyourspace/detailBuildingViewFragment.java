@@ -125,9 +125,4 @@ public class detailBuildingViewFragment extends Fragment {
 
     }
 
-    public void setInfo(String buildingName,String buildingAddress,String buildingZipCode){
-        textBuildingName.setText(buildingName);
-        textBuildingAddress.setText(buildingAddress);
-        textBuildingZipCode.setText(buildingZipCode);
-    }
 }

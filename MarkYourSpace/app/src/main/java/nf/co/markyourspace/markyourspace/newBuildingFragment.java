@@ -153,7 +153,7 @@ public class newBuildingFragment extends Fragment{
     }
 
     public void buttonAddClicked(){
-        ((AppMenu)getActivity()).newBuilding(name.getText().toString(),address.getText().toString(),city.getText().toString(),type.getText().toString(), zipcode.getText().toString());
+        ((AppMenu)getActivity()).buildingDetailViewFragment(name.getText().toString(),address.getText().toString(),city.getText().toString(),type.getText().toString(), zipcode.getText().toString());
     }
 
     public void buttonCancelClicked(){
