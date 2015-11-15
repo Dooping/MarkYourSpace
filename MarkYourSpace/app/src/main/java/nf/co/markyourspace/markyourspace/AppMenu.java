@@ -14,7 +14,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 public class AppMenu extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener,newSpace.OnFragmentInteractionListener, reservationsFragment.OnFragmentInteractionListener, newBuildingFragment.OnFragmentInteractionListener, myBuildingsFragment.OnFragmentInteractionListener,findSpaceFragment.OnFragmentInteractionListener{
+        implements NavigationView.OnNavigationItemSelectedListener,newSpace.OnFragmentInteractionListener, reservationsFragment.OnFragmentInteractionListener, newBuildingFragment.OnFragmentInteractionListener, myBuildingsFragment.OnFragmentInteractionListener,findSpaceFragment.OnFragmentInteractionListener,detailBuildingViewFragment.OnFragmentInteractionListener{
 
     static Context applicationContext;
     @Override
@@ -68,6 +68,12 @@ public class AppMenu extends AppCompatActivity
         if (id == R.id.action_settings) {
             return true;
         }
+        else if(id == R.id.action_add_icon){
+            setActionBarTitle("New Building");
+            android.support.v4.app.Fragment fragment = new newBuildingFragment();
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.fragment_container, fragment).addToBackStack(null).commit();
+        }
 
         return super.onOptionsItemSelected(item);
     }
@@ -89,7 +95,7 @@ public class AppMenu extends AppCompatActivity
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.fragment_container, fragment).addToBackStack(null).commit();
         } else if (id == R.id.nav_find) {
-setActionBarTitle("Find a Space");
+            setActionBarTitle("Find a Space");
             android.support.v4.app.Fragment fragment = new findSpaceFragment();
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.fragment_container, fragment).addToBackStack(null).commit();
@@ -131,6 +137,25 @@ setActionBarTitle("Find a Space");
         android.support.v4.app.Fragment fragment = new newSpace();
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fragment_container, fragment).addToBackStack("main").commit();
+
+    }
+
+
+    public void newBuilding(String name, String address, String city, String type,String zipCode) {
+        setActionBarTitle(name);
+        android.support.v4.app.Fragment fragment = new detailBuildingViewFragment();
+        Bundle args = new Bundle();
+        args.putString("name", name);
+        args.putString("address", address);
+        args.putString("city", city);
+        args.putString("type", type);
+        args.putString("zipCode", zipCode);
+        fragment.setArguments(args);
+
+        //((detailBuildingViewFragment) fragment).setInfo(name, address, zipCode);
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fragment_container, fragment).addToBackStack("main").commit();
+
 
     }
 }

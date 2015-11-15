@@ -65,7 +65,7 @@ public class newSpace extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_new_space, container, false);
-        Button cancel = (Button) view.findViewById(R.id.button3);
+        Button cancel = (Button) view.findViewById(R.id.buttonCancelNewBuilding);
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

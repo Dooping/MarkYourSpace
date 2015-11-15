@@ -4,10 +4,13 @@ import android.app.Activity;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
+import android.widget.Button;
 import android.widget.EditText;
 
 /**
@@ -23,6 +26,13 @@ public class newBuildingFragment extends Fragment{
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+
+    //input info
+    private static EditText name;
+    private static EditText address;
+    private static EditText city;
+    private static EditText zipcode;
+    private static EditText type;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -60,6 +70,8 @@ public class newBuildingFragment extends Fragment{
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
 
+
+
     }
 
     @Override
@@ -67,12 +79,37 @@ public class newBuildingFragment extends Fragment{
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.fragment_new_building, container, false);
-        EditText name, address, city, zipcode,type;
         name = (EditText) view.findViewById(R.id.editName);
         address = (EditText) view.findViewById(R.id.editAddress);
         city = (EditText) view.findViewById(R.id.editCity);
         zipcode = (EditText) view.findViewById(R.id.editZipCode);
         type = (EditText) view.findViewById(R.id.editType);
+
+
+        final Button buttonAdd= (Button)view.findViewById(R.id.buttonAddNewBuilding);
+        final Button buttonCancel= (Button)view.findViewById(R.id.buttonCancelNewBuilding);
+
+        buttonAdd.setOnClickListener(
+                new View.OnClickListener(){
+                    @Override
+                    public void onClick(View v) {
+                        //metodo pa criar novo building
+                        buttonAddClicked();
+                    }
+                }
+        );
+
+        buttonCancel.setOnClickListener(
+                new View.OnClickListener(){
+                    @Override
+                    public void onClick(View v) {
+                        //metodo pa cancelar novo building voltar ao my buildings
+                        buttonCancelClicked();
+                    }
+                }
+        );
+
+
         return view;
     }
 
@@ -113,6 +150,16 @@ public class newBuildingFragment extends Fragment{
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         public void onFragmentInteraction(Uri uri);
+    }
+
+    public void buttonAddClicked(){
+        ((AppMenu)getActivity()).newBuilding(name.getText().toString(),address.getText().toString(),city.getText().toString(),type.getText().toString(), zipcode.getText().toString());
+    }
+
+    public void buttonCancelClicked(){
+        getFragmentManager().popBackStack();
+        getActivity().setTitle("My Buildings");
+
     }
 
 }

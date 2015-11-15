@@ -20,10 +20,10 @@ public class MyBuilding implements Serializable{
     private String city;
     private String type;
     private String user;
-    private int zipCode;
+    private String zipCode;
     private List<MySpace> spaces;
 
-    public MyBuilding(String name, String address, String city, String type, int zipCode) {
+    public MyBuilding(String name, String address, String city, String type, String zipCode) {
         this.guid = UUID.randomUUID().toString();
         this.name = name;
         this.address = address;
@@ -49,7 +49,7 @@ public class MyBuilding implements Serializable{
         return type;
     }
 
-    public int getZipCode() {
+    public String getZipCode() {
         return zipCode;
     }
 

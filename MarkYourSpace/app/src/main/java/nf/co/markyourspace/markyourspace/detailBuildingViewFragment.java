@@ -1,40 +1,33 @@
 package nf.co.markyourspace.markyourspace;
 
 import android.app.Activity;
-import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.Settings;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ListAdapter;
-import android.widget.ListView;
-import android.widget.SearchView;
-import android.widget.Toast;
-
-import java.util.List;
+import android.widget.TextView;
 
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link myBuildingsFragment.OnFragmentInteractionListener} interface
+ * {@link detailBuildingViewFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link myBuildingsFragment#newInstance} factory method to
+ * Use the {@link detailBuildingViewFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class myBuildingsFragment extends Fragment {
+public class detailBuildingViewFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+
+    //fields info
+    private static TextView textBuildingName;
+    private static TextView textBuildingAddress;
+    private static TextView textBuildingZipCode;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -42,25 +35,17 @@ public class myBuildingsFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    private Context context;
-
-    private static List<MyBuilding> buildings;
-    SearchView inputSearch;
-
-
-    private ArrayAdapter mAdapter;
-
     /**
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment myBuildingsFragment.
+     * @return A new instance of fragment detailBuildingViewFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static myBuildingsFragment newInstance(String param1, String param2) {
-        myBuildingsFragment fragment = new myBuildingsFragment();
+    public static detailBuildingViewFragment newInstance(String param1, String param2) {
+        detailBuildingViewFragment fragment = new detailBuildingViewFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -68,7 +53,7 @@ public class myBuildingsFragment extends Fragment {
         return fragment;
     }
 
-    public myBuildingsFragment() {
+    public detailBuildingViewFragment() {
         // Required empty public constructor
     }
 
@@ -79,51 +64,19 @@ public class myBuildingsFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-
-        buildings = ((MYSApp)(getActivity().getApplication())).getBuildings();
-
-        MyBuilding teste = new MyBuilding("asjhgfk"+buildings.size(), "rua dos bixos","city","private","12345");
-        ((MYSApp) (getActivity().getApplication())).addBuilding(teste);
-        buildings.add(teste);
-
-        setHasOptionsMenu(true);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-
-        View view = inflater.inflate(R.layout.fragment_my_buildings, container, false);
-        inputSearch = (SearchView) view.findViewById(R.id.searchView);
-
-        context=getActivity();
-        mAdapter = new BuildingEntryAdapter(context,buildings,inputSearch);
-
-        ListView buildingsList = (ListView) view.findViewById(R.id.buildingsList);
-        buildingsList.setAdapter(mAdapter);
-        buildingsList.setOnItemClickListener(
-                new AdapterView.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        String building = ((MyBuilding) parent.getItemAtPosition(position)).getName();
-                        Toast.makeText(context, building, Toast.LENGTH_LONG).show();
-                    }
-                }
-
-        );
-        inputSearch.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                mAdapter.getFilter().filter(newText);
-                return true;
-            }
-        });
+        View view= inflater.inflate(R.layout.fragment_detail_building_view, container, false);
+        textBuildingName=(TextView) view.findViewById(R.id.textBuildingName);
+        textBuildingName.setText(getArguments().getString("name"));
+        textBuildingAddress=(TextView) view.findViewById(R.id.textBuildingAddress);
+        textBuildingAddress.setText(getArguments().getString("address"));
+        textBuildingZipCode=(TextView) view.findViewById(R.id.textBuildingZipCode);
+        textBuildingZipCode.setText(getArguments().getString("zipCode"));
         return view;
     }
 
@@ -143,14 +96,6 @@ public class myBuildingsFragment extends Fragment {
             throw new ClassCastException(activity.toString()
                     + " must implement OnFragmentInteractionListener");
         }
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        inputSearch.setQuery("", false);
-        inputSearch.setIconified(true);
-        buildings = ((MYSApp)(getActivity().getApplication())).getBuildings();
     }
 
     @Override
@@ -175,13 +120,14 @@ public class myBuildingsFragment extends Fragment {
     }
 
     @Override
-    public void onCreateOptionsMenu(
-            Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.app_menu, menu);
-        if(menu!=null) {
-            menu.findItem(R.id.action_settings).setVisible(false);
-            menu.findItem(R.id.action_search_icon).setVisible(false);
-        }
+    public void setArguments(Bundle args) {
+        super.setArguments(args);
+
     }
 
+    public void setInfo(String buildingName,String buildingAddress,String buildingZipCode){
+        textBuildingName.setText(buildingName);
+        textBuildingAddress.setText(buildingAddress);
+        textBuildingZipCode.setText(buildingZipCode);
+    }
 }
