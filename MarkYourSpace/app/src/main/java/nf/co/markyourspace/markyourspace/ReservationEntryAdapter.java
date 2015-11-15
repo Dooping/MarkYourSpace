@@ -7,13 +7,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.Filter;
-import android.widget.Filterable;
 import android.widget.ImageButton;
-import android.widget.ImageView;
+import android.widget.SearchView;
 import android.widget.TextView;
-
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -21,16 +17,16 @@ import java.util.List;
  */
 public class ReservationEntryAdapter extends ArrayAdapter {
 
-    List<MyReservation> reservations;
+    SearchView searchView;
 
-    public ReservationEntryAdapter(Context context, List<MyReservation> reservations) {
+    public ReservationEntryAdapter(Context context, List<MyReservation> reservations, SearchView searchView) {
         super(context, R.layout.reservation_entry, reservations);
-        this.reservations = reservations;
+        this.searchView = searchView;
     }
 
     @Override
-    public View getView(final int position, final View convertView, ViewGroup parent) {
-        final View customView;
+    public View getView(final int position,View convertView, final ViewGroup parent) {
+        View customView;
         if (convertView == null)
             customView = LayoutInflater.from(getContext()).inflate(R.layout.reservation_entry, parent, false);
         else
@@ -39,6 +35,7 @@ public class ReservationEntryAdapter extends ArrayAdapter {
 
         ImageButton remove = (ImageButton) customView.findViewById(R.id.deleteButton);
         remove.setFocusable(false);
+        setNotifyOnChange(true);
         remove.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -52,8 +49,8 @@ public class ReservationEntryAdapter extends ArrayAdapter {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 ((MYSApp)(getContext().getApplicationContext())).deleteReservation((MyReservation) getItem(position));
-                                reservations.remove(position);
-                                notifyDataSetChanged();
+                                remove(getItem(position));
+                                getFilter().filter(searchView.getQuery());
                             }
 
                         })
@@ -69,16 +66,6 @@ public class ReservationEntryAdapter extends ArrayAdapter {
         buildingLabel.setText(singleReservationItem.getBuildingName());
         dateLabel.setText("12/11/2015 22:00 - 13/11/2015 13:00");
         return customView;
-    }
-
-    @Override
-    public int getCount() {
-        return reservations.size();
-    }
-
-    @Override
-    public Object getItem(int pos) {
-        return reservations.get(pos);
     }
 
 }

@@ -8,7 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
-import android.widget.ImageView;
+import android.widget.SearchView;
 import android.widget.TextView;
 
 import java.util.List;
@@ -18,11 +18,11 @@ import java.util.List;
  */
 public class BuildingEntryAdapter  extends ArrayAdapter {
 
-    List<MyBuilding> buildings;
+    SearchView searchView;
 
-    public BuildingEntryAdapter(Context context, List<MyBuilding> buildings) {
+    public BuildingEntryAdapter(Context context, List<MyBuilding> buildings, SearchView searchView) {
         super(context,R.layout.building_entry ,buildings);
-        this.buildings = buildings;
+        this.searchView = searchView;
     }
 
     @Override
@@ -35,6 +35,7 @@ public class BuildingEntryAdapter  extends ArrayAdapter {
 
         ImageButton remove = (ImageButton) customView.findViewById(R.id.deleteButton);
         remove.setFocusable(false);
+        setNotifyOnChange(true);
         remove.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -48,8 +49,8 @@ public class BuildingEntryAdapter  extends ArrayAdapter {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 ((MYSApp)(getContext().getApplicationContext())).deleteBuilding((MyBuilding) getItem(position));
-                                buildings.remove(position);
-                                notifyDataSetChanged();
+                                remove(getItem(position));
+                                getFilter().filter(searchView.getQuery());
                             }
 
                         })
@@ -63,7 +64,7 @@ public class BuildingEntryAdapter  extends ArrayAdapter {
         return customView;
     }
 
-    @Override
+    /*@Override
     public int getCount() {
         return buildings.size();
     }
@@ -71,5 +72,5 @@ public class BuildingEntryAdapter  extends ArrayAdapter {
     @Override
     public Object getItem(int pos) {
         return buildings.get(pos);
-    }
+    }*/
 }

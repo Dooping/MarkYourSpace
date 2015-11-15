@@ -13,8 +13,10 @@ import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.SearchView;
 import android.widget.Toast;
 
 import java.util.List;
@@ -43,6 +45,10 @@ public class myBuildingsFragment extends Fragment {
     private Context context;
 
     private static List<MyBuilding> buildings;
+    SearchView inputSearch;
+
+
+    private ArrayAdapter mAdapter;
 
     /**
      * Use this factory method to create a new instance of
@@ -76,9 +82,9 @@ public class myBuildingsFragment extends Fragment {
 
         buildings = ((MYSApp)(getActivity().getApplication())).getBuildings();
 
-        /*MyBuilding teste = new MyBuilding("asjhgfk"+buildings.size(), "rua dos bixos","city","private",12345);
+        MyBuilding teste = new MyBuilding("asjhgfk"+buildings.size(), "rua dos bixos","city","private",12345);
         ((MYSApp) (getActivity().getApplication())).addBuilding(teste);
-        buildings.add(teste);*/
+        buildings.add(teste);
 
         setHasOptionsMenu(true);
     }
@@ -89,22 +95,35 @@ public class myBuildingsFragment extends Fragment {
         // Inflate the layout for this fragment
 
         View view = inflater.inflate(R.layout.fragment_my_buildings, container, false);
+        inputSearch = (SearchView) view.findViewById(R.id.searchView);
 
         context=getActivity();
-        ListAdapter buildingEntryAdapter = new BuildingEntryAdapter(context,buildings);
+        mAdapter = new BuildingEntryAdapter(context,buildings,inputSearch);
 
-            ListView buildingsList = (ListView) view.findViewById(R.id.buildingsList);
-            buildingsList.setAdapter(buildingEntryAdapter);
-            buildingsList.setOnItemClickListener(
-                    new AdapterView.OnItemClickListener() {
-                        @Override
-                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                            String building = ((MyBuilding)parent.getItemAtPosition(position)).getName();
-                            Toast.makeText(context, building, Toast.LENGTH_LONG).show();
-                        }
+        ListView buildingsList = (ListView) view.findViewById(R.id.buildingsList);
+        buildingsList.setAdapter(mAdapter);
+        buildingsList.setOnItemClickListener(
+                new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        String building = ((MyBuilding) parent.getItemAtPosition(position)).getName();
+                        Toast.makeText(context, building, Toast.LENGTH_LONG).show();
                     }
+                }
 
-            );
+        );
+        inputSearch.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                mAdapter.getFilter().filter(newText);
+                return true;
+            }
+        });
         return view;
     }
 
@@ -124,6 +143,14 @@ public class myBuildingsFragment extends Fragment {
             throw new ClassCastException(activity.toString()
                     + " must implement OnFragmentInteractionListener");
         }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        inputSearch.setQuery("", false);
+        inputSearch.setIconified(true);
+        buildings = ((MYSApp)(getActivity().getApplication())).getBuildings();
     }
 
     @Override

@@ -82,10 +82,9 @@ public class reservationsFragment extends Fragment implements AbsListView.OnItem
 
         reservations = ((MYSApp)(getActivity().getApplication())).getReservations();
 
-        /*MyReservation teste = new MyReservation("asjhgfk", "12345", null, null, 0, 0);
+        MyReservation teste = new MyReservation("asjhgfk", "12345", null, null, 0, 0);
         ((MYSApp) (getActivity().getApplication())).addReservation(teste);
-        reservations.add(teste);*/
-        mAdapter = new ReservationEntryAdapter(getActivity(), reservations);
+        reservations.add(teste);
 
     }
 
@@ -96,6 +95,7 @@ public class reservationsFragment extends Fragment implements AbsListView.OnItem
         inputSearch = (SearchView) view.findViewById(R.id.searchView);
 
         // Set the adapter
+        mAdapter = new ReservationEntryAdapter(getActivity(), reservations, inputSearch);
         mListView = (AbsListView) view.findViewById(android.R.id.list);
         mListView.setEmptyView(view.findViewById(android.R.id.empty));
         mListView.setAdapter(mAdapter);
@@ -131,10 +131,10 @@ public class reservationsFragment extends Fragment implements AbsListView.OnItem
 
     @Override
     public void onResume() {
+        super.onResume();
         inputSearch.setQuery("", false);
         inputSearch.setIconified(true);
         reservations = ((MYSApp)(getActivity().getApplication())).getReservations();
-        super.onResume();
     }
 
     @Override
