@@ -154,8 +154,6 @@ public class newBuildingFragment extends Fragment{
     }
 
     public void buttonAddClicked(){
-
-
         MyBuilding newB = new MyBuilding(name.getText().toString(),address.getText().toString(),city.getText().toString(),type.getText().toString(),zipcode.getText().toString());
         ((MYSApp) (getActivity().getApplication())).addBuilding(newB);
         getActivity().getSupportFragmentManager().popBackStack(newBuildingFragment.class.getName(), FragmentManager.POP_BACK_STACK_INCLUSIVE);

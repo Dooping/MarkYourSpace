@@ -11,6 +11,8 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutput;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 /**
  * Created by davidgago on 11/11/15.
@@ -142,4 +144,9 @@ public class MYSApp extends Application {
                 return b;
         return null;
     }
+     public List<MySpace> searchSpaces(){
+         /*List<MySpace> spacesFound = new ArrayList();
+         return spacesFound;*/
+         return null;
+     }
 }
