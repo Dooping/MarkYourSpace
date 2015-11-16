@@ -47,23 +47,57 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Nº of Seats:"
+        android:id="@+id/textView6"
+        android:layout_marginTop="30dp"
+        android:layout_below="@+id/textView5"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Activities"
+        android:id="@+id/textView7"
+        android:layout_marginTop="30dp"
+        android:layout_below="@+id/textView6"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Features"
+        android:id="@+id/textView8"
+        android:layout_below="@+id/textView7"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="30dp"/>
+
+
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/button_add"
+        android:text="Search"
         android:id="@+id/button2"
         android:layout_gravity="center_horizontal|bottom"
         android:textColor="#FFFFFF"
         android:background="#552CA3"
-        android:layout_above="@+id/buttonCancelNewBuilding"
-        android:layout_alignLeft="@+id/buttonCancelNewBuilding"
-        android:layout_alignStart="@+id/buttonCancelNewBuilding"
+        android:layout_above="@+id/button1"
+        android:layout_alignLeft="@+id/button1"
+        android:layout_alignStart="@+id/button1"
         android:layout_marginBottom="10dp" />
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/button_cancel"
-        android:id="@+id/buttonCancelNewBuilding"
+        android:id="@+id/button1"
         android:layout_gravity="center_horizontal|bottom"
         android:textColor="#FFFFFF"
         android:background="#552CA3"
@@ -100,12 +134,24 @@
         android:layout_alignEnd="@+id/editAddress" />
 
     <EditText
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/editZipCode"
+    android:layout_alignBottom="@+id/textView5"
+    android:layout_toRightOf="@+id/textView4"
+    android:layout_alignRight="@+id/editCity"
+    android:layout_alignEnd="@+id/editCity" />
+
+    <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/editZipCode"
-        android:layout_alignBottom="@+id/textView5"
-        android:layout_toRightOf="@+id/textView4"
-        android:layout_alignRight="@+id/editCity"
-        android:layout_alignEnd="@+id/editCity" />
+        android:id="@+id/editNofSeats"
+        android:layout_alignBottom="@+id/textView6"
+        android:layout_alignRight="@+id/editZipCode"
+        android:layout_alignEnd="@+id/editZipCode"
+        android:layout_toRightOf="@+id/textView6"
+        android:layout_toEndOf="@+id/textView6" />
+
+
 
 </RelativeLayout>

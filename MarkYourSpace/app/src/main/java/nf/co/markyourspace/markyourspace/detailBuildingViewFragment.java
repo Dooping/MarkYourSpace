@@ -35,6 +35,8 @@ public class detailBuildingViewFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
+    MyBuilding building;
+
     /**
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
@@ -71,12 +73,13 @@ public class detailBuildingViewFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view= inflater.inflate(R.layout.fragment_detail_building_view, container, false);
+        building = ((MYSApp) (getActivity().getApplication())).getBuilding(getArguments().getString("guid"));
         textBuildingName=(TextView) view.findViewById(R.id.textBuildingName);
-        textBuildingName.setText(getArguments().getString("name"));
+        textBuildingName.setText(building.getName());
         textBuildingAddress=(TextView) view.findViewById(R.id.textBuildingAddress);
-        textBuildingAddress.setText(getArguments().getString("address"));
+        textBuildingAddress.setText(building.getAddress());
         textBuildingZipCode=(TextView) view.findViewById(R.id.textBuildingZipCode);
-        textBuildingZipCode.setText(getArguments().getString("zipCode"));
+        textBuildingZipCode.setText(building.getZipCode());
         return view;
     }
 
