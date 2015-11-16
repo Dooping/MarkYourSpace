@@ -149,4 +149,12 @@ public class MYSApp extends Application {
          return spacesFound;*/
          return null;
      }
+
+    public List<MyReservation> getSpaceReservations(String guid){
+        List<MyReservation> reservations = getReservations();
+        for(int i = 0; i<reservations.size(); i++)
+            if(!reservations.get(i).getSpaceGuid().equals(guid))
+                reservations.remove(i);
+        return reservations;
+    }
 }

@@ -7,7 +7,13 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import java.util.List;
 
 
 /**
@@ -18,7 +24,7 @@ import android.widget.TextView;
  * Use the {@link detailBuildingViewFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class detailBuildingViewFragment extends Fragment {
+public class detailBuildingViewFragment extends Fragment implements AbsListView.OnItemClickListener  {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -34,6 +40,8 @@ public class detailBuildingViewFragment extends Fragment {
     private String mParam2;
 
     private OnFragmentInteractionListener mListener;
+    private AbsListView mListView;
+    private ArrayAdapter mAdapter;
 
     MyBuilding building;
 
@@ -82,6 +90,13 @@ public class detailBuildingViewFragment extends Fragment {
         textBuildingZipCode.setText(building.getZipCode());
 
         ((AppMenu)getActivity()).setActionBarTitle(building.getName());
+
+        mAdapter = new SpacesEntryAdapter(getActivity(), null, building);
+        mListView = (AbsListView) view.findViewById(R.id.listView);
+        mListView.setEmptyView(view.findViewById(R.id.empty));
+        mListView.setAdapter(mAdapter);
+        mListView.setOnItemClickListener(this);
+        setEmptyText("No Spaces");
         return view;
     }
 
@@ -128,6 +143,24 @@ public class detailBuildingViewFragment extends Fragment {
     public void setArguments(Bundle args) {
         super.setArguments(args);
 
+    }
+
+    public void setEmptyText(CharSequence emptyText) {
+        View emptyView = mListView.getEmptyView();
+
+        if (emptyView instanceof TextView) {
+            ((TextView) emptyView).setText(emptyText);
+        }
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        if (null != mListener) {
+            // Notify the active callbacks interface (the activity, if the
+            // fragment is attached to one) that an item has been selected.
+            String space = parent.getItemAtPosition(position).toString();
+            Toast.makeText(getActivity(), space, Toast.LENGTH_LONG).show();
+        }
     }
 
 }

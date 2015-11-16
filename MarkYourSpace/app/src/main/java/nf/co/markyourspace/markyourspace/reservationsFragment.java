@@ -82,9 +82,9 @@ public class reservationsFragment extends Fragment implements AbsListView.OnItem
 
         reservations = ((MYSApp)(getActivity().getApplication())).getReservations();
 
-        MyReservation teste = new MyReservation("asjhgfk", "12345", null, null, 0, 0);
+        /*MyReservation teste = new MyReservation("asjhgfk", "12345", null, null, 0, 0);
         ((MYSApp) (getActivity().getApplication())).addReservation(teste);
-        reservations.add(teste);
+        reservations.add(teste);*/
 
     }
 

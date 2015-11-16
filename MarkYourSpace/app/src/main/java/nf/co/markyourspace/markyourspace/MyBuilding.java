@@ -30,7 +30,7 @@ public class MyBuilding implements Serializable{
         this.city = city;
         this.type = type;
         this.zipCode = zipCode;
-        this.spaces = new LinkedList<MySpace>();
+        this.spaces = new ArrayList<>();
     }
 
     public String getName() {
