@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 
 /**
@@ -64,7 +65,29 @@ public class searchSpaceFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_search_space, container, false);
+        View view = inflater.inflate(R.layout.fragment_search_space, container, false);
+
+        final Button buttonAdd= (Button)view.findViewById(R.id.button2);
+        final Button buttonCancel= (Button)view.findViewById(R.id.button1);
+
+        buttonAdd.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        buttonSearchClicked();
+                    }
+                }
+        );
+
+        buttonCancel.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        buttonCancelClicked();
+                    }
+                }
+        );
+        return view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -106,4 +129,12 @@ public class searchSpaceFragment extends Fragment {
         public void onFragmentInteraction(Uri uri);
     }
 
+    public void buttonSearchClicked(){
+
+    }
+
+    public void buttonCancelClicked(){
+        getFragmentManager().popBackStack();
+
+    }
 }
