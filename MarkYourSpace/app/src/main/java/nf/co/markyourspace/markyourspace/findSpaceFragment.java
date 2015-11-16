@@ -1,6 +1,7 @@
 package nf.co.markyourspace.markyourspace;
 
 import android.app.Activity;
+import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -10,6 +11,12 @@ import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.support.v4.app.Fragment;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.SearchView;
+
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -28,6 +35,11 @@ public class findSpaceFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    private static List<MyBuilding> buildings;
+    SearchView inputSearch;
+
+    private Context context;
+    private ArrayAdapter mAdapter;
 
     private OnFragmentInteractionListener mListener;
 
@@ -60,14 +72,44 @@ public class findSpaceFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+        buildings = ((MYSApp)(getActivity().getApplication())).getBuildings();
+
         setHasOptionsMenu(true);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_find_space, container, false);
+        View view = inflater.inflate(R.layout.fragment_my_buildings, container, false);
+        inputSearch = (SearchView) view.findViewById(R.id.searchView);
+
+        context=getActivity();
+        mAdapter = new BuildingEntryAdapter(context,buildings,inputSearch);
+
+        ListView buildingsList = (ListView) view.findViewById(R.id.buildingsList);
+        buildingsList.setAdapter(mAdapter);
+        buildingsList.setOnItemClickListener(
+                new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        itemClicked(((MyBuilding) parent.getItemAtPosition(position)).getName());
+                    }
+                }
+
+        );
+        inputSearch.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                mAdapter.getFilter().filter(newText);
+                return true;
+            }
+        });
+        return view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -117,5 +159,20 @@ public class findSpaceFragment extends Fragment {
             menu.findItem(R.id.action_settings).setVisible(false);
             menu.findItem(R.id.action_add_icon).setVisible(false);
         }
+    }
+    public void itemClicked(String buildingName){
+        buildingDetailView(buildingName);
+    }
+    public void buildingDetailView(String buildingName){
+        MyBuilding mb= buildings.get(findBuildingPosition(buildingName));
+        ((AppMenu) getActivity()).buildingDetailViewFragment(mb.getName(), mb.getGuid());
+    }
+    private int findBuildingPosition(String buildingName){
+        for(int i=0;i<buildings.size();i++){
+            if(buildings.get(i).getName().equals(buildingName)) {
+                return i;
+            }
+        }
+        return -1;
     }
 }

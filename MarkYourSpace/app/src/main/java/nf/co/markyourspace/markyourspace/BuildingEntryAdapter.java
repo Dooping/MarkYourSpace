@@ -60,7 +60,11 @@ public class BuildingEntryAdapter  extends ArrayAdapter {
         });
         MyBuilding singleBuildingItem = (MyBuilding) getItem(position);
         TextView buildingName = (TextView)customView.findViewById(R.id.buildingProperties);
+        TextView address = (TextView) customView.findViewById(R.id.address);
+        TextView zipCode = (TextView) customView.findViewById(R.id.zipCode);
         buildingName.setText(singleBuildingItem.getName());
+        address.setText(singleBuildingItem.getAddress());
+        zipCode.setText(singleBuildingItem.getZipCode());
         return customView;
     }
 
