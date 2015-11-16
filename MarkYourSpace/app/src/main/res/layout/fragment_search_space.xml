@@ -108,7 +108,7 @@
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/editName"
+        android:id="@+id/editStartDate"
         android:layout_alignParentTop="true"
         android:layout_toRightOf="@+id/textView2"
         android:layout_alignParentRight="true"
@@ -118,20 +118,20 @@
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/editAddress"
+        android:id="@+id/editStartHour"
         android:layout_alignBottom="@+id/textView3"
         android:layout_toRightOf="@+id/textView3"
-        android:layout_alignRight="@+id/editName"
-        android:layout_alignEnd="@+id/editName" />
+        android:layout_alignRight="@+id/editStartDate"
+        android:layout_alignEnd="@+id/editStartDate" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/editCity"
+        android:id="@+id/editEndDate"
         android:layout_alignBottom="@+id/textView4"
         android:layout_toRightOf="@+id/textView4"
-        android:layout_alignRight="@+id/editAddress"
-        android:layout_alignEnd="@+id/editAddress" />
+        android:layout_alignRight="@+id/editStartHour"
+        android:layout_alignEnd="@+id/editStartHour" />
 
     <EditText
     android:layout_width="wrap_content"
@@ -139,8 +139,8 @@
     android:id="@+id/editZipCode"
     android:layout_alignBottom="@+id/textView5"
     android:layout_toRightOf="@+id/textView4"
-    android:layout_alignRight="@+id/editCity"
-    android:layout_alignEnd="@+id/editCity" />
+    android:layout_alignRight="@+id/editEndDate"
+    android:layout_alignEnd="@+id/editEndDate" />
 
     <EditText
         android:layout_width="wrap_content"

@@ -10,7 +10,16 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.EditText;
+
+import java.util.Calendar;
+
+import static nf.co.markyourspace.markyourspace.R.id.editEndDate;
+import static nf.co.markyourspace.markyourspace.R.id.editEndHour;
+import static nf.co.markyourspace.markyourspace.R.id.editStartDate;
+import static nf.co.markyourspace.markyourspace.R.id.editStartHour;
 
 
 /**
@@ -62,13 +71,59 @@ public class newReservation extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_new_reservation, container, false);
+
+        View view =  inflater.inflate(R.layout.fragment_new_reservation, container, false);
+
+        final EditText startDate= (EditText)view.findViewById(editStartDate);
+        final EditText endDate= (EditText)view.findViewById(editEndDate);
+        final EditText startHour= (EditText)view.findViewById(editStartHour);
+        final EditText endHour= (EditText)view.findViewById(editEndHour);
+        startDate.setFocusable(false);
+        endDate.setFocusable(false);
+        startHour.setFocusable(false);
+        endHour.setFocusable(false);
+
+        startDate.setOnClickListener(
+                new View.OnClickListener(){
+                    @Override
+                    public void onClick(View v) {
+                        clickedEditStartDate();
+                    }
+                }
+        );
+        endDate.setOnClickListener(
+                new View.OnClickListener(){
+                    @Override
+                    public void onClick(View v) {
+                        clickedEditEndDate();
+                    }
+                }
+        );
+        startHour.setOnClickListener(
+                new View.OnClickListener(){
+                    @Override
+                    public void onClick(View v) {
+                        clickedEditStartHour();
+                    }
+                }
+        );
+        endHour.setOnClickListener(
+                new View.OnClickListener(){
+                    @Override
+                    public void onClick(View v) {
+                        clickedEditEndHour();
+                    }
+                }
+        );
+        return view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -76,6 +131,8 @@ public class newReservation extends Fragment {
         if (mListener != null) {
             mListener.onFragmentInteraction(uri);
         }
+
+
     }
 
     @Override
@@ -114,4 +171,29 @@ public class newReservation extends Fragment {
         DialogFragment newFragment = new timerPickerFragment();
         newFragment.show(getActivity().getSupportFragmentManager(), "timePicker");
     }
+
+    public void showDatePickerDialog(View v) {
+        DialogFragment newFragment = new datePickerFragment();
+        newFragment.show(getActivity().getSupportFragmentManager(), "datePicker");
+
+    }
+
+    public boolean clickedEditStartDate(){
+
+        showDatePickerDialog(getView());
+        return true;
+    }
+    public boolean clickedEditEndDate(){
+        showDatePickerDialog(getView());
+        return true;
+    }
+    public boolean clickedEditStartHour(){
+        showTimePickerDialog(getView());
+        return true;
+    }
+    public boolean clickedEditEndHour(){
+        showTimePickerDialog(getView());
+        return true;
+    }
+
 }
