@@ -8,6 +8,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
+
+import java.util.Date;
 
 
 /**
@@ -27,6 +30,12 @@ public class searchSpaceFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    private static Date startDate;
+    private static int startHour;
+    private static Date endDate;
+    private static int endHour;
+    private static int numberOfSeats;
 
     private OnFragmentInteractionListener mListener;
 
@@ -66,6 +75,12 @@ public class searchSpaceFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_search_space, container, false);
+
+        startDate = null;//(EditText) view.findViewById(R.id.editName);
+        startHour = 0;
+        endDate = null;
+        endHour = 0;
+        numberOfSeats = 0;
 
         final Button buttonAdd= (Button)view.findViewById(R.id.button2);
         final Button buttonCancel= (Button)view.findViewById(R.id.button1);
@@ -130,6 +145,8 @@ public class searchSpaceFragment extends Fragment {
     }
 
     public void buttonSearchClicked(){
+        //((MYSApp) (getActivity().getApplication())).searchSpaces(startDate,startHour,endDate,endHour,numberOfSeats);
+        //((AppMenu) getActivity()).XXX);
 
     }
 

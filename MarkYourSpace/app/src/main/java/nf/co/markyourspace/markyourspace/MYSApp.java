@@ -11,6 +11,8 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutput;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 /**
  * Created by davidgago on 11/11/15.
@@ -141,5 +143,25 @@ public class MYSApp extends Application {
             if(b.getGuid().equals(guid))
                 return b;
         return null;
+    }
+     public List<MySpace> searchSpaces(Date startDate, int startHour, Date endDate, int endHour,int numberOfSeats){
+         List<MySpace> spacesFound = new ArrayList();
+         ArrayList<MyBuilding> buildings = getBuildings();
+         for (MyBuilding b : buildings) {
+             List<MySpace> spaces = b.getSpaces();
+             for(MySpace space: spaces){
+                 spacesFound.add(space);
+                 }
+             }
+         //impossivel
+         return null;
+     }
+
+    public List<MyReservation> getSpaceReservations(String guid){
+        List<MyReservation> reservations = getReservations();
+        for(int i = 0; i<reservations.size(); i++)
+            if(!reservations.get(i).getSpaceGuid().equals(guid))
+                reservations.remove(i);
+        return reservations;
     }
 }
