@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
@@ -157,6 +158,7 @@ public class newBuildingFragment extends Fragment{
 
         MyBuilding newB = new MyBuilding(name.getText().toString(),address.getText().toString(),city.getText().toString(),type.getText().toString(),zipcode.getText().toString());
         ((MYSApp) (getActivity().getApplication())).addBuilding(newB);
+        getActivity().getSupportFragmentManager().popBackStack(newBuildingFragment.class.getName(), FragmentManager.POP_BACK_STACK_INCLUSIVE);
         ((AppMenu)getActivity()).buildingDetailViewFragment(newB.getName(), newB.getGuid());
     }
 
