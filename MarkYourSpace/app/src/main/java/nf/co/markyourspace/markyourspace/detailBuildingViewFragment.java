@@ -80,6 +80,8 @@ public class detailBuildingViewFragment extends Fragment {
         textBuildingAddress.setText(building.getAddress());
         textBuildingZipCode=(TextView) view.findViewById(R.id.textBuildingZipCode);
         textBuildingZipCode.setText(building.getZipCode());
+
+        ((AppMenu)getActivity()).setActionBarTitle(building.getName());
         return view;
     }
 
