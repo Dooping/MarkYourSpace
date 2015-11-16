@@ -189,7 +189,7 @@ public class myBuildingsFragment extends Fragment {
 
     public void buildingDetailView(String buildingName){
         MyBuilding mb= buildings.get(findBuildingPosition(buildingName));
-        ((AppMenu) getActivity()).buildingDetailViewFragment(mb.getName(), mb.getAddress(), mb.getCity(), mb.getType(), mb.getZipCode());
+        ((AppMenu) getActivity()).buildingDetailViewFragment(mb.getName(), mb.getGuid());
     }
 
     private int findBuildingPosition(String buildingName){

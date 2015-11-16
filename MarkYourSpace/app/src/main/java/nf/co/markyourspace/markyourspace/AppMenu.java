@@ -207,18 +207,13 @@ public class AppMenu extends AppCompatActivity
     }
 
 
-    public void buildingDetailViewFragment(String name, String address, String city, String type,String zipCode) {
+    public void buildingDetailViewFragment(String name, String guid) {
         setActionBarTitle(name);
         android.support.v4.app.Fragment fragment = new detailBuildingViewFragment();
         Bundle args = new Bundle();
-        args.putString("name", name);
-        args.putString("address", address);
-        args.putString("city", city);
-        args.putString("type", type);
-        args.putString("zipCode", zipCode);
+        args.putString("guid", guid);
         fragment.setArguments(args);
-        getSupportFragmentManager().beginTransaction()
-                .replace(R.id.fragment_container, fragment).addToBackStack("main").commit();
+        replaceFragment(fragment);
     }
 
     public void newReservationFragment(){
