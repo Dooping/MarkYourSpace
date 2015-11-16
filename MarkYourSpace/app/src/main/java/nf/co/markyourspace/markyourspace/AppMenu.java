@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -42,18 +44,31 @@ public class AppMenu extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         android.support.v4.app.Fragment fragment = new reservationsFragment();
-        getSupportFragmentManager().beginTransaction()
-                .replace(R.id.fragment_container, fragment).commit();
+        replaceFragment(fragment);
 
     }
 
-    @Override
+    /*@Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
             super.onBackPressed();
+        }
+    }*/
+
+    @Override
+    public void onBackPressed(){
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+        } else {
+            if (getSupportFragmentManager().getBackStackEntryCount() == 1) {
+                finish();
+            } else {
+                super.onBackPressed();
+            }
         }
     }
 
@@ -92,20 +107,17 @@ public class AppMenu extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_home) {
-            setActionBarTitle("Mark my Space");
+            setActionBarTitle("Mark Your Space");
             android.support.v4.app.Fragment fragment = new reservationsFragment();
-            getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.fragment_container, fragment).addToBackStack(null).commit();
+            replaceFragment(fragment);
         } else if (id == R.id.nav_my_buildings) {
             setActionBarTitle("My Buildings");
             android.support.v4.app.Fragment fragment = new myBuildingsFragment();
-            getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.fragment_container, fragment).addToBackStack(null).commit();
+            replaceFragment(fragment);
         } else if (id == R.id.nav_find) {
             setActionBarTitle("Find a Space");
             android.support.v4.app.Fragment fragment = new findSpaceFragment();
-            getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.fragment_container, fragment).addToBackStack(null).commit();
+            replaceFragment(fragment);
             
         } else if (id == R.id.nav_history) {
             setActionBarTitle("History");
@@ -123,6 +135,20 @@ public class AppMenu extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    private void replaceFragment (android.support.v4.app.Fragment fragment){
+        String backStateName = fragment.getClass().getName();
+
+        FragmentManager manager = getSupportFragmentManager();
+        boolean fragmentPopped = manager.popBackStackImmediate (backStateName, 0);
+
+        if (!fragmentPopped){ //fragment not in back stack, create it.
+            FragmentTransaction ft = manager.beginTransaction();
+            ft.replace(R.id.fragment_container, fragment);
+            ft.addToBackStack(backStateName);
+            ft.commit();
+        }
     }
 
     public void setActionBarTitle(String title){
