@@ -187,7 +187,6 @@ public class myBuildingsFragment extends Fragment {
         buildingDetailView(buildingName);
     }
 
-    //mudar e falar dos buildings (nao devem estar na AppMenu?????)
     public void buildingDetailView(String buildingName){
         MyBuilding mb= buildings.get(findBuildingPosition(buildingName));
         ((AppMenu) getActivity()).buildingDetailViewFragment(mb.getName(), mb.getAddress(), mb.getCity(), mb.getType(), mb.getZipCode());

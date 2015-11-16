@@ -4,35 +4,24 @@ import android.app.Activity;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.ActionBarActivity;
-import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AbsListView;
-import android.widget.Button;
-import android.widget.EditText;
+
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link newBuildingFragment.OnFragmentInteractionListener} interface
+ * {@link historyFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link newBuildingFragment#newInstance} factory method to
+ * Use the {@link historyFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class newBuildingFragment extends Fragment{
+public class historyFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-
-    //input info
-    private static EditText name;
-    private static EditText address;
-    private static EditText city;
-    private static EditText zipcode;
-    private static EditText type;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -40,7 +29,7 @@ public class newBuildingFragment extends Fragment{
 
     private OnFragmentInteractionListener mListener;
 
-    public newBuildingFragment() {
+    public historyFragment() {
         // Required empty public constructor
     }
 
@@ -50,11 +39,11 @@ public class newBuildingFragment extends Fragment{
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment newBuildingFragment.
+     * @return A new instance of fragment historyFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static newBuildingFragment newInstance(String param1, String param2) {
-        newBuildingFragment fragment = new newBuildingFragment();
+    public static historyFragment newInstance(String param1, String param2) {
+        historyFragment fragment = new historyFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -69,48 +58,13 @@ public class newBuildingFragment extends Fragment{
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-
-
-
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view =  inflater.inflate(R.layout.fragment_new_building, container, false);
-        name = (EditText) view.findViewById(R.id.editName);
-        address = (EditText) view.findViewById(R.id.editAddress);
-        city = (EditText) view.findViewById(R.id.editCity);
-        zipcode = (EditText) view.findViewById(R.id.editZipCode);
-        type = (EditText) view.findViewById(R.id.editType);
-
-
-        final Button buttonAdd= (Button)view.findViewById(R.id.buttonAddNewBuilding);
-        final Button buttonCancel= (Button)view.findViewById(R.id.buttonCancelNewBuilding);
-
-        buttonAdd.setOnClickListener(
-                new View.OnClickListener(){
-                    @Override
-                    public void onClick(View v) {
-                        //metodo pa criar novo building
-                        buttonAddClicked();
-                    }
-                }
-        );
-
-        buttonCancel.setOnClickListener(
-                new View.OnClickListener(){
-                    @Override
-                    public void onClick(View v) {
-                        //metodo pa cancelar novo building voltar ao my buildings
-                        buttonCancelClicked();
-                    }
-                }
-        );
-
-
-        return view;
+        return inflater.inflate(R.layout.fragment_history, container, false);
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -150,19 +104,6 @@ public class newBuildingFragment extends Fragment{
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         public void onFragmentInteraction(Uri uri);
-    }
-
-    public void buttonAddClicked(){
-        ((AppMenu)getActivity()).buildingDetailViewFragment(name.getText().toString(),address.getText().toString(),city.getText().toString(),type.getText().toString(), zipcode.getText().toString());
-
-        MyBuilding newB = new MyBuilding(name.getText().toString(),address.getText().toString(),city.getText().toString(),type.getText().toString(),zipcode.getText().toString());
-        ((MYSApp) (getActivity().getApplication())).addBuilding(newB);
-    }
-
-    public void buttonCancelClicked(){
-        getFragmentManager().popBackStack();
-        getActivity().setTitle("My Buildings");
-
     }
 
 }

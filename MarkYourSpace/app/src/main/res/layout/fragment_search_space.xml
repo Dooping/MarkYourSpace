@@ -2,16 +2,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".newBuildingFragment">
-
-    <!-- TODO: Update blank fragment layout -->
-
+    tools:context="nf.co.markyourspace.markyourspace.searchSpaceFragment">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Name:"
+        android:text="Start Date:"
         android:layout_marginTop="20dp"
         android:id="@+id/textView2"
         android:layout_alignParentLeft="true"
@@ -21,7 +18,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Address:"
+        android:text="Start Hour:"
         android:id="@+id/textView3"
         android:layout_marginTop="30dp"
         android:layout_below="@+id/textView2"
@@ -32,7 +29,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="City:"
+        android:text="End Date:"
         android:id="@+id/textView4"
         android:layout_marginTop="30dp"
         android:layout_below="@+id/textView3"
@@ -43,23 +40,36 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Zip Code:"
+        android:text="End Hour:"
         android:id="@+id/textView5"
         android:layout_marginTop="30dp"
         android:layout_below="@+id/textView4"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
-    <TextView
+    <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Type:"
-        android:id="@+id/textView6"
-        android:layout_marginTop="30dp"
-        android:layout_below="@+id/textView5"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:text="@string/button_add"
+        android:id="@+id/button2"
+        android:layout_gravity="center_horizontal|bottom"
+        android:textColor="#FFFFFF"
+        android:background="#552CA3"
+        android:layout_above="@+id/buttonCancelNewBuilding"
+        android:layout_alignLeft="@+id/buttonCancelNewBuilding"
+        android:layout_alignStart="@+id/buttonCancelNewBuilding"
+        android:layout_marginBottom="10dp" />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/button_cancel"
+        android:id="@+id/buttonCancelNewBuilding"
+        android:layout_gravity="center_horizontal|bottom"
+        android:textColor="#FFFFFF"
+        android:background="#552CA3"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="29dp" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -93,41 +103,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/editZipCode"
-        android:layout_above="@+id/textView6"
-        android:layout_toRightOf="@+id/textView5"
+        android:layout_alignBottom="@+id/textView5"
+        android:layout_toRightOf="@+id/textView4"
         android:layout_alignRight="@+id/editCity"
         android:layout_alignEnd="@+id/editCity" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/editType"
-        android:layout_alignBottom="@+id/textView6"
-        android:layout_toRightOf="@+id/textView6"
-        android:layout_alignRight="@+id/editZipCode"
-        android:layout_alignEnd="@+id/editZipCode" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/button_add"
-        android:id="@+id/buttonAddNewBuilding"
-        android:layout_gravity="center_horizontal|bottom"
-        android:textColor="#FFFFFF"
-        android:background="#552CA3"
-        android:layout_marginBottom="10dp"
-        android:layout_above="@+id/buttonCancelNewBuilding"
-        android:layout_centerHorizontal="true" />
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/button_cancel"
-        android:id="@+id/buttonCancelNewBuilding"
-        android:layout_gravity="center_horizontal|bottom"
-        android:textColor="#FFFFFF"
-        android:background="#552CA3"
-        android:layout_marginBottom="29dp"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>
