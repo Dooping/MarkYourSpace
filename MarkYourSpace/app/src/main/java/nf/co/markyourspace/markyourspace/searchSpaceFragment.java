@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 
 
 /**
@@ -27,6 +28,12 @@ public class searchSpaceFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    private static EditText name;
+    private static EditText address;
+    private static EditText city;
+    private static EditText zipcode;
+    private static EditText type;
 
     private OnFragmentInteractionListener mListener;
 
@@ -66,6 +73,12 @@ public class searchSpaceFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_search_space, container, false);
+
+        name = (EditText) view.findViewById(R.id.editName);
+        address = (EditText) view.findViewById(R.id.editAddress);
+        city = (EditText) view.findViewById(R.id.editCity);
+        zipcode = (EditText) view.findViewById(R.id.editZipCode);
+        type = (EditText) view.findViewById(R.id.editType);
 
         final Button buttonAdd= (Button)view.findViewById(R.id.button2);
         final Button buttonCancel= (Button)view.findViewById(R.id.button1);
@@ -130,6 +143,8 @@ public class searchSpaceFragment extends Fragment {
     }
 
     public void buttonSearchClicked(){
+        //((MYSApp) (getActivity().getApplication())).searchSpaces();
+        //((AppMenu) getActivity()).XXX);
 
     }
 

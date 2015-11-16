@@ -36,7 +36,8 @@
         android:layout_marginTop="30dp"
         android:layout_below="@+id/textView3"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:onClick="showTimePickerDialog"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -110,5 +111,15 @@
         android:layout_alignRight="@+id/editCity"
         android:layout_alignEnd="@+id/editCity" />
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Time"
+        android:onClick="showTimePickerDialog" />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Date"
+        android:onClick="showDatePickerDialog" />
 
 </RelativeLayout>

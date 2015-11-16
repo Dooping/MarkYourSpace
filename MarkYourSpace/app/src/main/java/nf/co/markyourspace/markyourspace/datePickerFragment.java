@@ -5,23 +5,27 @@ import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.net.Uri;
 import android.os.Bundle;
+import android.app.Fragment;
 import android.support.v4.app.DialogFragment;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.DatePicker;
 
+import java.util.Calendar;
+
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link newReservation.OnFragmentInteractionListener} interface
+ * {@link datePickerFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link newReservation#newInstance} factory method to
+ * Use the {@link datePickerFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class newReservation extends Fragment {
+public class datePickerFragment extends DialogFragment
+        implements DatePickerDialog.OnDateSetListener {
+
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -39,11 +43,11 @@ public class newReservation extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment newReservation.
+     * @return A new instance of fragment datePickerFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static newReservation newInstance(String param1, String param2) {
-        newReservation fragment = new newReservation();
+    public static datePickerFragment newInstance(String param1, String param2) {
+        datePickerFragment fragment = new datePickerFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -51,7 +55,7 @@ public class newReservation extends Fragment {
         return fragment;
     }
 
-    public newReservation() {
+    public datePickerFragment() {
         // Required empty public constructor
     }
 
@@ -68,7 +72,7 @@ public class newReservation extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_new_reservation, container, false);
+        return inflater.inflate(R.layout.fragment_date_picker, container, false);
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -95,12 +99,17 @@ public class newReservation extends Fragment {
         mListener = null;
     }
 
+    @Override
+    public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+
+    }
+
     /**
      * This interface must be implemented by activities that contain this
      * fragment to allow an interaction in this fragment to be communicated
      * to the activity and potentially other fragments contained in that
      * activity.
-     * <p>
+     * <p/>
      * See the Android Training lesson <a href=
      * "http://developer.android.com/training/basics/fragments/communicating.html"
      * >Communicating with Other Fragments</a> for more information.
@@ -110,8 +119,16 @@ public class newReservation extends Fragment {
         public void onFragmentInteraction(Uri uri);
     }
 
-    public void showTimePickerDialog(View v) {
-        DialogFragment newFragment = new timerPickerFragment();
-        newFragment.show(getActivity().getSupportFragmentManager(), "timePicker");
+    @Override
+    public Dialog onCreateDialog(Bundle savedInstanceState) {
+        // Use the current date as the default date in the picker
+        final Calendar c = Calendar.getInstance();
+        int year = c.get(Calendar.YEAR);
+        int month = c.get(Calendar.MONTH);
+        int day = c.get(Calendar.DAY_OF_MONTH);
+
+        // Create a new instance of DatePickerDialog and return it
+        return new DatePickerDialog(getActivity(), this, year, month, day);
     }
+
 }
