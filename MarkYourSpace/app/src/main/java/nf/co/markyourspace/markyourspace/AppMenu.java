@@ -20,7 +20,13 @@ import java.util.Iterator;
 import java.util.List;
 
 public class AppMenu extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener,newSpace.OnFragmentInteractionListener, reservationsFragment.OnFragmentInteractionListener, newBuildingFragment.OnFragmentInteractionListener, myBuildingsFragment.OnFragmentInteractionListener,findSpaceFragment.OnFragmentInteractionListener,detailBuildingViewFragment.OnFragmentInteractionListener{
+        implements NavigationView.OnNavigationItemSelectedListener,searchSpaceFragment.OnFragmentInteractionListener
+        ,settingsFragment.OnFragmentInteractionListener,historyFragment.OnFragmentInteractionListener
+        ,newSpace.OnFragmentInteractionListener, reservationsFragment.OnFragmentInteractionListener
+        , newBuildingFragment.OnFragmentInteractionListener, myBuildingsFragment.OnFragmentInteractionListener
+        ,findSpaceFragment.OnFragmentInteractionListener,detailBuildingViewFragment.OnFragmentInteractionListener
+        ,newReservation.OnFragmentInteractionListener
+{
 
     static Context applicationContext;
     @Override
@@ -104,6 +110,11 @@ public class AppMenu extends AppCompatActivity
             android.support.v4.app.Fragment fragment = new newBuildingFragment();
             replaceFragment(fragment);
         }
+        else if(id == R.id.action_search_icon){
+            setActionBarTitle("Search Space");
+            android.support.v4.app.Fragment fragment = new searchSpaceFragment();
+            replaceFragment(fragment);
+        }
 
         return super.onOptionsItemSelected(item);
     }
@@ -125,10 +136,11 @@ public class AppMenu extends AppCompatActivity
             replaceFragment(fragment);
             
         } else if (id == R.id.nav_history) {
-            setActionBarTitle("History");
-
+            android.support.v4.app.Fragment fragment = new historyFragment();
+            replaceFragment(fragment);
         } else if (id == R.id.nav_settings) {
-            setActionBarTitle("Settings");
+            android.support.v4.app.Fragment fragment = new settingsFragment();
+            replaceFragment(fragment);
 
         } else if (id == R.id.nav_logout) {
             /*Intent intent = new Intent(AppMenu.this, LoginActivity.class);
@@ -210,5 +222,9 @@ public class AppMenu extends AppCompatActivity
                 .replace(R.id.fragment_container, fragment).addToBackStack("main").commit();
     }
 
+    public void newReservationFragment(){
+        android.support.v4.app.Fragment fragment = new newReservation();
+        replaceFragment(fragment);
+    }
 
 }

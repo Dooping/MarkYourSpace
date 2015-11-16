@@ -3,22 +3,21 @@ package nf.co.markyourspace.markyourspace;
 import android.app.Activity;
 import android.net.Uri;
 import android.os.Bundle;
-import android.app.Fragment;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link detailSpaceViewFragment.OnFragmentInteractionListener} interface
+ * {@link searchSpaceFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link detailSpaceViewFragment#newInstance} factory method to
+ * Use the {@link searchSpaceFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class detailSpaceViewFragment extends Fragment {
+public class searchSpaceFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -30,26 +29,26 @@ public class detailSpaceViewFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
+    public searchSpaceFragment() {
+        // Required empty public constructor
+    }
+
     /**
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment detailSpaceViewFragment.
+     * @return A new instance of fragment searchSpaceFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static detailSpaceViewFragment newInstance(String param1, String param2) {
-        detailSpaceViewFragment fragment = new detailSpaceViewFragment();
+    public static searchSpaceFragment newInstance(String param1, String param2) {
+        searchSpaceFragment fragment = new searchSpaceFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
-    }
-
-    public detailSpaceViewFragment() {
-        // Required empty public constructor
     }
 
     @Override
@@ -65,18 +64,7 @@ public class detailSpaceViewFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-
-        View view = inflater.inflate(R.layout.fragment_detail_space_view, container, false);
-        Button buttonNewReservation = (Button)view.findViewById(R.id.buttonNewReservation);
-        buttonNewReservation.setOnClickListener(
-                new View.OnClickListener(){
-                    public void onClick(View v){
-                        //metodo pa ir para o fragment de new reservation
-                    }
-                }
-        );
-
-        return view;
+        return inflater.inflate(R.layout.fragment_search_space, container, false);
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -118,7 +106,4 @@ public class detailSpaceViewFragment extends Fragment {
         public void onFragmentInteraction(Uri uri);
     }
 
-    public void buttonNewReservationClicked(){
-        ((AppMenu) getActivity()).newReservationFragment();
-    }
 }
