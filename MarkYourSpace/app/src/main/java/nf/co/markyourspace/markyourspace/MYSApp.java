@@ -144,7 +144,7 @@ public class MYSApp extends Application {
                 return b;
         return null;
     }
-     public List<MySpace> searchSpaces(){
+     public List<MySpace> searchSpaces(Date startDate, int startHour, Date endDate, int endHour,int numberOfSeats){
          /*List<MySpace> spacesFound = new ArrayList();
          return spacesFound;*/
          return null;
