@@ -2,6 +2,7 @@ package nf.co.markyourspace.markyourspace;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * Created by Guilherme on 12/11/2015.
@@ -10,6 +11,7 @@ public class MySpace implements Serializable{
 
     private static final long serialVersionUID = 0L;
 
+    private String guid;
     private String name;
     private int floor;
     private int seats;
@@ -17,6 +19,7 @@ public class MySpace implements Serializable{
     private List<String> features;
 
     public MySpace(String name,int floor, int seats, List<String> activities, List<String> features) {
+        this.guid = UUID.randomUUID().toString();
         this.name = name;
         this.floor = floor;
         this.seats = seats;
@@ -58,5 +61,22 @@ public class MySpace implements Serializable{
 
     public void removeFeature(String feature){
         activities.remove(feature);
+    }
+
+    public String getGuid() {
+        return guid;
+    }
+
+    @Override
+    public String toString(){
+        return name + " " + seats + " " + floor;
+    }
+
+    @Override
+    public boolean equals(Object o){
+        if (o instanceof MyBuilding)
+            if (((MyBuilding) o).getGuid().equals(this.guid))
+                return true;
+        return false;
     }
 }

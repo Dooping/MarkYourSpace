@@ -13,6 +13,7 @@ public class MyReservation implements Serializable{
 
     private String guid;
     private String spaceName;
+    private String spaceGuid;
     private String buildingName;
     private String user;
     private Date startDate;
@@ -21,11 +22,11 @@ public class MyReservation implements Serializable{
     private int endHourInMinutes;
 
 
-    public MyReservation(String spaceName, String buildingName, Date startDate, Date endDate, int startHourInMinutes, int endHourInMinutes) {
+    public MyReservation(String spaceName, String spaceGuid, String buildingName, Date startDate, Date endDate, int startHourInMinutes, int endHourInMinutes) {
         this.guid = UUID.randomUUID().toString();
         this.spaceName = spaceName;
+        this.spaceGuid = spaceGuid;
         this.buildingName = buildingName;
-        this.user = user;
         this.startDate = startDate;
         this.endDate = endDate;
         this.startHourInMinutes = startHourInMinutes;
@@ -66,6 +67,10 @@ public class MyReservation implements Serializable{
 
     public void setUser(String user) {
         this.user = user;
+    }
+
+    public String getSpaceGuid() {
+        return spaceGuid;
     }
 
     @Override
