@@ -115,9 +115,12 @@
     <!-- Botoes-->
     <string name ="button_cancel">Cancel</string>
     <string name ="button_add">Add</string>
+    <string name ="button_new_reservation">New Reservation</string>
 
     <!--Text fields-->
     <string name ="buildingSpaces">Spaces</string>
+    <string name ="spaceActivities">Activities</string>
+    <string name ="spaceFeatures">Features</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
