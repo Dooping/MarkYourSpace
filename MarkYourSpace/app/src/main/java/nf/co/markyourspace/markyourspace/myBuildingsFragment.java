@@ -82,9 +82,9 @@ public class myBuildingsFragment extends Fragment {
 
         buildings = ((MYSApp)(getActivity().getApplication())).getBuildings();
 
-        MyBuilding teste = new MyBuilding("asjhgfk"+buildings.size(), "rua dos bixos","city","private","12345");
+        /*MyBuilding teste = new MyBuilding("asjhgfk"+buildings.size(), "rua dos bixos","city","private","12345");
         ((MYSApp) (getActivity().getApplication())).addBuilding(teste);
-        buildings.add(teste);
+        buildings.add(teste);*/
 
         setHasOptionsMenu(true);
     }
@@ -146,10 +146,10 @@ public class myBuildingsFragment extends Fragment {
 
     @Override
     public void onResume() {
-        super.onResume();
         inputSearch.setQuery("", false);
         inputSearch.setIconified(true);
         buildings = ((MYSApp)(getActivity().getApplication())).getBuildings();
+        super.onResume();
     }
 
     @Override

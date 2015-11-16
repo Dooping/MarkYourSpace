@@ -110,6 +110,9 @@ public class AppMenu extends AppCompatActivity
         else if(id == R.id.action_add_icon){
             android.support.v4.app.Fragment fragment = new newBuildingFragment();
             replaceFragment(fragment);
+            //getSupportFragmentManager().beginTransaction()
+                    //.replace(R.id.fragment_container, fragment).commit();
+            //updateTitleAndDrawer(fragment);
         }
         else if(id == R.id.action_search_icon){
             setActionBarTitle("Search Space");
