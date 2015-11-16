@@ -104,7 +104,6 @@ public class AppMenu extends AppCompatActivity
             return true;
         }
         else if(id == R.id.action_add_icon){
-            setActionBarTitle("New Building");
             android.support.v4.app.Fragment fragment = new newBuildingFragment();
             replaceFragment(fragment);
         }
