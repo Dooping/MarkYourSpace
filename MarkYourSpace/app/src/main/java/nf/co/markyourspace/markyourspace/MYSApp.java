@@ -145,8 +145,15 @@ public class MYSApp extends Application {
         return null;
     }
      public List<MySpace> searchSpaces(Date startDate, int startHour, Date endDate, int endHour,int numberOfSeats){
-         /*List<MySpace> spacesFound = new ArrayList();
-         return spacesFound;*/
+         List<MySpace> spacesFound = new ArrayList();
+         ArrayList<MyBuilding> buildings = getBuildings();
+         for (MyBuilding b : buildings) {
+             List<MySpace> spaces = b.getSpaces();
+             for(MySpace space: spaces){
+                 spacesFound.add(space);
+                 }
+             }
+         //impossivel
          return null;
      }
 }
