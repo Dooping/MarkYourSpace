@@ -119,6 +119,6 @@ public class detailSpaceViewFragment extends Fragment {
     }
 
     public void buttonNewReservationClicked(){
-
+        ((AppMenu) getActivity()).newReservationFragment();
     }
 }

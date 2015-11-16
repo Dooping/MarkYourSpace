@@ -20,7 +20,7 @@ import java.util.Iterator;
 import java.util.List;
 
 public class AppMenu extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener,newSpace.OnFragmentInteractionListener, reservationsFragment.OnFragmentInteractionListener, newBuildingFragment.OnFragmentInteractionListener, myBuildingsFragment.OnFragmentInteractionListener,findSpaceFragment.OnFragmentInteractionListener,detailBuildingViewFragment.OnFragmentInteractionListener{
+        implements NavigationView.OnNavigationItemSelectedListener,newSpace.OnFragmentInteractionListener, reservationsFragment.OnFragmentInteractionListener, newBuildingFragment.OnFragmentInteractionListener, myBuildingsFragment.OnFragmentInteractionListener,findSpaceFragment.OnFragmentInteractionListener,detailBuildingViewFragment.OnFragmentInteractionListener,newReservation.OnFragmentInteractionListener{
 
     static Context applicationContext;
     @Override
@@ -211,4 +211,8 @@ public class AppMenu extends AppCompatActivity
     }
 
 
+    public void newReservationFragment(){
+        android.support.v4.app.Fragment fragment = new newReservation();
+        replaceFragment(fragment);
+    }
 }
