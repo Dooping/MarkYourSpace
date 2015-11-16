@@ -119,19 +119,27 @@ public class MYSApp extends Application {
         }
     }
 
-    public void deleteBuilding(MyBuilding reservation){
+    public void deleteBuilding(MyBuilding building){
         ObjectOutput out;
-        ArrayList<MyBuilding> reservations = getBuildings();
-        reservations.remove(reservation);
+        ArrayList<MyBuilding> buildings = getBuildings();
+        buildings.remove(building);
 
         try {
             out = new ObjectOutputStream(new FileOutputStream(new File(new File(getFilesDir(),"")+File.separator+BUILDING_FILE)));
-            out.writeObject(reservations);
+            out.writeObject(buildings);
             out.close();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public MyBuilding getBuilding(String guid){
+        ArrayList<MyBuilding> buildings = getBuildings();
+        for (MyBuilding b : buildings)
+            if(b.getGuid().equals(guid))
+                return b;
+        return null;
     }
 }
