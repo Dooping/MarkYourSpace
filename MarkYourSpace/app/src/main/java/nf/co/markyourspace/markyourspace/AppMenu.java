@@ -19,10 +19,6 @@ import java.util.List;
 public class AppMenu extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,newSpace.OnFragmentInteractionListener, reservationsFragment.OnFragmentInteractionListener, newBuildingFragment.OnFragmentInteractionListener, myBuildingsFragment.OnFragmentInteractionListener,findSpaceFragment.OnFragmentInteractionListener,detailBuildingViewFragment.OnFragmentInteractionListener{
 
-    private static List<MyBuilding> buildings;
-    private static List<MyReservation> reservations;
-
-
     static Context applicationContext;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
