@@ -10,6 +10,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
+import java.util.Date;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -29,11 +31,11 @@ public class searchSpaceFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    private static EditText name;
-    private static EditText address;
-    private static EditText city;
-    private static EditText zipcode;
-    private static EditText type;
+    private static Date startDate;
+    private static int startHour;
+    private static Date endDate;
+    private static int endHour;
+    private static int numberOfSeats;
 
     private OnFragmentInteractionListener mListener;
 
@@ -74,11 +76,11 @@ public class searchSpaceFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_search_space, container, false);
 
-        name = (EditText) view.findViewById(R.id.editName);
-        address = (EditText) view.findViewById(R.id.editAddress);
-        city = (EditText) view.findViewById(R.id.editCity);
-        zipcode = (EditText) view.findViewById(R.id.editZipCode);
-        type = (EditText) view.findViewById(R.id.editType);
+        startDate = null;//(EditText) view.findViewById(R.id.editName);
+        startHour = 0;
+        endDate = null;
+        endHour = 0;
+        numberOfSeats = 0;
 
         final Button buttonAdd= (Button)view.findViewById(R.id.button2);
         final Button buttonCancel= (Button)view.findViewById(R.id.button1);
@@ -143,7 +145,7 @@ public class searchSpaceFragment extends Fragment {
     }
 
     public void buttonSearchClicked(){
-        //((MYSApp) (getActivity().getApplication())).searchSpaces();
+        //((MYSApp) (getActivity().getApplication())).searchSpaces(startDate,startHour,endDate,endHour,numberOfSeats);
         //((AppMenu) getActivity()).XXX);
 
     }
