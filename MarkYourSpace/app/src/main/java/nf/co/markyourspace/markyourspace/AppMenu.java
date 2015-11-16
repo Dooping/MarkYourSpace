@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
@@ -45,6 +46,18 @@ public class AppMenu extends AppCompatActivity
 
         android.support.v4.app.Fragment fragment = new reservationsFragment();
         replaceFragment(fragment);
+
+        getSupportFragmentManager().addOnBackStackChangedListener(new FragmentManager.OnBackStackChangedListener() {
+
+            @Override
+            public void onBackStackChanged() {
+                Fragment f = getSupportFragmentManager().findFragmentById(R.id.fragment_container);
+                if (f != null) {
+                    updateTitleAndDrawer(f);
+                }
+
+            }
+        });
 
     }
 
@@ -93,8 +106,7 @@ public class AppMenu extends AppCompatActivity
         else if(id == R.id.action_add_icon){
             setActionBarTitle("New Building");
             android.support.v4.app.Fragment fragment = new newBuildingFragment();
-            getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.fragment_container, fragment).addToBackStack(null).commit();
+            replaceFragment(fragment);
         }
 
         return super.onOptionsItemSelected(item);
@@ -107,15 +119,12 @@ public class AppMenu extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_home) {
-            setActionBarTitle("Mark Your Space");
             android.support.v4.app.Fragment fragment = new reservationsFragment();
             replaceFragment(fragment);
         } else if (id == R.id.nav_my_buildings) {
-            setActionBarTitle("My Buildings");
             android.support.v4.app.Fragment fragment = new myBuildingsFragment();
             replaceFragment(fragment);
         } else if (id == R.id.nav_find) {
-            setActionBarTitle("Find a Space");
             android.support.v4.app.Fragment fragment = new findSpaceFragment();
             replaceFragment(fragment);
             
@@ -148,6 +157,23 @@ public class AppMenu extends AppCompatActivity
             ft.replace(R.id.fragment_container, fragment);
             ft.addToBackStack(backStateName);
             ft.commit();
+        }
+    }
+
+    private void updateTitleAndDrawer (Fragment fragment){
+        String fragClassName = fragment.getClass().getName();
+
+        if (fragClassName.equals(reservationsFragment.class.getName())){
+            setTitle ("Mark Your Space");
+        }
+        else if (fragClassName.equals(myBuildingsFragment.class.getName())){
+            setTitle ("My Buildings");
+        }
+        else if (fragClassName.equals(findSpaceFragment.class.getName())){
+            setTitle ("Find a Space");
+        }
+        else if (fragClassName.equals(newBuildingFragment.class.getName())){
+            setTitle ("New Building");
         }
     }
 
