@@ -1,8 +1,6 @@
 package nf.co.markyourspace.markyourspace;
 
 import android.app.Activity;
-import android.app.DatePickerDialog;
-import android.app.Dialog;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
@@ -10,14 +8,13 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.EditText;
 
-import java.util.Calendar;
-
+import static nf.co.markyourspace.markyourspace.R.id.editBuildingCity;
 import static nf.co.markyourspace.markyourspace.R.id.editEndDate;
 import static nf.co.markyourspace.markyourspace.R.id.editEndHour;
+import static nf.co.markyourspace.markyourspace.R.id.editBuildingName;
+import static nf.co.markyourspace.markyourspace.R.id.editBuildingAddress;
 import static nf.co.markyourspace.markyourspace.R.id.editStartDate;
 import static nf.co.markyourspace.markyourspace.R.id.editStartHour;
 
@@ -167,33 +164,34 @@ public class newReservation extends Fragment {
         public void onFragmentInteraction(Uri uri);
     }
 
-    public void showTimePickerDialog(View v) {
+    public void showTimePickerDialog(View v,int editTextID) {
         DialogFragment newFragment = new timerPickerFragment();
+        Bundle args= new Bundle();
+        args.putInt("editTextId",editTextID);
+        newFragment.setArguments(args);
         newFragment.show(getActivity().getSupportFragmentManager(), "timePicker");
     }
 
-    public void showDatePickerDialog(View v) {
+    public void showDatePickerDialog(View v,int editTextID) {
         DialogFragment newFragment = new datePickerFragment();
+        Bundle args= new Bundle();
+        args.putInt("editTextId",editTextID);
+        newFragment.setArguments(args);
         newFragment.show(getActivity().getSupportFragmentManager(), "datePicker");
 
     }
 
-    public boolean clickedEditStartDate(){
-
-        showDatePickerDialog(getView());
-        return true;
+    public void clickedEditStartDate(){
+        showDatePickerDialog(getView(),R.id.editStartDate);
     }
-    public boolean clickedEditEndDate(){
-        showDatePickerDialog(getView());
-        return true;
+    public void clickedEditEndDate(){
+        showDatePickerDialog(getView(),R.id.editEndDate);
     }
-    public boolean clickedEditStartHour(){
-        showTimePickerDialog(getView());
-        return true;
+    public void clickedEditStartHour(){
+        showTimePickerDialog(getView(),R.id.editStartHour);
     }
-    public boolean clickedEditEndHour(){
-        showTimePickerDialog(getView());
-        return true;
+    public void clickedEditEndHour(){
+        showTimePickerDialog(getView(),R.id.editEndHour);
     }
 
 }
