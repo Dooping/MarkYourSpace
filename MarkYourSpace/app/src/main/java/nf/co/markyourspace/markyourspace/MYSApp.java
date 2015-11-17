@@ -46,9 +46,9 @@ public class MYSApp extends Application {
             e.printStackTrace();
         }
 
-        for(int i = 0; i<reservations.size(); i++)
-            if(!reservations.get(i).getUser().equals(username))
-                reservations.remove(i);
+        for(MyReservation r : reservations)
+            if(!r.getUser().equals(username))
+                reservations.remove(r);
         return reservations;
     }
 
@@ -98,9 +98,9 @@ public class MYSApp extends Application {
             e.printStackTrace();
         }
 
-        for(int i = 0; i<buildings.size(); i++)
-            if(!buildings.get(i).getUser().equals(username))
-                buildings.remove(i);
+        for(MyBuilding b : buildings)
+            if(!b.getUser().equals(username))
+                buildings.remove(b);
         return buildings;
     }
 
@@ -144,24 +144,68 @@ public class MYSApp extends Application {
                 return b;
         return null;
     }
-     public List<MySpace> searchSpaces(Date startDate, int startHour, Date endDate, int endHour,int numberOfSeats){
+     public List<MySpace> searchSpaces(Date startDate, Date endDate, int numberOfSeats, List<String> activities, List<String> features){
          List<MySpace> spacesFound = new ArrayList();
          ArrayList<MyBuilding> buildings = getBuildings();
-         for (MyBuilding b : buildings) {
-             List<MySpace> spaces = b.getSpaces();
-             for(MySpace space: spaces){
-                 spacesFound.add(space);
-                 }
-             }
-         //impossivel
-         return null;
+         for (MyBuilding b : buildings)
+             spacesFound.addAll(b.getSpaces());
+
+         if(startDate!=null)
+             applyStartDateFilter(spacesFound, startDate);
+         if(endDate!=null)
+             applyEndDateFilter(spacesFound, endDate);
+         applySeatsFilter(spacesFound, numberOfSeats);
+         applyActivitiesFilter(spacesFound, activities);
+         applyFeaturesFilter(spacesFound, features);
+
+         return spacesFound;
      }
+
+    private void applyStartDateFilter(List<MySpace> spaces, Date startDate){
+        List<MyReservation> reservations;
+        for(MySpace s: spaces){
+            reservations = getSpaceReservations(s.getGuid());
+            for(MyReservation r : reservations)
+                if(r.getStartDate().before(startDate) && r.getEndDate().after(startDate))
+                    spaces.remove(s);
+        }
+    }
+
+    private void applyEndDateFilter(List<MySpace> spaces, Date endDate){
+        List<MyReservation> reservations;
+        for(MySpace s: spaces){
+            reservations = getSpaceReservations(s.getGuid());
+            for(MyReservation r : reservations)
+                if(r.getStartDate().before(endDate) && r.getEndDate().after(endDate))
+                    spaces.remove(s);
+        }
+    }
+
+    private void applySeatsFilter(List<MySpace> spaces, int seats){
+        for(MySpace s: spaces)
+            if(s.getSeats()<seats)
+                spaces.remove(s);
+    }
+
+    private void applyActivitiesFilter(List<MySpace> spaces, List<String> activities){
+        for(MySpace s: spaces)
+            for(String a: activities)
+                if(!s.getActivities().contains(a))
+                    spaces.remove(s);
+    }
+
+    private void applyFeaturesFilter(List<MySpace> spaces, List<String> features){
+        for(MySpace s: spaces)
+            for(String a: features)
+                if(!s.getFeatures().contains(a))
+                    spaces.remove(s);
+    }
 
     public List<MyReservation> getSpaceReservations(String guid){
         List<MyReservation> reservations = getReservations();
-        for(int i = 0; i<reservations.size(); i++)
-            if(!reservations.get(i).getSpaceGuid().equals(guid))
-                reservations.remove(i);
+        for(MyReservation r : reservations)
+            if(!r.getSpaceGuid().equals(guid))
+                reservations.remove(r);
         return reservations;
     }
 }
