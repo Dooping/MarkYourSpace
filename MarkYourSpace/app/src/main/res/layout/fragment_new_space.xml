@@ -65,7 +65,7 @@
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/editStartDate"
+        android:id="@+id/editBuildingName"
         android:layout_alignParentTop="true"
         android:layout_toRightOf="@+id/textView2"
         android:layout_alignParentRight="true"
@@ -75,20 +75,20 @@
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/editStartHour"
+        android:id="@+id/editBuildingAddress"
         android:layout_alignBottom="@+id/textView3"
         android:layout_toRightOf="@+id/textView3"
-        android:layout_alignRight="@+id/editStartDate"
-        android:layout_alignEnd="@+id/editStartDate" />
+        android:layout_alignRight="@+id/editBuildingName"
+        android:layout_alignEnd="@+id/editBuildingName" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/editEndDate"
+        android:id="@+id/editBuildingCity"
         android:layout_alignBottom="@+id/textView4"
         android:layout_toRightOf="@+id/textView4"
-        android:layout_alignRight="@+id/editStartHour"
-        android:layout_alignEnd="@+id/editStartHour" />
+        android:layout_alignRight="@+id/editBuildingAddress"
+        android:layout_alignEnd="@+id/editBuildingAddress" />
 
 
 

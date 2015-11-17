@@ -12,6 +12,7 @@ import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.TimePicker;
 
 import java.util.Calendar;
@@ -32,7 +33,11 @@ public class timerPickerFragment extends DialogFragment
 
     @Override
     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-
+        int id=getArguments().getInt("editTextId");
+        EditText activityButton = (EditText)getActivity().findViewById(id);
+        String date =hourOfDay+"."+minute;
+        //android.text.format.DateFormat.getBestDateTimePattern(Locale.ENGLISH,"MMMd");
+        activityButton.setText(date);
     }
 
     @Override
