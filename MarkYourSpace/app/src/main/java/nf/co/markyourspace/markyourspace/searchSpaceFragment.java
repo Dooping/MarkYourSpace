@@ -188,7 +188,7 @@ public class searchSpaceFragment extends Fragment {
     }
 
     public void buttonCancelClicked(){
-        getFragmentManager().popBackStack();
+        ((AppMenu)getActivity()).onBackPressed();
 
     }
 

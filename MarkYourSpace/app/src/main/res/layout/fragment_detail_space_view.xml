@@ -97,7 +97,7 @@
             android:layout_gravity="center_horizontal|bottom"
             android:textColor="#FFFFFF"
             android:background="#552CA3"
-            android:layout_above="@+id/buttonCancelNewBuilding"
+            android:layout_above="@+id/buttonCancelCreateSpace"
             android:layout_centerHorizontal="true" />
 
     </LinearLayout>

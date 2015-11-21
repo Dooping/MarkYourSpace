@@ -4,10 +4,12 @@ import android.app.Activity;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 
 
 /**
@@ -27,6 +29,10 @@ public class newSpace extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    private static EditText editSpaceName;
+    private static EditText editSpaceFloor;
+    private static EditText editSpaceNumberOfSeats;
 
     private OnFragmentInteractionListener mListener;
 
@@ -65,7 +71,20 @@ public class newSpace extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_new_space, container, false);
-        Button cancel = (Button) view.findViewById(R.id.buttonCancelNewBuilding);
+        Button cancel = (Button) view.findViewById(R.id.buttonCancelCreateSpace);
+        Button add = (Button) view.findViewById(R.id.buttonCreateSpace);
+
+        editSpaceName= (EditText) view.findViewById(R.id.editSpaceName);
+        editSpaceFloor= (EditText) view.findViewById(R.id.editSpaceFloor);
+        editSpaceNumberOfSeats= (EditText) view.findViewById(R.id.editSpaceNumberOfSeats);
+
+        add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                createSpace();
+            }
+        });
+
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -112,6 +131,15 @@ public class newSpace extends Fragment {
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         public void onFragmentInteraction(Uri uri);
+    }
+
+    private void createSpace(){
+
+            MySpace newS = new MySpace(editSpaceName.getText().toString(),Integer.parseInt(editSpaceFloor.getText().toString()),Integer.parseInt(editSpaceNumberOfSeats.getText().toString()), null, null);
+        ((MYSApp) (getActivity().getApplication())).addSpace(getArguments().getString("buildingGuid"),newS);
+            getActivity().getSupportFragmentManager().popBackStack(newSpace.class.getName(), FragmentManager.POP_BACK_STACK_INCLUSIVE);
+           ((AppMenu)getActivity()).buildingDetailViewFragment(newS.getName(), newS.getGuid());
+
     }
 
 }

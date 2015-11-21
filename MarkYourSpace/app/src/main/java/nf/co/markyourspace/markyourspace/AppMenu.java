@@ -28,7 +28,7 @@ public class AppMenu extends AppCompatActivity
         ,newSpace.OnFragmentInteractionListener, reservationsFragment.OnFragmentInteractionListener
         , newBuildingFragment.OnFragmentInteractionListener, myBuildingsFragment.OnFragmentInteractionListener
         ,findSpaceFragment.OnFragmentInteractionListener,detailBuildingViewFragment.OnFragmentInteractionListener
-        ,newReservation.OnFragmentInteractionListener
+        ,newReservation.OnFragmentInteractionListener,detailSpaceViewFragment.OnFragmentInteractionListener
 {
 
     static Context applicationContext;
@@ -117,7 +117,6 @@ public class AppMenu extends AppCompatActivity
             //updateTitleAndDrawer(fragment);
         }
         else if(id == R.id.action_search_icon){
-            setActionBarTitle("Search Space");
             android.support.v4.app.Fragment fragment = new searchSpaceFragment();
             replaceFragment(fragment);
         }
@@ -207,9 +206,12 @@ public class AppMenu extends AppCompatActivity
 
     }
 
-    public void newSpace() {
+    public void newSpace(String buildingGuid) {
         setActionBarTitle("New Space");
         android.support.v4.app.Fragment fragment = new newSpace();
+        Bundle args=new Bundle();
+        args.putString("buildingGuid",buildingGuid);
+        fragment.setArguments(args);
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fragment_container, fragment).addToBackStack("main").commit();
 
@@ -219,6 +221,15 @@ public class AppMenu extends AppCompatActivity
     public void buildingDetailViewFragment(String name, String guid) {
         setActionBarTitle(name);
         android.support.v4.app.Fragment fragment = new detailBuildingViewFragment();
+        Bundle args = new Bundle();
+        args.putString("guid", guid);
+        fragment.setArguments(args);
+        replaceFragment(fragment);
+    }
+
+    public void spaceDetailViewFragment(String name, String guid) {
+        setActionBarTitle(name);
+        android.support.v4.app.Fragment fragment = new detailSpaceViewFragment();
         Bundle args = new Bundle();
         args.putString("guid", guid);
         fragment.setArguments(args);

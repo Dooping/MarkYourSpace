@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -97,6 +98,17 @@ public class detailBuildingViewFragment extends Fragment implements AbsListView.
         mListView.setAdapter(mAdapter);
         mListView.setOnItemClickListener(this);
         setEmptyText("No Spaces");
+
+        View buttonAddSpace = view.findViewById(R.id.buttonAddNewSpace);
+
+        buttonAddSpace.setOnClickListener(
+                new View.OnClickListener(){
+                    public void onClick(View v){
+                        addNewSpace();
+                    }
+                }
+        );
+
         return view;
     }
 
@@ -161,6 +173,10 @@ public class detailBuildingViewFragment extends Fragment implements AbsListView.
             String space = parent.getItemAtPosition(position).toString();
             Toast.makeText(getActivity(), space, Toast.LENGTH_LONG).show();
         }
+    }
+
+    private void addNewSpace(){
+        ((AppMenu) getActivity()).newSpace(getArguments().getString("guid"));
     }
 
 }
