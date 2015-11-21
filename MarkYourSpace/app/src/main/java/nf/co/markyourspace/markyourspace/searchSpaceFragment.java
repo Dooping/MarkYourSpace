@@ -3,6 +3,7 @@ package nf.co.markyourspace.markyourspace;
 import android.app.Activity;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +12,11 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import java.util.Date;
+
+import static nf.co.markyourspace.markyourspace.R.id.editEndDateSearchSpace;
+import static nf.co.markyourspace.markyourspace.R.id.editEndHourSearchSpace;
+import static nf.co.markyourspace.markyourspace.R.id.editStartDateSearchSpace;
+import static nf.co.markyourspace.markyourspace.R.id.editStartHourSearchSpace;
 
 
 /**
@@ -30,12 +36,6 @@ public class searchSpaceFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-
-    private static Date startDate;
-    private static int startHour;
-    private static Date endDate;
-    private static int endHour;
-    private static int numberOfSeats;
 
     private OnFragmentInteractionListener mListener;
 
@@ -76,16 +76,53 @@ public class searchSpaceFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_search_space, container, false);
 
-        startDate = null;//(EditText) view.findViewById(R.id.editName);
-        startHour = 0;
-        endDate = null;
-        endHour = 0;
-        numberOfSeats = 0;
+        final EditText startDate= (EditText)view.findViewById(editStartDateSearchSpace);
+        final EditText endDate= (EditText)view.findViewById(editEndDateSearchSpace);
+        final EditText startHour= (EditText)view.findViewById(editStartHourSearchSpace);
+        final EditText endHour= (EditText)view.findViewById(editEndHourSearchSpace);
+        startDate.setFocusable(false);
+        endDate.setFocusable(false);
+        startHour.setFocusable(false);
+        endHour.setFocusable(false);
 
-        final Button buttonAdd= (Button)view.findViewById(R.id.button2);
+        startDate.setOnClickListener(
+                new View.OnClickListener(){
+                    @Override
+                    public void onClick(View v) {
+                        clickedEditDate(startDate.getId());
+                    }
+                }
+        );
+        endDate.setOnClickListener(
+                new View.OnClickListener(){
+                    @Override
+                    public void onClick(View v) {
+                        clickedEditDate(endDate.getId());
+                    }
+                }
+        );
+        startHour.setOnClickListener(
+                new View.OnClickListener(){
+                    @Override
+                    public void onClick(View v) {
+                        clickedEditHour(startHour.getId());
+                    }
+                }
+        );
+        endHour.setOnClickListener(
+                new View.OnClickListener(){
+                    @Override
+                    public void onClick(View v) {
+                        clickedEditHour(endHour.getId());
+                    }
+                }
+        );
+
+
+        final Button buttonSearch= (Button)view.findViewById(R.id.button2);
         final Button buttonCancel= (Button)view.findViewById(R.id.button1);
 
-        buttonAdd.setOnClickListener(
+        buttonSearch.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -153,5 +190,21 @@ public class searchSpaceFragment extends Fragment {
     public void buttonCancelClicked(){
         getFragmentManager().popBackStack();
 
+    }
+
+    public void clickedEditDate(int editTextId){
+        DialogFragment newFragment = new datePickerFragment();
+        Bundle args= new Bundle();
+        args.putInt("editTextId",editTextId);
+        newFragment.setArguments(args);
+        newFragment.show(getActivity().getSupportFragmentManager(), "datePicker");
+    }
+
+    public void clickedEditHour(int editTextId){
+        DialogFragment newFragment = new timerPickerFragment();
+        Bundle args= new Bundle();
+        args.putInt("editTextId",editTextId);
+        newFragment.setArguments(args);
+        newFragment.show(getActivity().getSupportFragmentManager(), "timePicker");
     }
 }

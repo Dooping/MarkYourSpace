@@ -10,7 +10,7 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Name:"
         android:layout_marginTop="20dp"
-        android:id="@+id/textView2"
+        android:id="@+id/textViewStartDateSearchSpace"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
@@ -19,9 +19,9 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Floor:"
-        android:id="@+id/textView3"
+        android:id="@+id/textViewStartHourSearchSpace"
         android:layout_marginTop="30dp"
-        android:layout_below="@+id/textView2"
+        android:layout_below="@+id/textViewStartDateSearchSpace"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
@@ -30,9 +30,9 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Nº of seats:"
-        android:id="@+id/textView4"
+        android:id="@+id/textViewEndDateSearchSpace"
         android:layout_marginTop="30dp"
-        android:layout_below="@+id/textView3"
+        android:layout_below="@+id/textViewStartHourSearchSpace"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
@@ -67,17 +67,17 @@
         android:layout_height="wrap_content"
         android:id="@+id/editBuildingName"
         android:layout_alignParentTop="true"
-        android:layout_toRightOf="@+id/textView2"
+        android:layout_toRightOf="@+id/textViewStartDateSearchSpace"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:layout_above="@+id/textView3" />
+        android:layout_above="@+id/textViewStartHourSearchSpace" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/editBuildingAddress"
-        android:layout_alignBottom="@+id/textView3"
-        android:layout_toRightOf="@+id/textView3"
+        android:layout_alignBottom="@+id/textViewStartHourSearchSpace"
+        android:layout_toRightOf="@+id/textViewStartHourSearchSpace"
         android:layout_alignRight="@+id/editBuildingName"
         android:layout_alignEnd="@+id/editBuildingName" />
 
@@ -85,8 +85,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/editBuildingCity"
-        android:layout_alignBottom="@+id/textView4"
-        android:layout_toRightOf="@+id/textView4"
+        android:layout_alignBottom="@+id/textViewEndDateSearchSpace"
+        android:layout_toRightOf="@+id/textViewEndDateSearchSpace"
         android:layout_alignRight="@+id/editBuildingAddress"
         android:layout_alignEnd="@+id/editBuildingAddress" />
 
@@ -99,7 +99,7 @@
         android:text="Activities"
         android:id="@+id/textView7"
         android:layout_marginTop="30dp"
-        android:layout_below="@+id/textView4"
+        android:layout_below="@+id/textViewEndDateSearchSpace"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 

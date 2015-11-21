@@ -8,15 +8,13 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 
-import static nf.co.markyourspace.markyourspace.R.id.editBuildingCity;
-import static nf.co.markyourspace.markyourspace.R.id.editEndDate;
-import static nf.co.markyourspace.markyourspace.R.id.editEndHour;
-import static nf.co.markyourspace.markyourspace.R.id.editBuildingName;
-import static nf.co.markyourspace.markyourspace.R.id.editBuildingAddress;
-import static nf.co.markyourspace.markyourspace.R.id.editStartDate;
-import static nf.co.markyourspace.markyourspace.R.id.editStartHour;
+import static nf.co.markyourspace.markyourspace.R.id.editEndDateNewBuilding;
+import static nf.co.markyourspace.markyourspace.R.id.editEndHourNewBuilding;
+import static nf.co.markyourspace.markyourspace.R.id.editStartDateNewBuilding;
+import static nf.co.markyourspace.markyourspace.R.id.editStartHourNewBuilding;
 
 
 /**
@@ -76,47 +74,56 @@ public class newReservation extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-
         View view =  inflater.inflate(R.layout.fragment_new_reservation, container, false);
-
-        final EditText startDate= (EditText)view.findViewById(editStartDate);
-        final EditText endDate= (EditText)view.findViewById(editEndDate);
-        final EditText startHour= (EditText)view.findViewById(editStartHour);
-        final EditText endHour= (EditText)view.findViewById(editEndHour);
+        final EditText startDate= (EditText)view.findViewById(editStartDateNewBuilding);
+        final EditText endDate= (EditText)view.findViewById(editEndDateNewBuilding);
+        final EditText startHour= (EditText)view.findViewById(editStartHourNewBuilding);
+        final EditText endHour= (EditText)view.findViewById(editEndHourNewBuilding);
         startDate.setFocusable(false);
         endDate.setFocusable(false);
         startHour.setFocusable(false);
         endHour.setFocusable(false);
 
         startDate.setOnClickListener(
-                new View.OnClickListener(){
+                new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        clickedEditStartDate();
+                        clickedEditDate(startDate.getId());
                     }
                 }
         );
         endDate.setOnClickListener(
-                new View.OnClickListener(){
+                new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        clickedEditEndDate();
+                        clickedEditDate(endDate.getId());
                     }
                 }
         );
         startHour.setOnClickListener(
-                new View.OnClickListener(){
+                new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        clickedEditStartHour();
+                        clickedEditHour(startHour.getId());
                     }
                 }
         );
         endHour.setOnClickListener(
-                new View.OnClickListener(){
+                new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        clickedEditEndHour();
+                        clickedEditHour(endHour.getId());
+                    }
+                }
+        );
+
+        final Button buttonCancel= (Button)view.findViewById(R.id.buttonCancelNewBuilding);
+
+        buttonCancel.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        buttonCancelClicked();
                     }
                 }
         );
@@ -164,34 +171,25 @@ public class newReservation extends Fragment {
         public void onFragmentInteraction(Uri uri);
     }
 
-    public void showTimePickerDialog(View v,int editTextID) {
+    public void clickedEditDate(int editTextId){
+        DialogFragment newFragment = new datePickerFragment();
+        Bundle args= new Bundle();
+        args.putInt("editTextId",editTextId);
+        newFragment.setArguments(args);
+        newFragment.show(getActivity().getSupportFragmentManager(), "datePicker");
+    }
+
+    public void clickedEditHour(int editTextId){
         DialogFragment newFragment = new timerPickerFragment();
         Bundle args= new Bundle();
-        args.putInt("editTextId",editTextID);
+        args.putInt("editTextId",editTextId);
         newFragment.setArguments(args);
         newFragment.show(getActivity().getSupportFragmentManager(), "timePicker");
     }
 
-    public void showDatePickerDialog(View v,int editTextID) {
-        DialogFragment newFragment = new datePickerFragment();
-        Bundle args= new Bundle();
-        args.putInt("editTextId",editTextID);
-        newFragment.setArguments(args);
-        newFragment.show(getActivity().getSupportFragmentManager(), "datePicker");
+    public void buttonCancelClicked(){
+        getFragmentManager().popBackStack();
 
-    }
-
-    public void clickedEditStartDate(){
-        showDatePickerDialog(getView(),R.id.editStartDate);
-    }
-    public void clickedEditEndDate(){
-        showDatePickerDialog(getView(),R.id.editEndDate);
-    }
-    public void clickedEditStartHour(){
-        showTimePickerDialog(getView(),R.id.editStartHour);
-    }
-    public void clickedEditEndHour(){
-        showTimePickerDialog(getView(),R.id.editEndHour);
     }
 
 }
