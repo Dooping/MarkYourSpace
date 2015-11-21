@@ -8,9 +8,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Start Date:"
+        android:text="@string/textStartDate"
         android:layout_marginTop="20dp"
-        android:id="@+id/textView2"
+        android:id="@+id/textViewStartDateSearchSpace"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
@@ -18,10 +18,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Start Hour:"
-        android:id="@+id/textView3"
+        android:text="@string/textStartHour"
+        android:id="@+id/textViewStartHourSearchSpace"
         android:layout_marginTop="30dp"
-        android:layout_below="@+id/textView2"
+        android:layout_below="@+id/textViewStartDateSearchSpace"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
@@ -29,10 +29,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="End Date:"
-        android:id="@+id/textView4"
+        android:text="@string/textEndDate"
+        android:id="@+id/textViewEndDateSearchSpace"
         android:layout_marginTop="30dp"
-        android:layout_below="@+id/textView3"
+        android:layout_below="@+id/textViewStartHourSearchSpace"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
@@ -40,10 +40,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="End Hour:"
-        android:id="@+id/textView5"
+        android:text="@string/textEndHour"
+        android:id="@+id/textViewEndHourSearchSpace"
         android:layout_marginTop="30dp"
-        android:layout_below="@+id/textView4"
+        android:layout_below="@+id/textViewEndDateSearchSpace"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
@@ -51,10 +51,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Nº of Seats:"
-        android:id="@+id/textView6"
+        android:text="@string/numberOfSeats"
+        android:id="@+id/textViewNumbSeatsSearchSpace"
         android:layout_marginTop="30dp"
-        android:layout_below="@+id/textView5"
+        android:layout_below="@+id/textViewEndHourSearchSpace"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
@@ -65,7 +65,7 @@
         android:text="Activities"
         android:id="@+id/textView7"
         android:layout_marginTop="30dp"
-        android:layout_below="@+id/textView6"
+        android:layout_below="@+id/textViewNumbSeatsSearchSpace"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
@@ -108,49 +108,49 @@
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/editBuildingName"
+        android:id="@+id/editStartDateSearchSpace"
         android:layout_alignParentTop="true"
-        android:layout_toRightOf="@+id/textView2"
+        android:layout_toRightOf="@+id/textViewStartDateSearchSpace"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:layout_above="@+id/textView3" />
+        android:layout_above="@+id/textViewStartHourSearchSpace" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/editBuildingAddress"
-        android:layout_alignBottom="@+id/textView3"
-        android:layout_toRightOf="@+id/textView3"
-        android:layout_alignRight="@+id/editBuildingName"
-        android:layout_alignEnd="@+id/editBuildingName" />
+        android:id="@+id/editStartHourSearchSpace"
+        android:layout_alignBottom="@+id/textViewStartHourSearchSpace"
+        android:layout_toRightOf="@+id/textViewStartHourSearchSpace"
+        android:layout_alignRight="@+id/editStartDateSearchSpace"
+        android:layout_alignEnd="@+id/editStartDateSearchSpace" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/editBuildingCity"
-        android:layout_alignBottom="@+id/textView4"
-        android:layout_toRightOf="@+id/textView4"
-        android:layout_alignRight="@+id/editBuildingAddress"
-        android:layout_alignEnd="@+id/editBuildingAddress" />
+        android:id="@+id/editEndDateSearchSpace"
+        android:layout_alignBottom="@+id/textViewEndDateSearchSpace"
+        android:layout_toRightOf="@+id/textViewEndDateSearchSpace"
+        android:layout_alignRight="@+id/editStartHourSearchSpace"
+        android:layout_alignEnd="@+id/editStartHourSearchSpace" />
 
     <EditText
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:id="@+id/editZipCode"
-    android:layout_alignBottom="@+id/textView5"
-    android:layout_toRightOf="@+id/textView4"
-    android:layout_alignRight="@+id/editBuildingCity"
-    android:layout_alignEnd="@+id/editBuildingCity" />
+    android:id="@+id/editEndHourSearchSpace"
+    android:layout_alignBottom="@+id/textViewEndHourSearchSpace"
+    android:layout_toRightOf="@+id/textViewEndDateSearchSpace"
+    android:layout_alignRight="@+id/editEndDateSearchSpace"
+    android:layout_alignEnd="@+id/editEndDateSearchSpace" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/editNofSeats"
-        android:layout_alignBottom="@+id/textView6"
-        android:layout_alignRight="@+id/editZipCode"
-        android:layout_alignEnd="@+id/editZipCode"
-        android:layout_toRightOf="@+id/textView6"
-        android:layout_toEndOf="@+id/textView6" />
+        android:id="@+id/editNofSeatsSearchSpace"
+        android:layout_alignBottom="@+id/textViewNumbSeatsSearchSpace"
+        android:layout_alignRight="@+id/editEndHourSearchSpace"
+        android:layout_alignEnd="@+id/editEndHourSearchSpace"
+        android:layout_toRightOf="@+id/textViewNumbSeatsSearchSpace"
+        android:layout_toEndOf="@+id/textViewNumbSeatsSearchSpace" />
 
 
 

@@ -130,4 +130,9 @@
     <string name="really_remove_reservation">Do you really want to remove this reservation?</string>
     <string name="remove_building">Remove Building</string>
     <string name="really_remove_building">Do you really want to remove this building?</string>
+    <string name="textStartDate">Start Date:</string>
+    <string name="textStartHour">Start Hour:</string>
+    <string name="textEndDate">End Date:</string>
+    <string name="textEndHour">End Hour:</string>
+    <string name="numberOfSeats">Nº of Seats:</string>
 </resources>

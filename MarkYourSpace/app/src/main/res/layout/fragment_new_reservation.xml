@@ -10,9 +10,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Start Date:"
+        android:text="@string/textStartDate"
         android:layout_marginTop="20dp"
-        android:id="@+id/textStartDate"
+        android:id="@+id/textStartDateNewBuilding"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
@@ -20,10 +20,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Start Hour:"
-        android:id="@+id/textStartHour"
+        android:text="@string/textStartHour"
+        android:id="@+id/textStartHourNewBuilding"
         android:layout_marginTop="30dp"
-        android:layout_below="@+id/textStartDate"
+        android:layout_below="@+id/textStartDateNewBuilding"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
@@ -31,10 +31,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="End Date:"
-        android:id="@+id/textEndDate"
+        android:text="@string/textEndDate"
+        android:id="@+id/textEndDateNewBuilding"
         android:layout_marginTop="30dp"
-        android:layout_below="@+id/textStartHour"
+        android:layout_below="@+id/textStartHourNewBuilding"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
@@ -42,50 +42,50 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="End Hour:"
-        android:id="@+id/textEndHour"
+        android:text="@string/textEndHour"
+        android:id="@+id/textEndHourNewBuilding"
         android:layout_marginTop="30dp"
-        android:layout_below="@+id/textEndDate"
+        android:layout_below="@+id/textEndDateNewBuilding"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/editStartDate"
+        android:id="@+id/editStartDateNewBuilding"
         android:focusable="false"
-        android:layout_above="@+id/textStartHour"
-        android:layout_toRightOf="@+id/textStartDate"
+        android:layout_above="@+id/textStartHourNewBuilding"
+        android:layout_toRightOf="@+id/textStartDateNewBuilding"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/editStartHour"
+        android:id="@+id/editStartHourNewBuilding"
         android:focusable="false"
-        android:layout_above="@+id/textEndDate"
-        android:layout_toRightOf="@+id/textStartHour"
+        android:layout_above="@+id/textEndDateNewBuilding"
+        android:layout_toRightOf="@+id/textStartHourNewBuilding"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/editEndDate"
-        android:layout_above="@+id/textEndHour"
-        android:layout_toRightOf="@+id/textEndDate"
-        android:layout_alignRight="@+id/editStartDate"
-        android:layout_alignEnd="@+id/editStartDate" />
+        android:id="@+id/editEndDateNewBuilding"
+        android:layout_above="@+id/textEndHourNewBuilding"
+        android:layout_toRightOf="@+id/textEndDateNewBuilding"
+        android:layout_alignRight="@+id/editStartDateNewBuilding"
+        android:layout_alignEnd="@+id/editStartDateNewBuilding" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/editEndHour"
-        android:layout_alignBottom="@+id/textEndHour"
-        android:layout_toRightOf="@+id/textEndHour"
-        android:layout_alignRight="@+id/editEndDate"
-        android:layout_alignEnd="@+id/editEndDate" />
+        android:id="@+id/editEndHourNewBuilding"
+        android:layout_alignBottom="@+id/textEndHourNewBuilding"
+        android:layout_toRightOf="@+id/textEndHourNewBuilding"
+        android:layout_alignRight="@+id/editEndDateNewBuilding"
+        android:layout_alignEnd="@+id/editEndDateNewBuilding" />
 
     <Button
         android:layout_width="wrap_content"
