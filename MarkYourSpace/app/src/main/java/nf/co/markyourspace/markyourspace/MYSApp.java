@@ -208,4 +208,23 @@ public class MYSApp extends Application {
                 reservations.remove(i);
         return reservations;
     }
+
+    public void addSpace(String buildingGuid,MySpace space){
+        ObjectOutput out;
+        ArrayList<MyBuilding> buildings = getBuildings();
+        MyBuilding building = getBuilding(buildingGuid);
+        int index=getBuildings().indexOf(building);
+        building.addSpace(space);
+        buildings.set(index,building);
+
+        try {
+            out = new ObjectOutputStream(new FileOutputStream(new File(new File(getFilesDir(),"")+File.separator+BUILDING_FILE)));
+            out.writeObject(buildings);
+            out.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

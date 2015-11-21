@@ -52,7 +52,7 @@
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/editStartDateNewBuilding"
+        android:id="@+id/editStartDateNewReservation"
         android:focusable="false"
         android:layout_above="@+id/textStartHourNewBuilding"
         android:layout_toRightOf="@+id/textStartDateNewBuilding"
@@ -62,7 +62,7 @@
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/editStartHourNewBuilding"
+        android:id="@+id/editStartHourNewReservation"
         android:focusable="false"
         android:layout_above="@+id/textEndDateNewBuilding"
         android:layout_toRightOf="@+id/textStartHourNewBuilding"
@@ -72,20 +72,20 @@
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/editEndDateNewBuilding"
+        android:id="@+id/editEndDateNewReservation"
         android:layout_above="@+id/textEndHourNewBuilding"
         android:layout_toRightOf="@+id/textEndDateNewBuilding"
-        android:layout_alignRight="@+id/editStartDateNewBuilding"
-        android:layout_alignEnd="@+id/editStartDateNewBuilding" />
+        android:layout_alignRight="@+id/editStartDateNewReservation"
+        android:layout_alignEnd="@+id/editStartDateNewReservation" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/editEndHourNewBuilding"
+        android:id="@+id/editEndHourNewReservation"
         android:layout_alignBottom="@+id/textEndHourNewBuilding"
         android:layout_toRightOf="@+id/textEndHourNewBuilding"
-        android:layout_alignRight="@+id/editEndDateNewBuilding"
-        android:layout_alignEnd="@+id/editEndDateNewBuilding" />
+        android:layout_alignRight="@+id/editEndDateNewReservation"
+        android:layout_alignEnd="@+id/editEndDateNewReservation" />
 
     <Button
         android:layout_width="wrap_content"
@@ -96,13 +96,13 @@
         android:textColor="#FFFFFF"
         android:background="#552CA3"
         android:layout_marginBottom="10dp"
-        android:layout_above="@+id/buttonCancelNewBuilding"
+        android:layout_above="@+id/buttonCancelCreateSpace"
         android:layout_centerHorizontal="true" />
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/button_cancel"
-        android:id="@+id/buttonCancelNewBuilding"
+        android:id="@+id/buttonCancelCreateSpace"
         android:layout_gravity="center_horizontal|bottom"
         android:textColor="#FFFFFF"
         android:background="#552CA3"

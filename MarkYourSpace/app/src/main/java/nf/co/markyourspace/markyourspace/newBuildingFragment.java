@@ -85,7 +85,7 @@ public class newBuildingFragment extends Fragment{
 
 
         final Button buttonAdd= (Button)view.findViewById(R.id.buttonAddNewBuilding);
-        final Button buttonCancel= (Button)view.findViewById(R.id.buttonCancelNewBuilding);
+        final Button buttonCancel= (Button)view.findViewById(R.id.buttonCancelCreateSpace);
 
         buttonAdd.setOnClickListener(
                 new View.OnClickListener(){

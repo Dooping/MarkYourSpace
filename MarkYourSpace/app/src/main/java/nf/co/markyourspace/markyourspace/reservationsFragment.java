@@ -117,14 +117,14 @@ public class reservationsFragment extends Fragment implements AbsListView.OnItem
                 return true;
             }
         });
-
+/*
         FloatingActionButton fab = (FloatingActionButton) view.findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 ((AppMenu) getActivity()).newSpace();
             }
-        });
+        });*/
 
         return view;
     }
