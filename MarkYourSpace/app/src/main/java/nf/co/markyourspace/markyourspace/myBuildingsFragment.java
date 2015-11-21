@@ -17,6 +17,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SearchView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.List;
@@ -46,6 +47,8 @@ public class myBuildingsFragment extends Fragment {
 
     private static List<MyBuilding> buildings;
     SearchView inputSearch;
+
+    ListView buildingsList;
 
 
     private ArrayAdapter mAdapter;
@@ -100,8 +103,10 @@ public class myBuildingsFragment extends Fragment {
         context=getActivity();
         mAdapter = new BuildingEntryAdapter(context,buildings,inputSearch);
 
-        ListView buildingsList = (ListView) view.findViewById(R.id.buildingsList);
+        buildingsList = (ListView) view.findViewById(R.id.buildingsList);
         buildingsList.setAdapter(mAdapter);
+        buildingsList.setEmptyView(view.findViewById(android.R.id.empty));
+        this.setEmptyText("No Buildings");
         buildingsList.setOnItemClickListener(
                 new AdapterView.OnItemClickListener() {
                     @Override
@@ -124,6 +129,14 @@ public class myBuildingsFragment extends Fragment {
             }
         });
         return view;
+    }
+
+    public void setEmptyText(CharSequence emptyText) {
+        View emptyView = buildingsList.getEmptyView();
+
+        if (emptyView instanceof TextView) {
+            ((TextView) emptyView).setText(emptyText);
+        }
     }
 
     // TODO: Rename method, update argument and hook method into UI event
