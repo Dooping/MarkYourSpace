@@ -12,9 +12,9 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import static nf.co.markyourspace.markyourspace.R.id.editEndDateNewBuilding;
-import static nf.co.markyourspace.markyourspace.R.id.editEndHour;
+import static nf.co.markyourspace.markyourspace.R.id.editEndHourNewBuilding;
 import static nf.co.markyourspace.markyourspace.R.id.editStartDateNewBuilding;
-import static nf.co.markyourspace.markyourspace.R.id.editStartHour;
+import static nf.co.markyourspace.markyourspace.R.id.editStartHourNewBuilding;
 
 
 /**
@@ -77,8 +77,8 @@ public class newReservation extends Fragment {
         View view =  inflater.inflate(R.layout.fragment_new_reservation, container, false);
         final EditText startDate= (EditText)view.findViewById(editStartDateNewBuilding);
         final EditText endDate= (EditText)view.findViewById(editEndDateNewBuilding);
-        final EditText startHour= (EditText)view.findViewById(editStartHour);
-        final EditText endHour= (EditText)view.findViewById(editEndHour);
+        final EditText startHour= (EditText)view.findViewById(editStartHourNewBuilding);
+        final EditText endHour= (EditText)view.findViewById(editEndHourNewBuilding);
         startDate.setFocusable(false);
         endDate.setFocusable(false);
         startHour.setFocusable(false);
