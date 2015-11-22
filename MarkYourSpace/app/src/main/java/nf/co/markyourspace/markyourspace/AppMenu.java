@@ -190,6 +190,9 @@ public class AppMenu extends AppCompatActivity
         else if (fragClassName.equals(newBuildingFragment.class.getName())){
             setTitle ("New Building");
         }
+        else if (fragClassName.equals(newReservation.class.getName())){
+            setTitle ("New Reservation");
+        }
     }
 
     public void setActionBarTitle(String title){
@@ -217,7 +220,6 @@ public class AppMenu extends AppCompatActivity
 
     }
 
-
     public void buildingDetailViewFragment(String name, String guid) {
         setActionBarTitle(name);
         android.support.v4.app.Fragment fragment = new detailBuildingViewFragment();
@@ -227,18 +229,30 @@ public class AppMenu extends AppCompatActivity
         replaceFragment(fragment);
     }
 
-    public void spaceDetailViewFragment(String name, String guid) {
+    public void spaceDetailViewFragment(String buildingGuid,String name, String spaceGuid) {
         setActionBarTitle(name);
         android.support.v4.app.Fragment fragment = new detailSpaceViewFragment();
         Bundle args = new Bundle();
-        args.putString("guid", guid);
+        args.putString("spaceGuid", spaceGuid);
+        args.putString("buildingGuid", buildingGuid);
         fragment.setArguments(args);
         replaceFragment(fragment);
     }
 
-    public void newReservationFragment(){
+    public void newReservationFragment(String spaceGuid, String buildingName,String spaceName){
         android.support.v4.app.Fragment fragment = new newReservation();
+        Bundle args=new Bundle();
+        args.putString("spaceGuid",spaceGuid);
+        args.putString("buildingName", buildingName);
+        args.putString("spaceName",spaceName);
+        fragment.setArguments(args);
         replaceFragment(fragment);
+    }
+
+    public void reservationsFragment(){
+        android.support.v4.app.Fragment fragment = new reservationsFragment();
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fragment_container, fragment).addToBackStack("main").commit();
     }
 
 

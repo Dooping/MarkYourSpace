@@ -54,6 +54,10 @@ public class MYSApp extends Application {
 
     public void addReservation(MyReservation reservation){
         ObjectOutput out;
+
+        int endH=reservation.getEndHourInMinutes();
+        int startH=reservation.getStartHourInMinutes();
+
         ArrayList<MyReservation> reservations = getReservations();
         reservation.setUser(username);
         reservations.add(reservation);

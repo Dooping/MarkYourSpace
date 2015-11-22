@@ -32,7 +32,7 @@
         android:layout_marginLeft="5dp"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Large Text"
-        android:id="@+id/textBuildingName"
+        android:id="@+id/textFloor"
         android:layout_above="@+id/imgBuildingAddress"
         android:layout_toRightOf="@+id/imgBuildingName"
         android:layout_toEndOf="@+id/imgBuildingName" />
@@ -43,7 +43,7 @@
         android:layout_marginLeft="5dp"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Large Text"
-        android:id="@+id/textBuildingAddress"
+        android:id="@+id/textNumberOfSeats"
         android:layout_alignBottom="@+id/imgBuildingAddress"
         android:layout_toRightOf="@+id/imgBuildingAddress"
         android:layout_toEndOf="@+id/imgBuildingAddress" />

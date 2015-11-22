@@ -14,6 +14,7 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.Iterator;
 import java.util.List;
 
 
@@ -100,7 +101,15 @@ public class detailBuildingViewFragment extends Fragment implements AbsListView.
         setEmptyText("No Spaces");
 
         View buttonAddSpace = view.findViewById(R.id.buttonAddNewSpace);
+        mListView.setOnItemClickListener(
+                new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        itemClicked(((MySpace) parent.getItemAtPosition(position)).getName());
+                    }
+                }
 
+        );
         buttonAddSpace.setOnClickListener(
                 new View.OnClickListener(){
                     public void onClick(View v){
@@ -177,6 +186,25 @@ public class detailBuildingViewFragment extends Fragment implements AbsListView.
 
     private void addNewSpace(){
         ((AppMenu) getActivity()).newSpace(getArguments().getString("guid"));
+    }
+
+    private void itemClicked(String spaceName){
+        spaceDetailView(spaceName);
+    }
+
+    private void spaceDetailView(String spaceName){
+        MySpace sp= ((MYSApp) getActivity().getApplication()).getBuilding(getArguments().getString("guid")).getSpaces().get(findSpace(spaceName));
+        ((AppMenu) getActivity()).spaceDetailViewFragment(getArguments().getString("guid"),sp.getName(), sp.getGuid());
+    }
+
+    private int findSpace(String spaceName){
+        List<MySpace> spaces = ((MYSApp) getActivity().getApplication()).getBuilding(getArguments().getString("guid")).getSpaces();
+        for(int i=0;i<spaces.size();i++){
+            if(spaces.get(i).getName().equals(spaceName)){
+                return i;
+            }
+        }
+        return -1;
     }
 
 }
