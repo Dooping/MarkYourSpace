@@ -83,7 +83,7 @@ public class myBuildingsFragment extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
 
-        buildings = ((MYSApp)(getActivity().getApplication())).getBuildings();
+        buildings = ((MYSApp)(getActivity().getApplication())).getMyBuildings();
 
         /*MyBuilding teste = new MyBuilding("asjhgfk"+buildings.size(), "rua dos bixos","city","private","12345");
         ((MYSApp) (getActivity().getApplication())).addBuilding(teste);
@@ -161,7 +161,7 @@ public class myBuildingsFragment extends Fragment {
     public void onResume() {
         inputSearch.setQuery("", false);
         inputSearch.setIconified(true);
-        buildings = ((MYSApp)(getActivity().getApplication())).getBuildings();
+        buildings = ((MYSApp)(getActivity().getApplication())).getMyBuildings();
         super.onResume();
     }
 

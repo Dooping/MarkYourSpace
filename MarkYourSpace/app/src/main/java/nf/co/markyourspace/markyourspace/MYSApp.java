@@ -108,6 +108,25 @@ public class MYSApp extends Application {
         return buildings;
     }
 
+    public ArrayList<MyBuilding> getMyBuildings(){
+        ObjectInputStream input;
+
+        ArrayList<MyBuilding> buildings = new ArrayList<>();
+
+        try {
+            input = new ObjectInputStream(new FileInputStream(new File(new File(getFilesDir(),"")+File.separator+BUILDING_FILE)));
+            buildings = (ArrayList<MyBuilding>) input.readObject();
+            input.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        for (int i = buildings.size() - 1; i >= 0; i--)
+            if(!buildings.get(i).getUser().equals(username))
+                buildings.remove(i);
+        return buildings;
+    }
+
     public void addBuilding(MyBuilding building){
         ObjectOutput out;
         building.setUser(username);
