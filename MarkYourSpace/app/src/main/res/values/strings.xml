@@ -135,4 +135,5 @@
     <string name="textEndDate">End Date:</string>
     <string name="textEndHour">End Hour:</string>
     <string name="numberOfSeats">Nº of Seats:</string>
+    <string name="title_activity_teste_apag">testeAPAGA</string>
 </resources>

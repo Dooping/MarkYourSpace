@@ -18,6 +18,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.TextView;
 
 import java.util.Iterator;
 import java.util.List;
@@ -47,6 +48,10 @@ public class AppMenu extends AppCompatActivity
         toggle.syncState();
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        TextView username = (TextView) navigationView.findViewById(R.id.usernameText);
+        TextView userEmail= (TextView) navigationView.findViewById(R.id.userEmailText);
+        username.setText(((MYSApp) getApplication()).getUsername());
+        userEmail.setText(((MYSApp) getApplication()).getUsername() + "@gmail");
         navigationView.setNavigationItemSelectedListener(this);
 
         android.support.v4.app.Fragment fragment = new reservationsFragment();
@@ -109,13 +114,13 @@ public class AppMenu extends AppCompatActivity
         if (id == R.id.action_settings) {
             return true;
         }
-        else if(id == R.id.action_add_icon){
+       /* else if(id == R.id.action_add_icon){
             android.support.v4.app.Fragment fragment = new newBuildingFragment();
             replaceFragment(fragment);
             //getSupportFragmentManager().beginTransaction()
                     //.replace(R.id.fragment_container, fragment).commit();
             //updateTitleAndDrawer(fragment);
-        }
+        }*/
         else if(id == R.id.action_search_icon){
             android.support.v4.app.Fragment fragment = new searchSpaceFragment();
             replaceFragment(fragment);
@@ -255,5 +260,16 @@ public class AppMenu extends AppCompatActivity
                 .replace(R.id.fragment_container, fragment).addToBackStack("main").commit();
     }
 
+    public void searchSpace(){
+        android.support.v4.app.Fragment fragment = new searchSpaceFragment();
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fragment_container, fragment).addToBackStack("main").commit();
+    }
+
+    public void newBuildingFragment(){
+        android.support.v4.app.Fragment fragment = new newBuildingFragment();
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fragment_container, fragment).addToBackStack("main").commit();
+    }
 
 }

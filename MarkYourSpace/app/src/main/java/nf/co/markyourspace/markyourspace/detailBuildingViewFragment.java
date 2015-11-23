@@ -100,7 +100,7 @@ public class detailBuildingViewFragment extends Fragment implements AbsListView.
         mListView.setOnItemClickListener(this);
         setEmptyText("No Spaces");
 
-        View buttonAddSpace = view.findViewById(R.id.buttonAddNewSpace);
+        View buttonAddSpace = view.findViewById(R.id.createNewSpace);
         mListView.setOnItemClickListener(
                 new AdapterView.OnItemClickListener() {
                     @Override
