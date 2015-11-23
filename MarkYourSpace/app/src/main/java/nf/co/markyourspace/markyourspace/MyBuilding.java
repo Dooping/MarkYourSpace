@@ -90,4 +90,10 @@ public class MyBuilding implements Serializable{
         return false;
     }
 
+    public MySpace getSpace(String guid){
+        for (MySpace b : spaces)
+            if(b.getGuid().equals(guid))
+                return b;
+        return null;
+    }
 }

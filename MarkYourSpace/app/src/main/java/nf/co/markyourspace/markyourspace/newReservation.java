@@ -5,11 +5,18 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.logging.SimpleFormatter;
 
 import static nf.co.markyourspace.markyourspace.R.id.editEndDateNewReservation;
 import static nf.co.markyourspace.markyourspace.R.id.editEndHourNewReservation;
@@ -30,6 +37,11 @@ public class newReservation extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+
+    EditText startDate;
+    EditText endDate;
+    EditText startHour;
+    EditText endHour;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -75,10 +87,10 @@ public class newReservation extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.fragment_new_reservation, container, false);
-        final EditText startDate= (EditText)view.findViewById(editStartDateNewReservation);
-        final EditText endDate= (EditText)view.findViewById(editEndDateNewReservation);
-        final EditText startHour= (EditText)view.findViewById(editStartHourNewReservation);
-        final EditText endHour= (EditText)view.findViewById(editEndHourNewReservation);
+        startDate= (EditText)view.findViewById(editStartDateNewReservation);
+         endDate= (EditText)view.findViewById(editEndDateNewReservation);
+        startHour= (EditText)view.findViewById(editStartHourNewReservation);
+        endHour= (EditText)view.findViewById(editEndHourNewReservation);
         startDate.setFocusable(false);
         endDate.setFocusable(false);
         startHour.setFocusable(false);
@@ -117,8 +129,16 @@ public class newReservation extends Fragment {
                 }
         );
 
-        final Button buttonCancel= (Button)view.findViewById(R.id.buttonCancelCreateSpace);
+        final Button buttonCancel= (Button)view.findViewById(R.id.buttonCancelReservation);
+        final Button buttonAdd=(Button)view.findViewById(R.id.buttonAddNewReservation);
 
+        buttonAdd.setOnClickListener(
+                new View.OnClickListener(){
+                    public void onClick(View v){
+                        buttonAddClicked();
+                    }
+                }
+        );
         buttonCancel.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
@@ -189,6 +209,26 @@ public class newReservation extends Fragment {
 
     public void buttonCancelClicked(){
         ((AppMenu)getActivity()).onBackPressed();
+    }
+
+    private void buttonAddClicked(){
+        Date sDate = null,eDate=null,sTime=null,eTime=null;
+        SimpleDateFormat formatterDate,formatterTime ;
+        formatterDate = new SimpleDateFormat("dd/MM/yyyy");
+        formatterTime=new SimpleDateFormat("H:m");
+        try {
+            sDate= formatterDate.parse(startDate.getText().toString());
+            eDate=formatterDate.parse(endDate.getText().toString());
+            sTime=formatterTime.parse(startHour.getText().toString());
+            eTime=formatterTime.parse(endHour.getText().toString());
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        MyReservation reservation= new MyReservation(getArguments().getString("spaceName"),getArguments().getString("spaceGuid"),getArguments().getString("buildingName"),sDate,eDate,(sTime.getHours()*60+sTime.getMinutes()),(eTime.getHours()*60+eTime.getMinutes()));
+        ((MYSApp) getActivity().getApplication()).addReservation(reservation);
+        getActivity().getSupportFragmentManager().popBackStack(newReservation.class.getName(), FragmentManager.POP_BACK_STACK_INCLUSIVE);
+        ((AppMenu)getActivity()).reservationsFragment();
     }
 
 }

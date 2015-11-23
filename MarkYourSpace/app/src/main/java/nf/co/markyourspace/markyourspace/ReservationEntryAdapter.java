@@ -10,6 +10,12 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.SearchView;
 import android.widget.TextView;
+
+import java.util.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 import java.util.List;
 
 /**
@@ -64,8 +70,15 @@ public class ReservationEntryAdapter extends ArrayAdapter {
         TextView dateLabel = (TextView) customView.findViewById(R.id.reservationDate);
         reservationLabel.setText(singleReservationItem.getSpaceName());
         buildingLabel.setText(singleReservationItem.getBuildingName());
-        dateLabel.setText("12/11/2015 22:00 - 13/11/2015 13:00");
+        dateLabel.setText(getDate(singleReservationItem.getStartDate())+" "+getTime(singleReservationItem.getStartHourInMinutes())+" - "+getDate(singleReservationItem.getEndDate())+" "+getTime(singleReservationItem.getEndHourInMinutes()));
         return customView;
+    }
+
+    private String getTime(int totMinutes){
+       return (totMinutes/60)+":"+(totMinutes%60);
+    }
+    private String getDate(Date date){
+        return DateFormat.getDateInstance().format(date);
     }
 
 }

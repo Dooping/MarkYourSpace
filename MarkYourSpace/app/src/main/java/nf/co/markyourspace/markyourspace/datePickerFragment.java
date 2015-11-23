@@ -17,8 +17,7 @@ public class datePickerFragment extends DialogFragment
     public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
         int id=getArguments().getInt("editTextId");
         EditText activityButton = (EditText)getActivity().findViewById(id);
-        String date =dayOfMonth+"/"+monthOfYear+"/"+year;
-        //android.text.format.DateFormat.getBestDateTimePattern(Locale.ENGLISH,"MMMd");
+        String date =dayOfMonth+"/"+(monthOfYear+1)+"/"+year;
         activityButton.setText(date);
 
     }

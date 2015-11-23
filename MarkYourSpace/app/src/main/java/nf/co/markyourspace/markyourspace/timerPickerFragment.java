@@ -35,8 +35,7 @@ public class timerPickerFragment extends DialogFragment
     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
         int id=getArguments().getInt("editTextId");
         EditText activityButton = (EditText)getActivity().findViewById(id);
-
-        String date =hourOfDay+":"+minute+"h";
+        String date =hourOfDay+":"+minute;
         //android.text.format.DateFormat.getBestDateTimePattern(Locale.ENGLISH,"MMMd");
         activityButton.setText(date);
     }
