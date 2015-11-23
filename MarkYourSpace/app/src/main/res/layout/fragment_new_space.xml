@@ -1,117 +1,165 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"  tools:context="nf.co.markyourspace.markyourspace.newSpace">
 
     <!-- TODO: Update blank fragment layout -->
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Name:"
-        android:layout_marginTop="20dp"
-        android:id="@+id/textViewStartDateSearchSpace"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Floor:"
-        android:id="@+id/textViewStartHourSearchSpace"
-        android:layout_marginTop="30dp"
-        android:layout_below="@+id/textViewStartDateSearchSpace"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Nº of seats:"
-        android:id="@+id/textViewEndDateSearchSpace"
-        android:layout_marginTop="30dp"
-        android:layout_below="@+id/textViewStartHourSearchSpace"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
 
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="5dp">
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/button_add"
-        android:id="@+id/buttonCreateSpace"
-        android:layout_gravity="center_horizontal|bottom"
-        android:textColor="#FFFFFF"
-        android:background="#552CA3"
-        android:layout_above="@+id/buttonCancelCreateSpace"
-        android:layout_alignLeft="@+id/buttonCancelCreateSpace"
-        android:layout_alignStart="@+id/buttonCancelCreateSpace"
-        android:layout_marginBottom="10dp" />
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/button_cancel"
-        android:id="@+id/buttonCancelCreateSpace"
-        android:layout_gravity="center_horizontal|bottom"
-        android:textColor="#FFFFFF"
-        android:background="#552CA3"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="29dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Name:"
+                android:id="@+id/textViewStartDateSearchSpace"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp" />
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/editSpaceName"
-        android:layout_alignParentTop="true"
-        android:layout_toRightOf="@+id/textViewStartDateSearchSpace"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_above="@+id/textViewStartHourSearchSpace" />
+            <EditText
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/editSpaceName"
+                android:layout_alignParentTop="true"
+                android:layout_toRightOf="@+id/textViewStartDateSearchSpace"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_above="@+id/textViewStartHourSearchSpace"
+                android:layout_marginRight="10dp" />
+        </LinearLayout>
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/editSpaceFloor"
-        android:layout_alignBottom="@+id/textViewStartHourSearchSpace"
-        android:layout_toRightOf="@+id/textViewStartHourSearchSpace"
-        android:layout_alignRight="@+id/editSpaceName"
-        android:layout_alignEnd="@+id/editSpaceName" />
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="5dp">
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/editSpaceNumberOfSeats"
-        android:layout_alignBottom="@+id/textViewEndDateSearchSpace"
-        android:layout_toRightOf="@+id/textViewEndDateSearchSpace"
-        android:layout_alignRight="@+id/editSpaceFloor"
-        android:layout_alignEnd="@+id/editSpaceFloor" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Floor:"
+                android:id="@+id/textViewStartHourSearchSpace"
+                android:layout_below="@+id/textViewStartDateSearchSpace"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp" />
 
+            <EditText
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/editSpaceFloor"
+                android:layout_alignBottom="@+id/textViewStartHourSearchSpace"
+                android:layout_toRightOf="@+id/textViewStartHourSearchSpace"
+                android:layout_alignRight="@+id/editSpaceName"
+                android:layout_alignEnd="@+id/editSpaceName"
+                android:layout_marginRight="10dp"
+                android:inputType="number" />
+        </LinearLayout>
 
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="5dp">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Activities"
-        android:id="@+id/textView7"
-        android:layout_marginTop="30dp"
-        android:layout_below="@+id/textViewEndDateSearchSpace"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Nº of seats:"
+                android:id="@+id/textViewEndDateSearchSpace"
+                android:layout_below="@+id/textViewStartHourSearchSpace"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Features"
-        android:id="@+id/textView8"
-        android:layout_below="@+id/textView7"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="30dp"/>
+            <EditText
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/editSpaceNumberOfSeats"
+                android:layout_alignBottom="@+id/textViewEndDateSearchSpace"
+                android:layout_toRightOf="@+id/textViewEndDateSearchSpace"
+                android:layout_alignRight="@+id/editSpaceFloor"
+                android:layout_alignEnd="@+id/editSpaceFloor"
+                android:layout_marginRight="10dp"
+                android:inputType="number" />
+        </LinearLayout>
 
-</RelativeLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Activities:"
+            android:id="@+id/textView4"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="20dp" />
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/activities"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="15dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Features:"
+            android:id="@+id/textView2"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="10dp" />
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/features"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginBottom="30dp"></LinearLayout>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/button_add"
+            android:id="@+id/buttonCreateSpace"
+            android:layout_gravity="center_horizontal|bottom"
+            android:textColor="#FFFFFF"
+            android:background="#552CA3"
+            android:layout_above="@+id/buttonCancelCreateSpace"
+            android:layout_alignLeft="@+id/buttonCancelCreateSpace"
+            android:layout_alignStart="@+id/buttonCancelCreateSpace"
+            android:layout_marginBottom="10dp" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/button_cancel"
+            android:id="@+id/buttonCancelCreateSpace"
+            android:layout_gravity="center_horizontal|bottom"
+            android:textColor="#FFFFFF"
+            android:background="#552CA3"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="29dp" />
+
+    </LinearLayout>
+
+</ScrollView>

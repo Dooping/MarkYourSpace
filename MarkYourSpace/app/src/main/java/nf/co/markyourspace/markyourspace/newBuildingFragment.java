@@ -1,6 +1,8 @@
 package nf.co.markyourspace.markyourspace;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -10,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -82,7 +85,24 @@ public class newBuildingFragment extends Fragment{
         city = (EditText) view.findViewById(R.id.editBuildingCity);
         zipcode = (EditText) view.findViewById(R.id.editZipCode);
         type = (EditText) view.findViewById(R.id.editType);
-
+        type.setFocusable(false);
+        type.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                builder.setTitle("Type")
+                        .setItems(R.array.buildingTypes, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                if (which == 0)
+                                    type.setText("Public");
+                                else
+                                    type.setText("Private");
+                            }
+                        });
+                builder.create();
+                builder.show();
+            }
+        });
 
         final Button buttonAdd= (Button)view.findViewById(R.id.buttonAddNewBuilding);
         final Button buttonCancel= (Button)view.findViewById(R.id.buttonCancelCreateSpace);

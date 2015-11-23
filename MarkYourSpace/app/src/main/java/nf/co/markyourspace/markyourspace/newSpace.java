@@ -10,6 +10,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -33,6 +37,9 @@ public class newSpace extends Fragment {
     private static EditText editSpaceName;
     private static EditText editSpaceFloor;
     private static EditText editSpaceNumberOfSeats;
+
+    private LinearLayout activitesLayout;
+    private LinearLayout featuresLayout;
 
     private OnFragmentInteractionListener mListener;
 
@@ -78,6 +85,11 @@ public class newSpace extends Fragment {
         editSpaceFloor= (EditText) view.findViewById(R.id.editSpaceFloor);
         editSpaceNumberOfSeats= (EditText) view.findViewById(R.id.editSpaceNumberOfSeats);
 
+        activitesLayout = (LinearLayout) view.findViewById(R.id.activities);
+        featuresLayout = (LinearLayout) view.findViewById(R.id.features);
+        addTextEdit(activitesLayout);
+        addTextEdit(featuresLayout);
+
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -92,6 +104,20 @@ public class newSpace extends Fragment {
             }
         });
         return view;
+    }
+
+    public void addTextEdit(final LinearLayout list) {
+        final EditText edit = new EditText(getActivity());
+        edit.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                String s = edit.getText().toString();
+                if (hasFocus && s.equals(""))
+                    addTextEdit(list);
+            }
+        });
+        int a = list.getChildCount();
+        list.addView(edit);
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -134,8 +160,18 @@ public class newSpace extends Fragment {
     }
 
     private void createSpace(){
+        List<String> activities = new ArrayList<>();
+        List<String> features = new ArrayList<>();
+        for(int i = 0; i < activitesLayout.getChildCount(); i++){
+            EditText e = (EditText)activitesLayout.getChildAt(i);
+            activities.add(e.getText().toString());
+        }
+        for(int i = 0; i < featuresLayout.getChildCount(); i++){
+            EditText e = (EditText)activitesLayout.getChildAt(i);
+            features.add(e.getText().toString());
+        }
 
-            MySpace newS = new MySpace(editSpaceName.getText().toString(),Integer.parseInt(editSpaceFloor.getText().toString()),Integer.parseInt(editSpaceNumberOfSeats.getText().toString()), null, null);
+            MySpace newS = new MySpace(editSpaceName.getText().toString(),Integer.parseInt(editSpaceFloor.getText().toString()),Integer.parseInt(editSpaceNumberOfSeats.getText().toString()), activities, features);
         ((MYSApp) (getActivity().getApplication())).addSpace(getArguments().getString("buildingGuid"),newS);
             getActivity().getSupportFragmentManager().popBackStack(newSpace.class.getName(), FragmentManager.POP_BACK_STACK_INCLUSIVE);
            ((AppMenu)getActivity()).buildingDetailViewFragment(newS.getName(), newS.getGuid());
