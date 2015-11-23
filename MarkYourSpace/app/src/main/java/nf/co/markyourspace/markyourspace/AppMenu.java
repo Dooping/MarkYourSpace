@@ -20,6 +20,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.TextView;
 
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
@@ -29,7 +30,7 @@ public class AppMenu extends AppCompatActivity
         ,newSpace.OnFragmentInteractionListener, reservationsFragment.OnFragmentInteractionListener
         , newBuildingFragment.OnFragmentInteractionListener, myBuildingsFragment.OnFragmentInteractionListener
         ,findSpaceFragment.OnFragmentInteractionListener,detailBuildingViewFragment.OnFragmentInteractionListener
-        ,newReservation.OnFragmentInteractionListener,detailSpaceViewFragment.OnFragmentInteractionListener
+        ,newReservation.OnFragmentInteractionListener,detailSpaceViewFragment.OnFragmentInteractionListener,searchResultsFragment.OnFragmentInteractionListener
 {
 
     static Context applicationContext;
@@ -198,6 +199,9 @@ public class AppMenu extends AppCompatActivity
         else if (fragClassName.equals(newReservation.class.getName())){
             setTitle ("New Reservation");
         }
+        else if (fragClassName.equals(searchResultsFragment.class.getName())){
+            setTitle ("Search Results");
+        }
     }
 
     public void setActionBarTitle(String title){
@@ -268,6 +272,12 @@ public class AppMenu extends AppCompatActivity
 
     public void newBuildingFragment(){
         android.support.v4.app.Fragment fragment = new newBuildingFragment();
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fragment_container, fragment).addToBackStack("main").commit();
+    }
+
+    public void searchSpacesResultsFragment(Date startDate,Date endDate, int nSeats, List<String> activities, List<String> features){
+        android.support.v4.app.Fragment fragment = new searchResultsFragment(startDate,endDate,nSeats,activities,features);
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fragment_container, fragment).addToBackStack("main").commit();
     }

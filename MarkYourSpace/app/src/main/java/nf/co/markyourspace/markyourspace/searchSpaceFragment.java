@@ -5,6 +5,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,12 +13,16 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import static nf.co.markyourspace.markyourspace.R.id.editEndDateSearchSpace;
 import static nf.co.markyourspace.markyourspace.R.id.editEndHourSearchSpace;
+import static nf.co.markyourspace.markyourspace.R.id.editNofSeatsSearchSpace;
+import static nf.co.markyourspace.markyourspace.R.id.editSpaceNumberOfSeats;
 import static nf.co.markyourspace.markyourspace.R.id.editStartDateSearchSpace;
 import static nf.co.markyourspace.markyourspace.R.id.editStartHourSearchSpace;
 
@@ -39,6 +44,14 @@ public class searchSpaceFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    EditText startDate;
+    EditText endDate;
+    EditText startHour;
+    EditText endHour;
+    EditText nSeats;
+
+
 
     private OnFragmentInteractionListener mListener;
 
@@ -82,10 +95,11 @@ public class searchSpaceFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_search_space, container, false);
 
-        final EditText startDate= (EditText)view.findViewById(editStartDateSearchSpace);
-        final EditText endDate= (EditText)view.findViewById(editEndDateSearchSpace);
-        final EditText startHour= (EditText)view.findViewById(editStartHourSearchSpace);
-        final EditText endHour= (EditText)view.findViewById(editEndHourSearchSpace);
+        startDate= (EditText)view.findViewById(editStartDateSearchSpace);
+        endDate= (EditText)view.findViewById(editEndDateSearchSpace);
+        startHour= (EditText)view.findViewById(editStartHourSearchSpace);
+        endHour= (EditText)view.findViewById(editEndHourSearchSpace);
+        nSeats= (EditText)view.findViewById(editNofSeatsSearchSpace);
         startDate.setFocusable(false);
         endDate.setFocusable(false);
         startHour.setFocusable(false);
@@ -125,7 +139,7 @@ public class searchSpaceFragment extends Fragment {
         );
 
 
-        final Button buttonSearch= (Button)view.findViewById(R.id.button2);
+        final Button buttonSearch= (Button)view.findViewById(R.id.buttonSearchSpacesResults);
         final Button buttonCancel= (Button)view.findViewById(R.id.button1);
 
         activitesLayout = (LinearLayout) view.findViewById(R.id.activities);
@@ -217,8 +231,31 @@ public class searchSpaceFragment extends Fragment {
             EditText e = (EditText)activitesLayout.getChildAt(i);
             features.add(e.getText().toString());
         }
-        //((MYSApp) (getActivity().getApplication())).searchSpaces(startDate,startHour,endDate,endHour,numberOfSeats);
-        //((AppMenu) getActivity()).XXX);
+
+        //get date e time info
+        Date sDate = null,eDate=null,sTime=null,eTime=null;
+        SimpleDateFormat formatterDate,formatterTime ;
+        formatterDate = new SimpleDateFormat("dd/MM/yyyy");
+        formatterTime=new SimpleDateFormat("H:m");
+        try {
+            sDate= formatterDate.parse(startDate.getText().toString());
+            eDate=formatterDate.parse(endDate.getText().toString());
+            sTime=formatterTime.parse(startHour.getText().toString());
+            eTime=formatterTime.parse(endHour.getText().toString());
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+/*
+        MyReservation reservation= new MyReservation(getArguments().getString("spaceName"),getArguments().getString("spaceGuid"),getArguments().getString("buildingName"),sDate,eDate,(sTime.getHours()*60+sTime.getMinutes()),(eTime.getHours()*60+eTime.getMinutes()));
+        ((MYSApp) getActivity().getApplication()).addReservation(reservation);
+        getActivity().getSupportFragmentManager().popBackStack(newReservation.class.getName(), FragmentManager.POP_BACK_STACK_INCLUSIVE);
+        ((AppMenu)getActivity()).reservationsFragment();
+
+        */
+
+
+        searchSpacesResultsFragment(sDate,eDate,Integer.parseInt(nSeats.getText().toString()),activities,features);
+
 
     }
 
@@ -241,5 +278,9 @@ public class searchSpaceFragment extends Fragment {
         args.putInt("editTextId",editTextId);
         newFragment.setArguments(args);
         newFragment.show(getActivity().getSupportFragmentManager(), "timePicker");
+    }
+
+    private void searchSpacesResultsFragment(Date sDate, Date sTime, int i, List<String> activities, List<String> features){
+        ((AppMenu)getActivity()).searchSpacesResultsFragment(sDate,sTime,i,activities,features);
     }
 }
