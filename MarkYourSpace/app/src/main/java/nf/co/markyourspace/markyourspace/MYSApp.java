@@ -214,14 +214,14 @@ public class MYSApp extends Application {
     private void applyActivitiesFilter(List<MySpace> spaces, List<String> activities){
         for (int i = spaces.size() - 1; i >= 0; i--)
             for(String a: activities)
-                if(!spaces.get(i).getActivities().contains(a))
+                if(!spaces.get(i).getActivities().contains(a)&&!a.equals(""))
                     spaces.remove(i);
     }
 
     private void applyFeaturesFilter(List<MySpace> spaces, List<String> features){
         for (int i = spaces.size() - 1; i >= 0; i--)
             for(String a: features)
-                if(!spaces.get(i).getFeatures().contains(a))
+                if(!spaces.get(i).getFeatures().contains(a)&&!a.equals(""))
                     spaces.remove(i);
     }
 

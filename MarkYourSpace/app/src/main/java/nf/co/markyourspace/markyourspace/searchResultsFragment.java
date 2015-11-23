@@ -8,6 +8,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -26,7 +27,7 @@ import java.util.List;
  * Use the {@link searchResultsFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class searchResultsFragment extends Fragment {
+public class searchResultsFragment extends Fragment implements AbsListView.OnItemClickListener{
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -104,15 +105,7 @@ public class searchResultsFragment extends Fragment {
         searchResultsList.setAdapter(mAdapter);
         searchResultsList.setEmptyView(view.findViewById(android.R.id.empty));
         this.setEmptyText("No Spaces");
-        searchResultsList.setOnItemClickListener(
-                new AdapterView.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        itemClicked(((MySpace) parent.getItemAtPosition(position)).getName());
-                    }
-                }
-
-        );
+        searchResultsList.setOnItemClickListener(this);
         return view;
     }
 
@@ -138,6 +131,12 @@ public class searchResultsFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        MySpace mb = (MySpace)parent.getItemAtPosition(position);
+        ((AppMenu) getActivity()).spaceDetailViewFragment(mb.getBuildingGuid(),mb.getName(),mb.getGuid());
     }
 
     /**

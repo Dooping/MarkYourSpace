@@ -15,13 +15,12 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/searchResultsList"
-            android:clickable="false"/>
+            android:focusable="false"/>
 
     </LinearLayout>
 
     <TextView android:id="@android:id/empty" android:layout_width="match_parent"
-        android:layout_height="match_parent" android:gravity="center"
-        android:clickable="true" />
+        android:layout_height="match_parent" android:gravity="center" />
 
 
 </FrameLayout>
