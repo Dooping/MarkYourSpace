@@ -8,6 +8,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 
@@ -36,6 +38,9 @@ public class detailSpaceViewFragment extends Fragment {
     private OnFragmentInteractionListener mListener;
 
     private MySpace space;
+
+    private LinearLayout activitesLayout;
+    private LinearLayout featuresLayout;
     /**
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
@@ -80,6 +85,15 @@ public class detailSpaceViewFragment extends Fragment {
         textNumberOfSeats=(TextView) view.findViewById(R.id.textNumberOfSeats);
         textNumberOfSeats.setText(Integer.toString(space.getSeats()));
 
+        activitesLayout = (LinearLayout) view.findViewById(R.id.activities);
+        featuresLayout = (LinearLayout) view.findViewById(R.id.features);
+        for (String s: space.getActivities())
+            if(!s.equals(""))
+                addTextEdit(activitesLayout,s);
+        for (String s: space.getFeatures())
+            if(!s.equals(""))
+                addTextEdit(featuresLayout,s);
+
 
         Button buttonNewReservation = (Button)view.findViewById(R.id.buttonNewReservation);
         buttonNewReservation.setOnClickListener(
@@ -91,6 +105,13 @@ public class detailSpaceViewFragment extends Fragment {
         );
 
         return view;
+    }
+
+    public void addTextEdit(final LinearLayout list,String value) {
+        final EditText edit = new EditText(getActivity());
+        edit.setFocusable(false);
+        edit.setText(value);
+        list.addView(edit);
     }
 
     // TODO: Rename method, update argument and hook method into UI event

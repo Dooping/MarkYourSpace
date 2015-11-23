@@ -167,7 +167,7 @@ public class newSpace extends Fragment {
             activities.add(e.getText().toString());
         }
         for(int i = 0; i < featuresLayout.getChildCount(); i++){
-            EditText e = (EditText)activitesLayout.getChildAt(i);
+            EditText e = (EditText)featuresLayout.getChildAt(i);
             features.add(e.getText().toString());
         }
 

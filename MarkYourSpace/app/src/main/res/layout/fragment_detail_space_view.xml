@@ -64,27 +64,26 @@
             android:text="@string/spaceActivities"
             android:id="@+id/spaceActivitiesTextView" />
 
-        <ListView
+        <LinearLayout
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="103dp"
-            android:layout_marginLeft="5dp"
-            android:id="@+id/activitiesListView"
-            android:layout_weight="0.20" />
+            android:layout_height="wrap_content"
+            android:id="@+id/activities"></LinearLayout>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
+            android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="@string/spaceFeatures"
             android:id="@+id/spaceFeaturesTextView" />
 
-        <ListView
+        <LinearLayout
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="127dp"
-            android:layout_marginLeft="5dp"
-            android:id="@+id/featuresListView" />
+            android:layout_height="wrap_content"
+            android:id="@+id/features"></LinearLayout>
 
         <Button
             android:layout_width="wrap_content"
