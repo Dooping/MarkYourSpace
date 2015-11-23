@@ -36,13 +36,14 @@ public class MYSApp extends Application {
 
     public ArrayList<MyReservation> getReservations(){
         ObjectInputStream input;
-
         ArrayList<MyReservation> reservations = new ArrayList<>();
 
         try {
             input = new ObjectInputStream(new FileInputStream(new File(new File(getFilesDir(),"")+File.separator+RESERVATION_FILE)));
             reservations = (ArrayList<MyReservation>) input.readObject();
             input.close();
+        } catch (FileNotFoundException e) {
+            makeDB();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -51,6 +52,54 @@ public class MYSApp extends Application {
             if(!reservations.get(i).getUser().equals(username))
                 reservations.remove(i);
         return reservations;
+    }
+
+    private void makeDB(){
+        ObjectOutputStream out;
+        MySpace s;
+        MyReservation r;
+        List<MyBuilding> buildings = new ArrayList<>();
+        List<MyReservation> reservations = new ArrayList<>();
+        MyBuilding b = new MyBuilding("John Doe Co.","In the middle of nowhere", "Someplace", "Public", "6666-111");
+        b.setUser("John Doe");
+        s = new MySpace(b.getGuid(), "Meeting Room 1", 7, 10, new ArrayList<String>(), new ArrayList<String>());
+        b.addSpace(s);
+        r = new MyReservation(s.getName(), s.getGuid(), b.getName(),new Date(0), new Date(),300,400);
+        r.setUser("Professor Oxford");
+        reservations.add(r);
+        s = new MySpace(b.getGuid(), "Meeting Room 2", 7, 10, new ArrayList<String>(), new ArrayList<String>());
+        b.addSpace(s);
+        s = new MySpace(b.getGuid(), "Meeting Room 3", 8, 10, new ArrayList<String>(), new ArrayList<String>());
+        b.addSpace(s);
+        buildings.add(b);
+        b = new MyBuilding("Campo Ourives","Avenida Tenente Segundo", "Aveiro", "Public", "3114-952");
+        b.setUser("John Doe");
+        buildings.add(b);
+        b = new MyBuilding("Texas University","Road to Texas", "Texas", "Public", "0001-239");
+        b.setUser("John Doe");
+        s = new MySpace(b.getGuid(), "Classroom B", 1, 100, new ArrayList<String>(), new ArrayList<String>());
+        b.addSpace(s);
+        s = new MySpace(b.getGuid(), "Amphiteatre", 1, 200, new ArrayList<String>(), new ArrayList<String>());
+        b.addSpace(s);
+        s = new MySpace(b.getGuid(), "Lab 1906", 1, 30, new ArrayList<String>(), new ArrayList<String>());
+        b.addSpace(s);
+        buildings.add(b);
+
+
+
+
+
+        try {
+            out = new ObjectOutputStream(new FileOutputStream(new File(new File(getFilesDir(),"")+File.separator+BUILDING_FILE)));
+            out.writeObject(buildings);
+            out.close();
+            out = new ObjectOutputStream(new FileOutputStream(new File(new File(getFilesDir(),"")+File.separator+RESERVATION_FILE)));
+            out.writeObject(reservations);
+            out.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
     public void addReservation(MyReservation reservation){
