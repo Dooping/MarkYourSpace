@@ -160,7 +160,7 @@ public class findSpaceFragment extends Fragment {
         inflater.inflate(R.menu.app_menu, menu);
         if(menu!=null) {
             menu.findItem(R.id.action_settings).setVisible(false);
-            menu.findItem(R.id.action_add_icon).setVisible(false);
+           // menu.findItem(R.id.action_add_icon).setVisible(false);
         }
     }
     public void itemClicked(String buildingName){
