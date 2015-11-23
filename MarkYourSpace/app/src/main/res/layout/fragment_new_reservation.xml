@@ -1,91 +1,128 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="nf.co.markyourspace.markyourspace.newReservation">
+    tools:context="nf.co.markyourspace.markyourspace.newReservation"
+    android:orientation="vertical">
 
     <!-- TODO: Update blank fragment layout -->
 
 
-    <TextView
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="@string/textStartDate"
-        android:layout_marginTop="20dp"
-        android:id="@+id/textStartDateNewBuilding"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_margin="5dp">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="@string/textStartHour"
-        android:id="@+id/textStartHourNewBuilding"
-        android:layout_marginTop="30dp"
-        android:layout_below="@+id/textStartDateNewBuilding"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/textStartDate"
+            android:id="@+id/textStartDateNewBuilding"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="@string/textEndDate"
-        android:id="@+id/textEndDateNewBuilding"
-        android:layout_marginTop="30dp"
-        android:layout_below="@+id/textStartHourNewBuilding"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        <EditText
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/editStartDateNewReservation"
+            android:focusable="false"
+            android:layout_above="@+id/textStartHourNewBuilding"
+            android:layout_toRightOf="@+id/textStartDateNewBuilding"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginRight="10dp" />
+    </LinearLayout>
 
-    <TextView
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="@string/textEndHour"
-        android:id="@+id/textEndHourNewBuilding"
-        android:layout_marginTop="30dp"
-        android:layout_below="@+id/textEndDateNewBuilding"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_margin="5dp">
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/editStartDateNewReservation"
-        android:focusable="false"
-        android:layout_above="@+id/textStartHourNewBuilding"
-        android:layout_toRightOf="@+id/textStartDateNewBuilding"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/textStartHour"
+            android:id="@+id/textStartHourNewBuilding"
+            android:layout_below="@+id/textStartDateNewBuilding"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp" />
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/editStartHourNewReservation"
-        android:focusable="false"
-        android:layout_above="@+id/textEndDateNewBuilding"
-        android:layout_toRightOf="@+id/textStartHourNewBuilding"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        <EditText
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/editStartHourNewReservation"
+            android:focusable="false"
+            android:layout_above="@+id/textEndDateNewBuilding"
+            android:layout_toRightOf="@+id/textStartHourNewBuilding"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginRight="10dp" />
+    </LinearLayout>
 
-    <EditText
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/editEndDateNewReservation"
-        android:layout_above="@+id/textEndHourNewBuilding"
-        android:layout_toRightOf="@+id/textEndDateNewBuilding"
-        android:layout_alignRight="@+id/editStartDateNewReservation"
-        android:layout_alignEnd="@+id/editStartDateNewReservation" />
+        android:layout_margin="5dp">
 
-    <EditText
-        android:layout_width="wrap_content"
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/textEndDate"
+            android:id="@+id/textEndDateNewBuilding"
+            android:layout_below="@+id/textStartHourNewBuilding"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp" />
+
+        <EditText
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/editEndDateNewReservation"
+            android:layout_above="@+id/textEndHourNewBuilding"
+            android:layout_toRightOf="@+id/textEndDateNewBuilding"
+            android:layout_alignRight="@+id/editStartDateNewReservation"
+            android:layout_alignEnd="@+id/editStartDateNewReservation"
+            android:layout_marginRight="10dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/editEndHourNewReservation"
-        android:layout_alignBottom="@+id/textEndHourNewBuilding"
-        android:layout_toRightOf="@+id/textEndHourNewBuilding"
-        android:layout_alignRight="@+id/editEndDateNewReservation"
-        android:layout_alignEnd="@+id/editEndDateNewReservation" />
+        android:layout_margin="5dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/textEndHour"
+            android:id="@+id/textEndHourNewBuilding"
+            android:layout_below="@+id/textEndDateNewBuilding"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp" />
+
+        <EditText
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/editEndHourNewReservation"
+            android:layout_alignBottom="@+id/textEndHourNewBuilding"
+            android:layout_toRightOf="@+id/textEndHourNewBuilding"
+            android:layout_alignRight="@+id/editEndDateNewReservation"
+            android:layout_alignEnd="@+id/editEndDateNewReservation"
+            android:layout_marginRight="10dp" />
+    </LinearLayout>
 
     <Button
         android:layout_width="wrap_content"
@@ -97,7 +134,9 @@
         android:background="#552CA3"
         android:layout_marginBottom="10dp"
         android:layout_above="@+id/buttonCancelReservation"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp" />
+
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -111,4 +150,4 @@
         android:layout_centerHorizontal="true" />
 
 
-</RelativeLayout>
+</LinearLayout>
