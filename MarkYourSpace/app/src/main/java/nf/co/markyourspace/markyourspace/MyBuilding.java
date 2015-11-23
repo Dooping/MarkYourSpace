@@ -22,6 +22,7 @@ public class MyBuilding implements Serializable{
     private String user;
     private String zipCode;
     private List<MySpace> spaces;
+    private List<String> permissions;
 
     public MyBuilding(String name, String address, String city, String type, String zipCode) {
         this.guid = UUID.randomUUID().toString();
@@ -31,6 +32,7 @@ public class MyBuilding implements Serializable{
         this.type = type;
         this.zipCode = zipCode;
         this.spaces = new ArrayList<>();
+        this.permissions = new ArrayList<>();
     }
 
     public String getName() {
@@ -75,6 +77,10 @@ public class MyBuilding implements Serializable{
 
     public void setUser(String user) {
         this.user = user;
+    }
+
+    public List<String> getPermissions() {
+        return permissions;
     }
 
     @Override

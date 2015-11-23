@@ -103,7 +103,7 @@ public class MYSApp extends Application {
         }
 
         for (int i = buildings.size() - 1; i >= 0; i--)
-            if(!buildings.get(i).getUser().equals(username))
+            if(!buildings.get(i).getUser().equals(username) && !buildings.get(i).getPermissions().contains(username) && !buildings.get(i).getType().equalsIgnoreCase("public"))
                 buildings.remove(i);
         return buildings;
     }
@@ -219,6 +219,46 @@ public class MYSApp extends Application {
         MyBuilding building = getBuilding(buildingGuid);
         int index=getBuildings().indexOf(building);
         building.addSpace(space);
+        buildings.set(index,building);
+
+        try {
+            out = new ObjectOutputStream(new FileOutputStream(new File(new File(getFilesDir(),"")+File.separator+BUILDING_FILE)));
+            out.writeObject(buildings);
+            out.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void addPermission(String buildingGuid,String permission){
+        ObjectOutput out;
+        ArrayList<MyBuilding> buildings = getBuildings();
+        MyBuilding building = getBuilding(buildingGuid);
+        int index=getBuildings().indexOf(building);
+        List<String> permissions = building.getPermissions();
+        permissions.add(permission);
+        buildings.set(index,building);
+
+        try {
+            out = new ObjectOutputStream(new FileOutputStream(new File(new File(getFilesDir(),"")+File.separator+BUILDING_FILE)));
+            out.writeObject(buildings);
+            out.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void removePermission(String buildingGuid,String permission){
+        ObjectOutput out;
+        ArrayList<MyBuilding> buildings = getBuildings();
+        MyBuilding building = getBuilding(buildingGuid);
+        int index=getBuildings().indexOf(building);
+        List<String> permissions = building.getPermissions();
+        permissions.remove(permission);
         buildings.set(index,building);
 
         try {
