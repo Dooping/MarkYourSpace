@@ -51,7 +51,7 @@ public class AppMenu extends AppCompatActivity
         TextView username = (TextView) navigationView.findViewById(R.id.usernameText);
         TextView userEmail= (TextView) navigationView.findViewById(R.id.userEmailText);
         username.setText(((MYSApp) getApplication()).getUsername());
-        userEmail.setText(((MYSApp) getApplication()).getUsername() + "@gmail");
+        userEmail.setText(((MYSApp) getApplication()).getUsername());
         navigationView.setNavigationItemSelectedListener(this);
 
         android.support.v4.app.Fragment fragment = new reservationsFragment();
