@@ -104,6 +104,15 @@ public class reservationsFragment extends Fragment implements AbsListView.OnItem
         mListView.setOnItemClickListener(this);
 
         this.setEmptyText("No Reservations");
+        View addButton = view.findViewById(R.id.fab);
+        addButton.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        searchSpace();
+                    }
+                }
+        );
 
         inputSearch.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
@@ -192,4 +201,7 @@ public class reservationsFragment extends Fragment implements AbsListView.OnItem
         public void onFragmentInteraction(String id);
     }
 
+    public void searchSpace(){
+        ((AppMenu)getActivity()).searchSpace();
+    }
 }

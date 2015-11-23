@@ -2,6 +2,7 @@ package nf.co.markyourspace.markyourspace;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.drawable.RippleDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.Settings;
@@ -128,6 +129,17 @@ public class myBuildingsFragment extends Fragment {
                 return true;
             }
         });
+
+        final View createNewBuilding = view.findViewById(R.id.createNewBuilding);
+
+        createNewBuilding.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+createNewBuilding();
+                    }
+                }
+        );
         return view;
     }
 
@@ -214,4 +226,7 @@ public class myBuildingsFragment extends Fragment {
         return -1;
     }
 
+    private void createNewBuilding(){
+        ((AppMenu)getActivity()).newBuildingFragment();
+    }
 }

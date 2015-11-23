@@ -9,15 +9,18 @@
     android:theme="@style/ThemeOverlay.AppCompat.Dark" android:orientation="vertical"
     android:gravity="bottom">
 
-    <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content"
+    <ImageView
         android:paddingTop="@dimen/nav_header_vertical_spacing"
-        android:src="@android:drawable/ic_popup_sync" android:id="@+id/imageView" />
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:src="@drawable/user_foto_small" android:id="@+id/userFoto" />
 
     <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
-        android:paddingTop="@dimen/nav_header_vertical_spacing" android:text="Guilherme o lerias"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+        android:paddingTop="@dimen/nav_header_vertical_spacing" android:text="User"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:id="@+id/usernameText"/>
 
     <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-        android:text="subject_email@oguilhasntrabalha.com" android:id="@+id/textView" />
+        android:text="user@mail" android:id="@+id/userEmailText" />
 
 </LinearLayout>

@@ -6,11 +6,6 @@
         <item android:id="@+id/action_settings" android:title="@string/action_settings"
             android:orderInCategory="100" app:showAsAction="never" />
 
-        <item android:id="@+id/action_add_icon"
-            android:icon="@drawable/add_icon"
-            android:title="Add"
-            app:showAsAction="ifRoom|withText"
-            />
     <item android:id="@+id/action_search_icon"
         android:icon="@drawable/search_icon"
         android:title="Search"
