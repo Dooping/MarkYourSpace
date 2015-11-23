@@ -104,7 +104,7 @@ public class searchResultsFragment extends Fragment {
         searchResultsList.setAdapter(mAdapter);
         searchResultsList.setEmptyView(view.findViewById(android.R.id.empty));
         this.setEmptyText("No Spaces");
-      /*  searchResultsList.setOnItemClickListener(
+        searchResultsList.setOnItemClickListener(
                 new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -112,7 +112,7 @@ public class searchResultsFragment extends Fragment {
                     }
                 }
 
-        );*/
+        );
         return view;
     }
 
@@ -165,14 +165,14 @@ public class searchResultsFragment extends Fragment {
 
 
     public void itemClicked(String spaceName){
-       // spaceDetailView(spaceName);
+       spaceDetailView(spaceName);
     }
-/*
+
     public void spaceDetailView(String spaceName){
         MySpace mb= searchResults.get(findBuildingPosition(spaceName));
-        ((AppMenu) getActivity()).spaceDetailViewFragment();
+        ((AppMenu) getActivity()).spaceDetailViewFragment(mb.getBuildingGuid(),mb.getName(),mb.getGuid());
     }
-*/
+
     private int findBuildingPosition(String spaceName){
         for(int i=0;i<searchResults.size();i++){
             if(searchResults.get(i).getName().equals(spaceName)) {

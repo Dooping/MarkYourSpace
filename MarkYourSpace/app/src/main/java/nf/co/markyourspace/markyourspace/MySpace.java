@@ -12,19 +12,25 @@ public class MySpace implements Serializable{
     private static final long serialVersionUID = 0L;
 
     private String guid;
+    private String buildingGuid;
     private String name;
     private int floor;
     private int seats;
     private List<String> activities;
     private List<String> features;
 
-    public MySpace(String name,int floor, int seats, List<String> activities, List<String> features) {
+    public MySpace(String buildingGuid,String name,int floor, int seats, List<String> activities, List<String> features) {
         this.guid = UUID.randomUUID().toString();
+        this.buildingGuid=buildingGuid;
         this.name = name;
         this.floor = floor;
         this.seats = seats;
         this.activities = activities;
         this.features = features;
+    }
+
+    public String getBuildingGuid() {
+        return buildingGuid;
     }
 
     public String getName() {
