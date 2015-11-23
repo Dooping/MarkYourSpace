@@ -10,8 +10,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import static nf.co.markyourspace.markyourspace.R.id.editEndDateSearchSpace;
 import static nf.co.markyourspace.markyourspace.R.id.editEndHourSearchSpace;
@@ -38,6 +41,9 @@ public class searchSpaceFragment extends Fragment {
     private String mParam2;
 
     private OnFragmentInteractionListener mListener;
+
+    private LinearLayout activitesLayout;
+    private LinearLayout featuresLayout;
 
     public searchSpaceFragment() {
         // Required empty public constructor
@@ -122,6 +128,11 @@ public class searchSpaceFragment extends Fragment {
         final Button buttonSearch= (Button)view.findViewById(R.id.button2);
         final Button buttonCancel= (Button)view.findViewById(R.id.button1);
 
+        activitesLayout = (LinearLayout) view.findViewById(R.id.activities);
+        featuresLayout = (LinearLayout) view.findViewById(R.id.features);
+        addTextEdit(activitesLayout);
+        addTextEdit(featuresLayout);
+
         buttonSearch.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
@@ -140,6 +151,20 @@ public class searchSpaceFragment extends Fragment {
                 }
         );
         return view;
+    }
+
+    public void addTextEdit(final LinearLayout list) {
+        final EditText edit = new EditText(getActivity());
+        edit.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                String s = edit.getText().toString();
+                if (hasFocus && s.equals(""))
+                    addTextEdit(list);
+            }
+        });
+        int a = list.getChildCount();
+        list.addView(edit);
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -182,6 +207,16 @@ public class searchSpaceFragment extends Fragment {
     }
 
     public void buttonSearchClicked(){
+        List<String> activities = new ArrayList<>();
+        List<String> features = new ArrayList<>();
+        for(int i = 0; i < activitesLayout.getChildCount(); i++){
+            EditText e = (EditText)activitesLayout.getChildAt(i);
+            activities.add(e.getText().toString());
+        }
+        for(int i = 0; i < featuresLayout.getChildCount(); i++){
+            EditText e = (EditText)activitesLayout.getChildAt(i);
+            features.add(e.getText().toString());
+        }
         //((MYSApp) (getActivity().getApplication())).searchSpaces(startDate,startHour,endDate,endHour,numberOfSeats);
         //((AppMenu) getActivity()).XXX);
 

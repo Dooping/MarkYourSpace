@@ -13,6 +13,8 @@ import android.view.ViewGroup;
 import android.support.v4.app.Fragment;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.SearchView;
 
@@ -97,6 +99,7 @@ public class findSpaceFragment extends Fragment {
                 }
 
         );
+
         inputSearch.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
