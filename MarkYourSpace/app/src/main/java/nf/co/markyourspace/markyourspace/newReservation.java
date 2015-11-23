@@ -238,7 +238,7 @@ public class newReservation extends Fragment {
                 MyReservation reservation= new MyReservation(getArguments().getString("spaceName"),getArguments().getString("spaceGuid"),getArguments().getString("buildingName"),ssDate,eeDate,(sTime.getHours()*60+sTime.getMinutes()),(eTime.getHours()*60+eTime.getMinutes()));
                 ((MYSApp) getActivity().getApplication()).addReservation(reservation);
                 getFragmentManager().popBackStack();
-                //((AppMenu)getActivity()).reservationsFragment();
+                ((AppMenu)getActivity()).reservationsFragment();
                 return;
             }
 

@@ -140,10 +140,10 @@ public class reservationsFragment extends Fragment implements AbsListView.OnItem
 
     @Override
     public void onResume() {
-        super.onResume();
         inputSearch.setQuery("", false);
         inputSearch.setIconified(true);
         reservations = ((MYSApp)(getActivity().getApplication())).getReservations();
+        super.onResume();
     }
 
     @Override
