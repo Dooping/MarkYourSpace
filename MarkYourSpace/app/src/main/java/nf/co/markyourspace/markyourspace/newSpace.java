@@ -171,10 +171,10 @@ public class newSpace extends Fragment {
             features.add(e.getText().toString());
         }
 
-            MySpace newS = new MySpace(editSpaceName.getText().toString(),Integer.parseInt(editSpaceFloor.getText().toString()),Integer.parseInt(editSpaceNumberOfSeats.getText().toString()), activities, features);
+        MySpace newS = new MySpace(editSpaceName.getText().toString(),Integer.parseInt(editSpaceFloor.getText().toString()),Integer.parseInt(editSpaceNumberOfSeats.getText().toString()), activities, features);
         ((MYSApp) (getActivity().getApplication())).addSpace(getArguments().getString("buildingGuid"),newS);
-            getActivity().getSupportFragmentManager().popBackStack(newSpace.class.getName(), FragmentManager.POP_BACK_STACK_INCLUSIVE);
-           ((AppMenu)getActivity()).buildingDetailViewFragment(newS.getName(), newS.getGuid());
+        getFragmentManager().popBackStack();
+        //((AppMenu)getActivity()).buildingDetailViewFragment(newS.getName(), newS.getGuid());
 
     }
 
