@@ -1,6 +1,8 @@
 package nf.co.markyourspace.markyourspace;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
@@ -15,7 +17,9 @@ import android.widget.EditText;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.logging.SimpleFormatter;
 
 import static nf.co.markyourspace.markyourspace.R.id.editEndDateNewReservation;
@@ -212,11 +216,14 @@ public class newReservation extends Fragment {
     }
 
     private void buttonAddClicked(){
-        Date sDate = null,eDate=null,sTime=null,eTime=null;
-        SimpleDateFormat formatterDate,formatterTime ;
+        Date sDate = null,eDate=null,sTime=null,eTime=null, ssDate = null, eeDate=null;
+        SimpleDateFormat formatterDate,formatterTime, formatterDateTime ;
         formatterDate = new SimpleDateFormat("dd/MM/yyyy");
         formatterTime=new SimpleDateFormat("H:m");
+        formatterDateTime = new SimpleDateFormat("dd/MM/yyyy H:m");
         try {
+            ssDate = formatterDateTime.parse(startDate.getText().toString()+" "+startHour.getText().toString());
+            eeDate = formatterDateTime.parse(endDate.getText().toString()+" "+endHour.getText().toString());
             sDate= formatterDate.parse(startDate.getText().toString());
             eDate=formatterDate.parse(endDate.getText().toString());
             sTime=formatterTime.parse(startHour.getText().toString());
@@ -225,10 +232,26 @@ public class newReservation extends Fragment {
             e.printStackTrace();
         }
 
-        MyReservation reservation= new MyReservation(getArguments().getString("spaceName"),getArguments().getString("spaceGuid"),getArguments().getString("buildingName"),sDate,eDate,(sTime.getHours()*60+sTime.getMinutes()),(eTime.getHours()*60+eTime.getMinutes()));
-        ((MYSApp) getActivity().getApplication()).addReservation(reservation);
-        getActivity().getSupportFragmentManager().popBackStack(newReservation.class.getName(), FragmentManager.POP_BACK_STACK_INCLUSIVE);
-        ((AppMenu)getActivity()).reservationsFragment();
+        List<MySpace> spaces = ((MYSApp) getActivity().getApplication()).searchSpaces(ssDate,eeDate,0,new ArrayList<String>(), new ArrayList<String>());
+        for(MySpace s:spaces)
+            if(s.getGuid().equals(getArguments().getString("spaceGuid"))){
+                MyReservation reservation= new MyReservation(getArguments().getString("spaceName"),getArguments().getString("spaceGuid"),getArguments().getString("buildingName"),ssDate,eeDate,(sTime.getHours()*60+sTime.getMinutes()),(eTime.getHours()*60+eTime.getMinutes()));
+                ((MYSApp) getActivity().getApplication()).addReservation(reservation);
+                getFragmentManager().popBackStack();
+                ((AppMenu)getActivity()).reservationsFragment();
+                return;
+            }
+
+        new AlertDialog.Builder(getActivity())
+                .setTitle("Reservation")
+                .setMessage("Cannot make this reservation")
+                .setNeutralButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+
+                            }
+                        })
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .show();
     }
 
 }
