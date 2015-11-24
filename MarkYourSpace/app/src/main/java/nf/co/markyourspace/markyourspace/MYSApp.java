@@ -37,7 +37,7 @@ public class MYSApp extends Application {
     public ArrayList<MyReservation> getReservations(){
         ObjectInputStream input;
         ArrayList<MyReservation> reservations = new ArrayList<>();
-
+        makeDB();
         try {
             input = new ObjectInputStream(new FileInputStream(new File(new File(getFilesDir(),"")+File.separator+RESERVATION_FILE)));
             reservations = (ArrayList<MyReservation>) input.readObject();
@@ -64,7 +64,7 @@ public class MYSApp extends Application {
         b.setUser("John Doe");
         s = new MySpace(b.getGuid(), "Meeting Room 1", 7, 10, new ArrayList<String>(), new ArrayList<String>());
         b.addSpace(s);
-        r = new MyReservation(s.getName(), s.getGuid(), b.getName(),new Date(0), new Date(),300,400);
+        r = new MyReservation(s.getName(), s.getGuid(), b.getName(),new Date(0), new Date(new Date().getTime()+1728000000),300,400);
         r.setUser("Professor Oxford");
         reservations.add(r);
         s = new MySpace(b.getGuid(), "Meeting Room 2", 7, 10, new ArrayList<String>(), new ArrayList<String>());
