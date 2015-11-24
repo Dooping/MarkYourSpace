@@ -242,21 +242,15 @@ public class searchSpaceFragment extends Fragment {
             eDate=formatterDate.parse(endDate.getText().toString());
             sTime=formatterTime.parse(startHour.getText().toString());
             eTime=formatterTime.parse(endHour.getText().toString());
+            sDate.setHours(sTime.getHours());
+            sDate.setMinutes(sTime.getMinutes());
+            eDate.setHours(sTime.getHours());
+            eDate.setMinutes(sTime.getMinutes());
         } catch (ParseException e) {
             e.printStackTrace();
         }
-/*
-        MyReservation reservation= new MyReservation(getArguments().getString("spaceName"),getArguments().getString("spaceGuid"),getArguments().getString("buildingName"),sDate,eDate,(sTime.getHours()*60+sTime.getMinutes()),(eTime.getHours()*60+eTime.getMinutes()));
-        ((MYSApp) getActivity().getApplication()).addReservation(reservation);
-        getActivity().getSupportFragmentManager().popBackStack(newReservation.class.getName(), FragmentManager.POP_BACK_STACK_INCLUSIVE);
-        ((AppMenu)getActivity()).reservationsFragment();
-
-        */
-
 
         searchSpacesResultsFragment(sDate,eDate,Integer.parseInt(nSeats.getText().toString()),activities,features);
-
-
     }
 
     public void buttonCancelClicked(){

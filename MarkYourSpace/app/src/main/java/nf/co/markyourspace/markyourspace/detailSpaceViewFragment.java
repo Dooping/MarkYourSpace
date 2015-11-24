@@ -12,6 +12,8 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import java.util.Date;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -30,6 +32,10 @@ public class detailSpaceViewFragment extends Fragment {
     //fields info
     private static TextView textFloor;
     private static TextView textNumberOfSeats;
+
+    //dates se a reserva vier de um search
+    private static Date startDate;
+    private static Date endDate;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -61,6 +67,10 @@ public class detailSpaceViewFragment extends Fragment {
 
     public detailSpaceViewFragment() {
         // Required empty public constructor
+    }
+    public detailSpaceViewFragment(Date sDate,Date eDate) {
+        startDate=sDate;
+        endDate=eDate;
     }
 
     @Override
@@ -155,6 +165,13 @@ public class detailSpaceViewFragment extends Fragment {
     }
 
     public void buttonNewReservationClicked(){
-        ((AppMenu) getActivity()).newReservationFragment(space.getGuid(), ((MYSApp)getActivity().getApplication()).getBuilding(getArguments().getString("buildingGuid")).getName(), space.getName());
+        if(startDate!=null||endDate!=null){
+            ((AppMenu) getActivity()).newReservationFragment(space.getGuid(), ((MYSApp)getActivity().getApplication()).getBuilding(getArguments().getString("buildingGuid")).getName(), space.getName(),startDate,endDate);
+            startDate=null;
+            endDate=null;
+        }else {
+            ((AppMenu) getActivity()).newReservationFragment(space.getGuid(), ((MYSApp) getActivity().getApplication()).getBuilding(getArguments().getString("buildingGuid")).getName(), space.getName());
+        }
     }
+
 }
