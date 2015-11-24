@@ -171,6 +171,7 @@ public class AppMenu extends AppCompatActivity
         String backStateName = fragment.getClass().getName();
 
         FragmentManager manager = getSupportFragmentManager();
+        manager.popBackStack(newReservation.class.getName(), FragmentManager.POP_BACK_STACK_INCLUSIVE);
         boolean fragmentPopped = manager.popBackStackImmediate (backStateName, 0);
 
         if (!fragmentPopped){ //fragment not in back stack, create it.
@@ -247,13 +248,32 @@ public class AppMenu extends AppCompatActivity
         fragment.setArguments(args);
         replaceFragment(fragment);
     }
+    public void spaceDetailViewFragment(String buildingGuid,String name, String spaceGuid,Date sDate,Date eDate) {
+        setActionBarTitle(name);
+        android.support.v4.app.Fragment fragment = new detailSpaceViewFragment(sDate,eDate);
+        Bundle args = new Bundle();
+        args.putString("spaceGuid", spaceGuid);
+        args.putString("buildingGuid", buildingGuid);
+        fragment.setArguments(args);
+        replaceFragment(fragment);
+    }
 
     public void newReservationFragment(String spaceGuid, String buildingName,String spaceName){
         android.support.v4.app.Fragment fragment = new newReservation();
         Bundle args=new Bundle();
         args.putString("spaceGuid",spaceGuid);
         args.putString("buildingName", buildingName);
-        args.putString("spaceName",spaceName);
+        args.putString("spaceName", spaceName);
+        fragment.setArguments(args);
+        replaceFragment(fragment);
+    }
+
+    public void newReservationFragment(String spaceGuid, String buildingName,String spaceName,Date sDate,Date eDate){
+        android.support.v4.app.Fragment fragment = new newReservation(sDate,eDate);
+        Bundle args=new Bundle();
+        args.putString("spaceGuid",spaceGuid);
+        args.putString("buildingName", buildingName);
+        args.putString("spaceName", spaceName);
         fragment.setArguments(args);
         replaceFragment(fragment);
     }

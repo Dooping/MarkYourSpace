@@ -136,7 +136,7 @@ public class searchResultsFragment extends Fragment implements AbsListView.OnIte
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         MySpace mb = (MySpace)parent.getItemAtPosition(position);
-        ((AppMenu) getActivity()).spaceDetailViewFragment(mb.getBuildingGuid(),mb.getName(),mb.getGuid());
+        ((AppMenu) getActivity()).spaceDetailViewFragment(mb.getBuildingGuid(),mb.getName(),mb.getGuid(),sDate,eDate);
     }
 
     /**
