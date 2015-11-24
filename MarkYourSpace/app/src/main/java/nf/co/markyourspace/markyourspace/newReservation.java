@@ -42,6 +42,11 @@ public class newReservation extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
+    //dates se a reserva vier de um search
+    Date sDate;
+    Date eDate;
+
+
     EditText startDate;
     EditText endDate;
     EditText startHour;
@@ -72,7 +77,10 @@ public class newReservation extends Fragment {
     }
 
     public newReservation() {
-        // Required empty public constructor
+    }
+    public newReservation(Date sDate,Date eDate) {
+        this.sDate=sDate;
+        this.eDate=eDate;
     }
 
     @Override
@@ -82,8 +90,6 @@ public class newReservation extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-
-
     }
 
     @Override
@@ -99,6 +105,14 @@ public class newReservation extends Fragment {
         endDate.setFocusable(false);
         startHour.setFocusable(false);
         endHour.setFocusable(false);
+        if(sDate!=null){
+            startDate.setText(Integer.toString(sDate.getDay())+"/"+Integer.toString(sDate.getMonth())+"/"+Integer.toString(sDate.getYear() + 1900));
+        startHour.setText(Integer.toString(sDate.getHours())+":"+Integer.toString(sDate.getMinutes()));
+        }
+        if(eDate!=null){
+            endDate.setText(Integer.toString(eDate.getDay())+"/"+Integer.toString(eDate.getMonth())+"/"+Integer.toString(eDate.getYear()+1900));
+            endHour.setText(Integer.toString(eDate.getHours())+":"+Integer.toString(eDate.getMinutes()));
+        }
 
         startDate.setOnClickListener(
                 new View.OnClickListener() {
