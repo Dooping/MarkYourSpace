@@ -19,6 +19,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Date;
 import java.util.Iterator;
@@ -34,6 +35,7 @@ public class AppMenu extends AppCompatActivity
 {
 
     static Context applicationContext;
+    private boolean logout = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -89,9 +91,15 @@ public class AppMenu extends AppCompatActivity
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            if (getSupportFragmentManager().getBackStackEntryCount() == 1) {
+            if(getSupportFragmentManager().getBackStackEntryCount() == 1 && !logout){
+                String reservation = "Press again to Logout";
+                Toast.makeText(this, reservation, Toast.LENGTH_LONG).show();
+                logout = true;
+            }
+            else if (getSupportFragmentManager().getBackStackEntryCount() == 1) {
                 finish();
-            } else {
+            }
+            else{
                 super.onBackPressed();
             }
         }
@@ -138,22 +146,22 @@ public class AppMenu extends AppCompatActivity
 
         if (id == R.id.nav_home) {
             android.support.v4.app.Fragment fragment = new reservationsFragment();
-            replaceFragment(fragment);
+            replaceFragmentFromMenu(fragment);
         } else if (id == R.id.nav_my_buildings) {
             android.support.v4.app.Fragment fragment = new myBuildingsFragment();
-            replaceFragment(fragment);
+            replaceFragmentFromMenu(fragment);
         } else if (id == R.id.nav_find) {
             android.support.v4.app.Fragment fragment = new findSpaceFragment();
-            replaceFragment(fragment);
+            replaceFragmentFromMenu(fragment);
             
         } else if (id == R.id.nav_history) {
 
             //android.support.v4.app.Fragment fragment = new historyFragment();
             android.support.v4.app.Fragment fragment = new newReservation();
-            replaceFragment(fragment);
+            replaceFragmentFromMenu(fragment);
         } else if (id == R.id.nav_settings) {
             android.support.v4.app.Fragment fragment = new settingsFragment();
-            replaceFragment(fragment);
+            replaceFragmentFromMenu(fragment);
 
         } else if (id == R.id.nav_logout) {
             /*Intent intent = new Intent(AppMenu.this, LoginActivity.class);
@@ -165,6 +173,19 @@ public class AppMenu extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    private void replaceFragmentFromMenu (android.support.v4.app.Fragment fragment){
+        String backStateName = fragment.getClass().getName();
+
+        FragmentManager manager = getSupportFragmentManager();
+        manager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+
+        FragmentTransaction ft = manager.beginTransaction();
+        ft.replace(R.id.fragment_container, fragment);
+        ft.addToBackStack(backStateName);
+        ft.commit();
+        logout=false;
     }
 
     private void replaceFragment (android.support.v4.app.Fragment fragment){
@@ -180,6 +201,7 @@ public class AppMenu extends AppCompatActivity
             ft.addToBackStack(backStateName);
             ft.commit();
         }
+        logout=false;
     }
 
     private void updateTitleAndDrawer (Fragment fragment){
