@@ -15,7 +15,10 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TimePicker;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 
 public class timerPickerFragment extends DialogFragment
@@ -29,6 +32,16 @@ public class timerPickerFragment extends DialogFragment
     private String mParam1;
     private String mParam2;
 
+    public static timerPickerFragment newInstance(String time) {
+        timerPickerFragment f = new timerPickerFragment();
+
+        // Supply num input as an argument.
+        Bundle args = new Bundle();
+        args.putString("editTextTime", time);
+        f.setArguments(args);
+
+        return f;
+    }
 
 
     @Override
@@ -45,8 +58,17 @@ public class timerPickerFragment extends DialogFragment
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         // Use the current time as the default values for the picker
         final Calendar c = Calendar.getInstance();
-        int hour = c.get(Calendar.HOUR_OF_DAY);
-        int minute = c.get(Calendar.MINUTE);
+        int hour,minute;
+        String time = getArguments().getString("editTextTime");
+        SimpleDateFormat formatterTime=new SimpleDateFormat("H:m");
+        try {
+            Date date= formatterTime.parse(time);
+            hour = date.getHours();
+            minute = date.getMinutes();
+        } catch (Exception e) {
+            hour = c.get(Calendar.HOUR_OF_DAY);
+            minute = c.get(Calendar.MINUTE);
+        }
 
         // Create a new instance of TimePickerDialog and return it
         return new TimePickerDialog(getActivity(), this, hour, minute,
