@@ -102,7 +102,7 @@ public class myBuildingsFragment extends Fragment {
         inputSearch = (SearchView) view.findViewById(R.id.searchView);
 
         context=getActivity();
-        mAdapter = new BuildingEntryAdapter(context,buildings,inputSearch);
+        mAdapter = new BuildingEntryAdapter(context,buildings,inputSearch, true);
 
         buildingsList = (ListView) view.findViewById(R.id.buildingsList);
         buildingsList.setAdapter(mAdapter);

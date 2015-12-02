@@ -93,7 +93,7 @@ public class detailBuildingViewFragment extends Fragment implements AbsListView.
 
         ((AppMenu)getActivity()).setActionBarTitle(building.getName());
 
-        mAdapter = new SpacesEntryAdapter(getActivity(), null, building);
+        mAdapter = new SpacesEntryAdapter(getActivity(), null, building, true);
         mListView = (AbsListView) view.findViewById(R.id.listView);
         mListView.setEmptyView(view.findViewById(R.id.empty));
         mListView.setAdapter(mAdapter);

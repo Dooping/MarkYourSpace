@@ -19,11 +19,13 @@ import java.util.List;
 public class SpacesEntryAdapter extends ArrayAdapter{
     SearchView searchView;
     MyBuilding building;
+    boolean removeVisible;
 
-    public SpacesEntryAdapter(Context context, SearchView searchView, MyBuilding building) {
+    public SpacesEntryAdapter(Context context, SearchView searchView, MyBuilding building, boolean removeVisible) {
         super(context, R.layout.room_entry, building.getSpaces());
         this.searchView = searchView;
         this.building = building;
+        this.removeVisible = removeVisible;
     }
 
     @Override
@@ -37,7 +39,7 @@ public class SpacesEntryAdapter extends ArrayAdapter{
 
         ImageButton remove = (ImageButton) customView.findViewById(R.id.deleteButton);
         remove.setFocusable(false);
-        if(!((MYSApp)(getContext().getApplicationContext())).getUsername().equals(building.getUser()))
+        if(!removeVisible || !((MYSApp)(getContext().getApplicationContext())).getUsername().equals(building.getUser()))
             remove.setVisibility(View.INVISIBLE);
         else
             remove.setOnClickListener(new View.OnClickListener() {
@@ -46,8 +48,8 @@ public class SpacesEntryAdapter extends ArrayAdapter{
                 public void onClick(View v) {
                     new AlertDialog.Builder(getContext())
                             .setIcon(android.R.drawable.ic_dialog_alert)
-                            .setTitle(R.string.remove_reservation)
-                            .setMessage(R.string.really_remove_reservation)
+                            .setTitle(R.string.remove_space)
+                            .setMessage(R.string.really_remove_space)
                             .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
 
                                 @Override

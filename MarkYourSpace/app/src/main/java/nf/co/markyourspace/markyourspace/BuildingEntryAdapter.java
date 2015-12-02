@@ -19,10 +19,12 @@ import java.util.List;
 public class BuildingEntryAdapter  extends ArrayAdapter {
 
     SearchView searchView;
+    boolean removeVisible;
 
-    public BuildingEntryAdapter(Context context, List<MyBuilding> buildings, SearchView searchView) {
+    public BuildingEntryAdapter(Context context, List<MyBuilding> buildings, SearchView searchView, boolean removeVisible) {
         super(context,R.layout.building_entry ,buildings);
         this.searchView = searchView;
+        this.removeVisible = removeVisible;
     }
 
     @Override
@@ -37,7 +39,7 @@ public class BuildingEntryAdapter  extends ArrayAdapter {
         remove.setFocusable(false);
         setNotifyOnChange(true);
         MyBuilding singleBuildingItem = (MyBuilding) getItem(position);
-        if(!((MYSApp)(getContext().getApplicationContext())).getUsername().equals(singleBuildingItem.getUser()))
+        if(!removeVisible || !((MYSApp)(getContext().getApplicationContext())).getUsername().equals(singleBuildingItem.getUser()))
             remove.setVisibility(View.INVISIBLE);
         else
             remove.setOnClickListener(new View.OnClickListener() {
@@ -52,7 +54,7 @@ public class BuildingEntryAdapter  extends ArrayAdapter {
 
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
-                                    ((MYSApp)(getContext().getApplicationContext())).deleteBuilding((MyBuilding) getItem(position));
+                                    ((MYSApp) (getContext().getApplicationContext())).deleteBuilding((MyBuilding) getItem(position));
                                     remove(getItem(position));
                                     getFilter().filter(searchView.getQuery());
                                 }

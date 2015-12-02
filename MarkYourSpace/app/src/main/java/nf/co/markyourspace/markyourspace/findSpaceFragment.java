@@ -86,7 +86,7 @@ public class findSpaceFragment extends Fragment {
         inputSearch = (SearchView) view.findViewById(R.id.searchView);
 
         context=getActivity();
-        mAdapter = new BuildingEntryAdapter(context,buildings,inputSearch);
+        mAdapter = new BuildingEntryAdapter(context,buildings,inputSearch, false);
 
         ListView buildingsList = (ListView) view.findViewById(R.id.buildingsList);
         buildingsList.setAdapter(mAdapter);
@@ -97,7 +97,6 @@ public class findSpaceFragment extends Fragment {
                         itemClicked(((MyBuilding) parent.getItemAtPosition(position)).getName());
                     }
                 }
-
         );
 
         inputSearch.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
