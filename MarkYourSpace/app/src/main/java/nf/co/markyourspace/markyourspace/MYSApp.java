@@ -301,6 +301,24 @@ public class MYSApp extends Application {
         }
     }
 
+    public void removeSpace(MySpace space){
+        ObjectOutput out;
+        ArrayList<MyBuilding> buildings = getBuildings();
+        for(MyBuilding b:buildings)
+            if(b.getGuid().equals(space.getBuildingGuid()))
+                b.removeSpace(space);
+
+        try {
+            out = new ObjectOutputStream(new FileOutputStream(new File(new File(getFilesDir(),"")+File.separator+BUILDING_FILE)));
+            out.writeObject(buildings);
+            out.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void addPermission(String buildingGuid,String permission){
         ObjectOutput out;
         ArrayList<MyBuilding> buildings = getBuildings();

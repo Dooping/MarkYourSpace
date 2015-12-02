@@ -52,7 +52,7 @@ public class SpacesEntryAdapter extends ArrayAdapter{
 
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
-                                    building.removeSpace((MySpace) getItem(position));
+                                    ((MYSApp)(getContext().getApplicationContext())).removeSpace((MySpace) getItem(position));
                                     remove(getItem(position));
                                     //getFilter().filter(searchView.getQuery());
                                 }

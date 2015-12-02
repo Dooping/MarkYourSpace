@@ -80,8 +80,8 @@ public class MySpace implements Serializable{
 
     @Override
     public boolean equals(Object o){
-        if (o instanceof MyBuilding)
-            if (((MyBuilding) o).getGuid().equals(this.guid))
+        if (o instanceof MySpace)
+            if (((MySpace) o).getGuid().equals(this.guid))
                 return true;
         return false;
     }
