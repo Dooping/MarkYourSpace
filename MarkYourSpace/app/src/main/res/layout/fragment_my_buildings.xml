@@ -1,4 +1,5 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="nf.co.markyourspace.markyourspace.dummy.MyBuildings">
@@ -43,7 +44,8 @@
         android:id="@+id/createNewBuilding"
         android:layout_margin="@dimen/fab_margin"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true" />
+        android:layout_alignParentRight="true"
+        android:tint="#ffffff" />
 
 
 </RelativeLayout>

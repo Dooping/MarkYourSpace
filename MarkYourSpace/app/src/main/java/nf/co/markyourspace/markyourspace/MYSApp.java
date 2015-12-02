@@ -37,7 +37,7 @@ public class MYSApp extends Application {
     public ArrayList<MyReservation> getReservations(){
         ObjectInputStream input;
         ArrayList<MyReservation> reservations = new ArrayList<>();
-        makeDB();
+
         try {
             input = new ObjectInputStream(new FileInputStream(new File(new File(getFilesDir(),"")+File.separator+RESERVATION_FILE)));
             reservations = (ArrayList<MyReservation>) input.readObject();

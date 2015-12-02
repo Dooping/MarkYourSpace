@@ -89,7 +89,6 @@ public class detailSpaceViewFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_detail_space_view, container, false);
 
-        String buildingGuid = getArguments().getString("buildingGuid");
         space = ((MYSApp) (getActivity().getApplication())).getBuilding(getArguments().getString("buildingGuid")).getSpace(getArguments().getString("spaceGuid"));
         textFloor=(TextView) view.findViewById(R.id.textFloor);
         textFloor.setText(Integer.toString(space.getFloor()));

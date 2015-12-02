@@ -95,7 +95,9 @@
             android:textColor="#FFFFFF"
             android:background="#552CA3"
             android:layout_above="@+id/buttonCancelCreateSpace"
-            android:layout_centerHorizontal="true" />
+            android:layout_centerHorizontal="true"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp" />
 
     </LinearLayout>
 
