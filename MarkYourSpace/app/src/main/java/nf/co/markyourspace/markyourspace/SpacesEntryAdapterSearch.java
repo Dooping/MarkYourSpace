@@ -36,6 +36,7 @@ public class SpacesEntryAdapterSearch extends ArrayAdapter {
 
         ImageButton remove = (ImageButton) customView.findViewById(R.id.deleteButton);
         remove.setFocusable(false);
+        remove.setVisibility(View.INVISIBLE);
 
         MySpace singleReservationItem = (MySpace) getItem(position);
         TextView reservationLabel = (TextView) customView.findViewById(R.id.reservationProperties);

@@ -36,29 +36,32 @@ public class BuildingEntryAdapter  extends ArrayAdapter {
         ImageButton remove = (ImageButton) customView.findViewById(R.id.deleteButton);
         remove.setFocusable(false);
         setNotifyOnChange(true);
-        remove.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                new AlertDialog.Builder(getContext())
-                        .setIcon(android.R.drawable.ic_dialog_alert)
-                        .setTitle(R.string.remove_building)
-                        .setMessage(R.string.really_remove_building)
-                        .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
-
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                ((MYSApp)(getContext().getApplicationContext())).deleteBuilding((MyBuilding) getItem(position));
-                                remove(getItem(position));
-                                getFilter().filter(searchView.getQuery());
-                            }
-
-                        })
-                        .setNegativeButton(R.string.no, null)
-                        .show();
-            }
-        });
         MyBuilding singleBuildingItem = (MyBuilding) getItem(position);
+        if(!((MYSApp)(getContext().getApplicationContext())).getUsername().equals(singleBuildingItem.getUser()))
+            remove.setVisibility(View.INVISIBLE);
+        else
+            remove.setOnClickListener(new View.OnClickListener() {
+
+                @Override
+                public void onClick(View v) {
+                    new AlertDialog.Builder(getContext())
+                            .setIcon(android.R.drawable.ic_dialog_alert)
+                            .setTitle(R.string.remove_building)
+                            .setMessage(R.string.really_remove_building)
+                            .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    ((MYSApp)(getContext().getApplicationContext())).deleteBuilding((MyBuilding) getItem(position));
+                                    remove(getItem(position));
+                                    getFilter().filter(searchView.getQuery());
+                                }
+
+                            })
+                            .setNegativeButton(R.string.no, null)
+                            .show();
+                }
+            });
         TextView buildingName = (TextView)customView.findViewById(R.id.buildingProperties);
         TextView address = (TextView) customView.findViewById(R.id.address);
         TextView zipCode = (TextView) customView.findViewById(R.id.zipCode);

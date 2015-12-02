@@ -37,29 +37,33 @@ public class SpacesEntryAdapter extends ArrayAdapter{
 
         ImageButton remove = (ImageButton) customView.findViewById(R.id.deleteButton);
         remove.setFocusable(false);
+        if(!((MYSApp)(getContext().getApplicationContext())).getUsername().equals(building.getUser()))
+            remove.setVisibility(View.INVISIBLE);
+        else
+            remove.setOnClickListener(new View.OnClickListener() {
+
+                @Override
+                public void onClick(View v) {
+                    new AlertDialog.Builder(getContext())
+                            .setIcon(android.R.drawable.ic_dialog_alert)
+                            .setTitle(R.string.remove_reservation)
+                            .setMessage(R.string.really_remove_reservation)
+                            .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    building.removeSpace((MySpace) getItem(position));
+                                    remove(getItem(position));
+                                    //getFilter().filter(searchView.getQuery());
+                                }
+
+                            })
+                            .setNegativeButton(R.string.no, null)
+                            .show();
+                }
+            });
         setNotifyOnChange(true);
-        remove.setOnClickListener(new View.OnClickListener() {
 
-            @Override
-            public void onClick(View v) {
-                new AlertDialog.Builder(getContext())
-                        .setIcon(android.R.drawable.ic_dialog_alert)
-                        .setTitle(R.string.remove_reservation)
-                        .setMessage(R.string.really_remove_reservation)
-                        .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
-
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                building.removeSpace((MySpace) getItem(position));
-                                remove(getItem(position));
-                                //getFilter().filter(searchView.getQuery());
-                            }
-
-                        })
-                        .setNegativeButton(R.string.no, null)
-                        .show();
-            }
-        });
         MySpace singleReservationItem = (MySpace) getItem(position);
         TextView reservationLabel = (TextView) customView.findViewById(R.id.reservationProperties);
         TextView buildingLabel = (TextView) customView.findViewById(R.id.reservationBuilding);
