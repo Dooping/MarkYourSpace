@@ -32,18 +32,6 @@ public class timerPickerFragment extends DialogFragment
     private String mParam1;
     private String mParam2;
 
-    public static timerPickerFragment newInstance(String time) {
-        timerPickerFragment f = new timerPickerFragment();
-
-        // Supply num input as an argument.
-        Bundle args = new Bundle();
-        args.putString("editTextTime", time);
-        f.setArguments(args);
-
-        return f;
-    }
-
-
     @Override
     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
         int id=getArguments().getInt("editTextId");
@@ -71,8 +59,7 @@ public class timerPickerFragment extends DialogFragment
         }
 
         // Create a new instance of TimePickerDialog and return it
-        return new TimePickerDialog(getActivity(), this, hour, minute,
-                DateFormat.is24HourFormat(getActivity()));
+        return new TimePickerDialog(getActivity(), this, hour, minute, true);
     }
 
 

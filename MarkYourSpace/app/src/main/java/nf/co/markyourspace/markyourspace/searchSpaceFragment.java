@@ -109,7 +109,7 @@ public class searchSpaceFragment extends Fragment {
                 new View.OnClickListener(){
                     @Override
                     public void onClick(View v) {
-                        clickedEditDate(startDate.getId());
+                        clickedEditDate(startDate.getId(), startDate.getText().toString());
                     }
                 }
         );
@@ -117,7 +117,7 @@ public class searchSpaceFragment extends Fragment {
                 new View.OnClickListener(){
                     @Override
                     public void onClick(View v) {
-                        clickedEditDate(endDate.getId());
+                        clickedEditDate(endDate.getId(), endDate.getText().toString());
                     }
                 }
         );
@@ -258,10 +258,11 @@ public class searchSpaceFragment extends Fragment {
 
     }
 
-    public void clickedEditDate(int editTextId){
+    public void clickedEditDate(int editTextId, String date){
         DialogFragment newFragment = new datePickerFragment();
         Bundle args= new Bundle();
         args.putInt("editTextId", editTextId);
+        args.putString("editTextDate", date);
         newFragment.setArguments(args);
         newFragment.show(getActivity().getSupportFragmentManager(), "datePicker");
     }
@@ -269,7 +270,7 @@ public class searchSpaceFragment extends Fragment {
     public void clickedEditHour(int editTextId, String time){
         DialogFragment newFragment = new timerPickerFragment();
         Bundle args= new Bundle();
-        args.putInt("editTextId",editTextId);
+        args.putInt("editTextId", editTextId);
         args.putString("editTextTime", time);
         newFragment.setArguments(args);
         newFragment.show(getActivity().getSupportFragmentManager(), "timePicker");

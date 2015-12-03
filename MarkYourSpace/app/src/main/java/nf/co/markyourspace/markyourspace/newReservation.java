@@ -26,6 +26,7 @@ import static nf.co.markyourspace.markyourspace.R.id.editEndDateNewReservation;
 import static nf.co.markyourspace.markyourspace.R.id.editEndHourNewReservation;
 import static nf.co.markyourspace.markyourspace.R.id.editStartDateNewReservation;
 import static nf.co.markyourspace.markyourspace.R.id.editStartHourNewReservation;
+import static nf.co.markyourspace.markyourspace.R.id.end;
 
 
 /**
@@ -118,7 +119,7 @@ public class newReservation extends Fragment {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        clickedEditDate(startDate.getId());
+                        clickedEditDate(startDate.getId(), startDate.getText().toString());
                     }
                 }
         );
@@ -126,7 +127,7 @@ public class newReservation extends Fragment {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        clickedEditDate(endDate.getId());
+                        clickedEditDate(endDate.getId(), endDate.getText().toString());
                     }
                 }
         );
@@ -209,10 +210,11 @@ public class newReservation extends Fragment {
         public void onFragmentInteraction(Uri uri);
     }
 
-    public void clickedEditDate(int editTextId){
+    public void clickedEditDate(int editTextId, String date){
         DialogFragment newFragment = new datePickerFragment();
         Bundle args= new Bundle();
         args.putInt("editTextId",editTextId);
+        args.putString("editTextDate", date);
         newFragment.setArguments(args);
         newFragment.show(getActivity().getSupportFragmentManager(), "datePicker");
     }
