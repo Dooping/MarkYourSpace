@@ -35,9 +35,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private GoogleApiClient mGoogleApiClient;
     private Location mLastLocation;
     private Marker marker;
-    private EditText address;
-    private EditText city;
-    private EditText zipcode;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -219,6 +216,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 b.putString("address", address);
                 b.putString("city", city);
                 b.putString("zipcode", postalCode);
+                b.putDouble("latitude",marker.getPosition().latitude);
+                b.putDouble("longitude",marker.getPosition().longitude);
                 resultIntent.putExtras(b);
                 setResult(Activity.RESULT_OK, resultIntent);
             } catch (Exception e) {

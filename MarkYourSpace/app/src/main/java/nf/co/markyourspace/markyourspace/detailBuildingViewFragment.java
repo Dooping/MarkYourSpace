@@ -1,6 +1,7 @@
 package nf.co.markyourspace.markyourspace;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -194,7 +195,7 @@ public class detailBuildingViewFragment extends Fragment implements AbsListView.
 
     private void spaceDetailView(String spaceName){
         MySpace sp= ((MYSApp) getActivity().getApplication()).getBuilding(getArguments().getString("guid")).getSpaces().get(findSpace(spaceName));
-        ((AppMenu) getActivity()).spaceDetailViewFragment(getArguments().getString("guid"),sp.getName(), sp.getGuid());
+        ((AppMenu) getActivity()).spaceDetailViewFragment(getArguments().getString("guid"), sp.getName(), sp.getGuid());
     }
 
     private int findSpace(String spaceName){
@@ -205,6 +206,15 @@ public class detailBuildingViewFragment extends Fragment implements AbsListView.
             }
         }
         return -1;
+    }
+
+    public void buttonGoToLocation(){
+        Intent intent = new Intent(getActivity(), MapsActivity.class);
+        Bundle b = new Bundle();
+        b.putDouble("latitude", building.getCoordinates().getLatitude());
+        b.putDouble("longitude", building.getCoordinates().getLongitude());
+        intent.putExtras(b);
+        startActivity(intent);
     }
 
 }

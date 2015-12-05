@@ -36,6 +36,9 @@ public class newBuildingFragment extends Fragment{
     private static EditText zipcode;
     private static EditText type;
 
+    private double latitude;
+    private double longitude;
+
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
@@ -180,7 +183,10 @@ public class newBuildingFragment extends Fragment{
     }
 
     public void buttonAddClicked(){
-        MyBuilding newB = new MyBuilding(name.getText().toString(),address.getText().toString(),city.getText().toString(),type.getText().toString(),zipcode.getText().toString());
+        MyLatLng coordinates = null;
+        if (!(latitude == 0.0 && longitude == 0.0))
+            coordinates = new MyLatLng(latitude, longitude);
+        MyBuilding newB = new MyBuilding(name.getText().toString(),address.getText().toString(),city.getText().toString(),type.getText().toString(),zipcode.getText().toString(), coordinates);
         ((MYSApp) (getActivity().getApplication())).addBuilding(newB);
         getFragmentManager().popBackStack();
         ((AppMenu)getActivity()).buildingDetailViewFragment(newB.getName(), newB.getGuid());
@@ -210,6 +216,8 @@ public class newBuildingFragment extends Fragment{
                     address.setText(b.getString("address", ""));
                     city.setText(b.getString("city",""));
                     zipcode.setText(b.getString("zipcode",""));
+                    latitude = b.getDouble("latitude");
+                    longitude = b.getDouble("longitude");
                 }
                 break;
             }

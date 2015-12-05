@@ -21,10 +21,11 @@ public class MyBuilding implements Serializable{
     private String type;
     private String user;
     private String zipCode;
+    private MyLatLng coordinates;
     private List<MySpace> spaces;
     private List<String> permissions;
 
-    public MyBuilding(String name, String address, String city, String type, String zipCode) {
+    public MyBuilding(String name, String address, String city, String type, String zipCode, MyLatLng coordinates) {
         this.guid = UUID.randomUUID().toString();
         this.name = name;
         this.address = address;
@@ -33,6 +34,7 @@ public class MyBuilding implements Serializable{
         this.zipCode = zipCode;
         this.spaces = new ArrayList<>();
         this.permissions = new ArrayList<>();
+        this.coordinates = coordinates;
     }
 
     public String getName() {
@@ -101,5 +103,13 @@ public class MyBuilding implements Serializable{
             if(b.getGuid().equals(guid))
                 return b;
         return null;
+    }
+
+    public boolean hasCoordinates(){
+        return coordinates!=null;
+    }
+
+    public MyLatLng getCoordinates() {
+        return coordinates;
     }
 }

@@ -37,7 +37,6 @@ public class MYSApp extends Application {
     public ArrayList<MyReservation> getReservations(){
         ObjectInputStream input;
         ArrayList<MyReservation> reservations = new ArrayList<>();
-
         try {
             input = new ObjectInputStream(new FileInputStream(new File(new File(getFilesDir(),"")+File.separator+RESERVATION_FILE)));
             reservations = (ArrayList<MyReservation>) input.readObject();
@@ -60,7 +59,7 @@ public class MYSApp extends Application {
         MyReservation r;
         List<MyBuilding> buildings = new ArrayList<>();
         List<MyReservation> reservations = new ArrayList<>();
-        MyBuilding b = new MyBuilding("John Doe Co.","In the middle of nowhere", "Someplace", "Public", "6666-111");
+        MyBuilding b = new MyBuilding("John Doe Co.","In the middle of nowhere", "Someplace", "Public", "6666-111", null);
         b.setUser("John Doe");
         s = new MySpace(b.getGuid(), "Meeting Room 1", 7, 10, new ArrayList<String>(), new ArrayList<String>());
         b.addSpace(s);
@@ -72,10 +71,10 @@ public class MYSApp extends Application {
         s = new MySpace(b.getGuid(), "Meeting Room 3", 8, 10, new ArrayList<String>(), new ArrayList<String>());
         b.addSpace(s);
         buildings.add(b);
-        b = new MyBuilding("Campo Ourives","Avenida Tenente Segundo", "Aveiro", "Public", "3114-952");
+        b = new MyBuilding("Campo Ourives","Avenida Tenente Segundo", "Aveiro", "Public", "3114-952", null);
         b.setUser("John Doe");
         buildings.add(b);
-        b = new MyBuilding("Texas University","Road to Texas", "Texas", "Public", "0001-239");
+        b = new MyBuilding("Texas University","Road to Texas", "Texas", "Public", "0001-239", null);
         b.setUser("John Doe");
         s = new MySpace(b.getGuid(), "Classroom B", 1, 100, new ArrayList<String>(), new ArrayList<String>());
         b.addSpace(s);

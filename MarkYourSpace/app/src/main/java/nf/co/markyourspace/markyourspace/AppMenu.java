@@ -58,7 +58,9 @@ public class AppMenu extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         android.support.v4.app.Fragment fragment = new reservationsFragment();
-        replaceFragment(fragment);
+        //replaceFragmentFromMenu(fragment);
+        getSupportFragmentManager().popBackStack(reservationsFragment.class.getName(), FragmentManager.POP_BACK_STACK_INCLUSIVE);
+        getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, fragment).commit();
 
         getSupportFragmentManager().addOnBackStackChangedListener(new FragmentManager.OnBackStackChangedListener() {
 
@@ -91,12 +93,12 @@ public class AppMenu extends AppCompatActivity
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            if(getSupportFragmentManager().getBackStackEntryCount() == 1 && !logout){
+            if(getSupportFragmentManager().getBackStackEntryCount() == 0 && !logout){
                 String reservation = "Press again to Logout";
                 Toast.makeText(this, reservation, Toast.LENGTH_LONG).show();
                 logout = true;
             }
-            else if (getSupportFragmentManager().getBackStackEntryCount() == 1) {
+            else if (getSupportFragmentManager().getBackStackEntryCount() == 0) {
                 finish();
             }
             else{
@@ -146,7 +148,13 @@ public class AppMenu extends AppCompatActivity
 
         if (id == R.id.nav_home) {
             android.support.v4.app.Fragment fragment = new reservationsFragment();
-            replaceFragmentFromMenu(fragment);
+            FragmentManager manager = getSupportFragmentManager();
+            manager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+
+            FragmentTransaction ft = manager.beginTransaction();
+            ft.replace(R.id.fragment_container, fragment);
+            ft.commit();
+            logout=false;
         } else if (id == R.id.nav_my_buildings) {
             android.support.v4.app.Fragment fragment = new myBuildingsFragment();
             replaceFragmentFromMenu(fragment);
