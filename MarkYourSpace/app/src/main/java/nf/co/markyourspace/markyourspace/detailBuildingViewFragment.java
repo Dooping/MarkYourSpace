@@ -34,7 +34,7 @@ public class detailBuildingViewFragment extends Fragment implements AbsListView.
     private static final String ARG_PARAM2 = "param2";
 
     //fields info
-    private static TextView textBuildingName;
+    private static TextView textBuildingCity;
     private static TextView textBuildingAddress;
     private static TextView textBuildingZipCode;
 
@@ -85,8 +85,8 @@ public class detailBuildingViewFragment extends Fragment implements AbsListView.
         // Inflate the layout for this fragment
         View view= inflater.inflate(R.layout.fragment_detail_building_view, container, false);
         building = ((MYSApp) (getActivity().getApplication())).getBuilding(getArguments().getString("guid"));
-        textBuildingName=(TextView) view.findViewById(R.id.textBuildingName);
-        textBuildingName.setText(building.getName());
+        textBuildingCity=(TextView) view.findViewById(R.id.textBuildingCity);
+        textBuildingCity.setText(building.getCity());
         textBuildingAddress=(TextView) view.findViewById(R.id.textBuildingAddress);
         textBuildingAddress.setText(building.getAddress());
         textBuildingZipCode=(TextView) view.findViewById(R.id.textBuildingZipCode);
@@ -111,13 +111,27 @@ public class detailBuildingViewFragment extends Fragment implements AbsListView.
                 }
 
         );
-        buttonAddSpace.setOnClickListener(
-                new View.OnClickListener(){
-                    public void onClick(View v){
-                        addNewSpace();
+        if(building.getUser().equals(((MYSApp) (getActivity().getApplication())).getUsername()))
+            buttonAddSpace.setOnClickListener(
+                    new View.OnClickListener(){
+                        public void onClick(View v){
+                            addNewSpace();
+                        }
                     }
-                }
-        );
+            );
+        else
+            buttonAddSpace.setVisibility(View.INVISIBLE);
+
+        final View buttonGoToBuilding = view.findViewById(R.id.goToBuilding);
+        if(!building.hasCoordinates())
+            buttonGoToBuilding.setVisibility(View.INVISIBLE);
+        else
+        buttonGoToBuilding.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                buttonGoToLocation();
+            }
+        });
 
         return view;
     }
@@ -211,6 +225,8 @@ public class detailBuildingViewFragment extends Fragment implements AbsListView.
     public void buttonGoToLocation(){
         Intent intent = new Intent(getActivity(), MapsActivity.class);
         Bundle b = new Bundle();
+        b.putBoolean("isEdit", false);
+        b.putString("name",building.getName());
         b.putDouble("latitude", building.getCoordinates().getLatitude());
         b.putDouble("longitude", building.getCoordinates().getLongitude());
         intent.putExtras(b);

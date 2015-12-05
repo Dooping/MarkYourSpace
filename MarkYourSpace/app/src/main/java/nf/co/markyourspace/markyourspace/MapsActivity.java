@@ -35,12 +35,20 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private GoogleApiClient mGoogleApiClient;
     private Location mLastLocation;
     private Marker marker;
+    private MarkerOptions markerOptions;
+    private boolean isEdit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Bundle b = getIntent().getExtras();
-
+        isEdit = b.getBoolean("isEdit",false);
+        if(!isEdit){
+            String name = b.getString("name","Building");
+            Double lat = b.getDouble("latitude");
+            Double lng = b.getDouble("longitude");
+            markerOptions = new MarkerOptions().position(new LatLng(lat,lng)).title(name);
+        }
 
         setContentView(R.layout.activity_maps);
         buildGoogleApiClient();
@@ -74,7 +82,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             mMap.animateCamera(zoom);
         }
         mMap.setMyLocationEnabled(true);
-        mMap.setOnMapLongClickListener(new OnMapLongClickListener() {
+        if(isEdit)
+            mMap.setOnMapLongClickListener(new OnMapLongClickListener() {
                                            @Override
                                            public void onMapLongClick(LatLng latLng) {
                                                if (marker != null)
@@ -82,7 +91,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                                marker = mMap.addMarker(new MarkerOptions().position(latLng).title("Building"));
                                            }
                                        }
-        );
+            );
+        else
+            marker = mMap.addMarker(markerOptions);
 
         mMap.setOnMyLocationButtonClickListener(new OnMyLocationButtonClickListener() {
             @Override
@@ -140,7 +151,18 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     @Override
     public void onMapClick(LatLng latLng) {
+        CameraUpdate center = CameraUpdateFactory.newLatLng(latLng);
+        mMap.animateCamera(center, 1000, new CancelableCallback() {
+            @Override
+            public void onFinish() {
 
+            }
+
+            @Override
+            public void onCancel() {
+
+            }
+        });
     }
 
     @Override
@@ -216,7 +238,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 b.putString("address", address);
                 b.putString("city", city);
                 b.putString("zipcode", postalCode);
-                b.putDouble("latitude",marker.getPosition().latitude);
+                b.putDouble("latitude", marker.getPosition().latitude);
                 b.putDouble("longitude",marker.getPosition().longitude);
                 resultIntent.putExtras(b);
                 setResult(Activity.RESULT_OK, resultIntent);

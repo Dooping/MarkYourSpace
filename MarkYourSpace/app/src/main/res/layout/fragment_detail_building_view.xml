@@ -1,107 +1,130 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
     tools:context="nf.co.markyourspace.markyourspace.detailBuildingViewFragment">
 
     <!-- TODO: Update blank fragment layout -->
 
 
-    <ImageView
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:id="@+id/imgBuildingName"
-        android:src="@drawable/building_icon3_small"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_margin="16dp" />
 
-    <ImageView
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:id="@+id/imgBuildingAddress"
-        android:src="@drawable/address_icon_small"
-        android:layout_below="@+id/imgBuildingName"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_margin="16dp" />
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-    <ImageView
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:id="@+id/imgBuildingZipcode"
-        android:src="@drawable/zip_code_icon3_small"
-        android:layout_below="@+id/imgBuildingAddress"
-        android:layout_alignRight="@+id/textBuildingSpaces"
-        android:layout_alignEnd="@+id/textBuildingSpaces"
-        android:layout_margin="16dp" />
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:id="@+id/imgBuildingAddress"
+                android:src="@drawable/address_icon_small"
+                android:layout_margin="16dp" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="5dp"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Large Text"
-        android:id="@+id/textBuildingName"
-        android:layout_above="@+id/imgBuildingAddress"
-        android:layout_toRightOf="@+id/imgBuildingName"
-        android:layout_toEndOf="@+id/imgBuildingName" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Large Text"
+                android:id="@+id/textBuildingAddress"
+                android:layout_gravity="center_vertical" />
+        </LinearLayout>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="5dp"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Large Text"
-        android:id="@+id/textBuildingAddress"
-        android:layout_alignBottom="@+id/imgBuildingAddress"
-        android:layout_toRightOf="@+id/imgBuildingAddress"
-        android:layout_toEndOf="@+id/imgBuildingAddress" />
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="5dp"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Large Text"
-        android:id="@+id/textBuildingZipCode"
-        android:layout_alignBottom="@+id/imgBuildingZipcode"
-        android:layout_toRightOf="@+id/imgBuildingZipcode"
-        android:layout_toEndOf="@+id/imgBuildingZipcode" />
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:id="@+id/imgBuildingCity"
+                android:src="@drawable/building_icon3_small"
+                android:layout_margin="16dp" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="@string/buildingSpaces"
-        android:id="@+id/textBuildingSpaces"
-        android:layout_below="@+id/imgBuildingZipcode"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="38dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Large Text"
+                android:id="@+id/textBuildingCity"
+                android:layout_gravity="center_vertical" />
+        </LinearLayout>
 
-    <ListView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:id="@+id/listView"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/textBuildingSpaces" />
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-    <TextView android:id="@+id/empty" android:layout_width="match_parent"
-        android:layout_height="match_parent" android:gravity="center"
-        android:layout_below="@+id/textBuildingSpaces" />
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:id="@+id/imgBuildingZipcode"
+                android:src="@drawable/zip_code_icon3_small"
+                android:layout_margin="16dp"
+                android:layout_gravity="center_vertical" />
 
-    <android.support.design.widget.FloatingActionButton
-        android:layout_width="wrap_content" android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:src="@android:drawable/ic_menu_add"
-        android:id="@+id/createNewSpace"
-        android:layout_margin="@dimen/fab_margin"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:tint="#ffffff" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Large Text"
+                android:id="@+id/textBuildingZipCode"
+                android:layout_gravity="center_vertical" />
 
-</RelativeLayout>
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                />
+
+            <android.support.design.widget.FloatingActionButton
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:src="@android:drawable/ic_dialog_map"
+                android:id="@+id/goToBuilding"
+                android:tint="#ffffff"
+                android:layout_weight="0"
+                android:layout_marginLeft="@dimen/fab_margin"
+                android:layout_marginRight="@dimen/fab_margin" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/buildingSpaces"
+            android:id="@+id/textBuildingSpaces"
+            android:layout_marginTop="10dp" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent">
+
+            <ListView
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:layout_marginLeft="10dp"
+                android:id="@+id/listView" />
+
+            <TextView android:id="@+id/empty" android:layout_width="match_parent"
+                android:layout_height="match_parent" android:gravity="center"
+                android:layout_alignBottom="@+id/listView"
+                android:layout_alignTop="@+id/listView" />
+
+            <android.support.design.widget.FloatingActionButton
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:layout_gravity="bottom|end"
+                android:src="@android:drawable/ic_input_add"
+                android:id="@+id/createNewSpace"
+                android:layout_margin="@dimen/fab_margin"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:tint="#ffffff" />
+        </RelativeLayout>
+
+
+</LinearLayout>

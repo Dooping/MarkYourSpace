@@ -7,7 +7,7 @@
     <ImageView
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:id="@+id/imgBuildingName"
+        android:id="@+id/imgBuildingCity"
         android:src="@drawable/floor_icon_small"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
@@ -19,7 +19,7 @@
         android:layout_height="40dp"
         android:id="@+id/imgBuildingAddress"
         android:src="@drawable/chairs_icon_small"
-        android:layout_below="@+id/imgBuildingName"
+        android:layout_below="@+id/imgBuildingCity"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_margin="16dp" />
@@ -32,8 +32,8 @@
         android:text="Large Text"
         android:id="@+id/textFloor"
         android:layout_above="@+id/imgBuildingAddress"
-        android:layout_toRightOf="@+id/imgBuildingName"
-        android:layout_toEndOf="@+id/imgBuildingName" />
+        android:layout_toRightOf="@+id/imgBuildingCity"
+        android:layout_toEndOf="@+id/imgBuildingCity" />
 
     <TextView
         android:layout_width="wrap_content"

@@ -199,9 +199,7 @@ public class newBuildingFragment extends Fragment{
     public void buttonSetLocation(){
         Intent intent = new Intent(getActivity(), MapsActivity.class);
         Bundle b = new Bundle();
-        b.putInt("addressId", address.getId());
-        b.putInt("cityId", city.getId());
-        b.putInt("zipcodeId", zipcode.getId());
+        b.putBoolean("isEdit",true);
         intent.putExtras(b);
         startActivityForResult(intent, 0);
     }
