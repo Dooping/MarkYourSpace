@@ -3,6 +3,7 @@ package nf.co.markyourspace.markyourspace;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -104,6 +105,7 @@ public class newBuildingFragment extends Fragment{
 
         final Button buttonAdd= (Button)view.findViewById(R.id.buttonAddNewBuilding);
         final Button buttonCancel= (Button)view.findViewById(R.id.buttonCancelCreateSpace);
+        final Button buttonLocation = (Button)view.findViewById(R.id.buttonSetLocation);
 
         buttonAdd.setOnClickListener(
                 new View.OnClickListener(){
@@ -125,6 +127,15 @@ public class newBuildingFragment extends Fragment{
                 }
         );
 
+        buttonLocation.setOnClickListener(
+                new View.OnClickListener(){
+                    @Override
+                    public void onClick(View v) {
+                        //metodo pa criar novo building
+                        buttonSetLocation();
+                    }
+                }
+        );
 
         return view;
     }
@@ -177,6 +188,32 @@ public class newBuildingFragment extends Fragment{
 
     public void buttonCancelClicked(){
         getFragmentManager().popBackStack();
+    }
+
+    public void buttonSetLocation(){
+        Intent intent = new Intent(getActivity(), MapsActivity.class);
+        Bundle b = new Bundle();
+        b.putInt("addressId", address.getId());
+        b.putInt("cityId", city.getId());
+        b.putInt("zipcodeId", zipcode.getId());
+        intent.putExtras(b);
+        startActivityForResult(intent, 0);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch(requestCode) {
+            case (0) : {
+                if (resultCode == Activity.RESULT_OK) {
+                    Bundle b = data.getExtras();
+                    address.setText(b.getString("address", ""));
+                    city.setText(b.getString("city",""));
+                    zipcode.setText(b.getString("zipcode",""));
+                }
+                break;
+            }
+        }
     }
 
 }
