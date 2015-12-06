@@ -1,6 +1,7 @@
 package nf.co.markyourspace.markyourspace;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -44,6 +45,7 @@ public class detailSpaceViewFragment extends Fragment {
     private OnFragmentInteractionListener mListener;
 
     private MySpace space;
+    MyBuilding building;
 
     private LinearLayout activitesLayout;
     private LinearLayout featuresLayout;
@@ -94,6 +96,20 @@ public class detailSpaceViewFragment extends Fragment {
         textFloor.setText(Integer.toString(space.getFloor()));
         textNumberOfSeats=(TextView) view.findViewById(R.id.textNumberOfSeats);
         textNumberOfSeats.setText(Integer.toString(space.getSeats()));
+
+        building = ((MYSApp) (getActivity().getApplication())).getBuilding(space.getBuildingGuid());
+        final View buttonGoToBuilding = view.findViewById(R.id.goToBuilding);
+        if(!building.hasCoordinates())
+            buttonGoToBuilding.setVisibility(View.INVISIBLE);
+        else {
+            buttonGoToBuilding.setVisibility(View.VISIBLE);
+            buttonGoToBuilding.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    buttonGoToLocation();
+                }
+            });
+        }
 
         activitesLayout = (LinearLayout) view.findViewById(R.id.activities);
         featuresLayout = (LinearLayout) view.findViewById(R.id.features);
@@ -171,6 +187,17 @@ public class detailSpaceViewFragment extends Fragment {
         }else {
             ((AppMenu) getActivity()).newReservationFragment(space.getGuid(), ((MYSApp) getActivity().getApplication()).getBuilding(getArguments().getString("buildingGuid")).getName(), space.getName());
         }
+    }
+
+    public void buttonGoToLocation(){
+        Intent intent = new Intent(getActivity(), MapsActivity.class);
+        Bundle b = new Bundle();
+        b.putBoolean("isEdit", false);
+        b.putString("name",building.getName());
+        b.putDouble("latitude", building.getCoordinates().getLatitude());
+        b.putDouble("longitude", building.getCoordinates().getLongitude());
+        intent.putExtras(b);
+        startActivity(intent);
     }
 
 }

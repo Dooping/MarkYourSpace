@@ -111,27 +111,31 @@ public class detailBuildingViewFragment extends Fragment implements AbsListView.
                 }
 
         );
-        if(building.getUser().equals(((MYSApp) (getActivity().getApplication())).getUsername()))
+        if(building.getUser().equals(((MYSApp) (getActivity().getApplication())).getUsername())) {
+            buttonAddSpace.setVisibility(View.VISIBLE);
             buttonAddSpace.setOnClickListener(
-                    new View.OnClickListener(){
-                        public void onClick(View v){
+                    new View.OnClickListener() {
+                        public void onClick(View v) {
                             addNewSpace();
                         }
                     }
             );
+        }
         else
             buttonAddSpace.setVisibility(View.INVISIBLE);
 
         final View buttonGoToBuilding = view.findViewById(R.id.goToBuilding);
         if(!building.hasCoordinates())
             buttonGoToBuilding.setVisibility(View.INVISIBLE);
-        else
-        buttonGoToBuilding.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                buttonGoToLocation();
-            }
-        });
+        else {
+            buttonGoToBuilding.setVisibility(View.VISIBLE);
+            buttonGoToBuilding.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    buttonGoToLocation();
+                }
+            });
+        }
 
         return view;
     }

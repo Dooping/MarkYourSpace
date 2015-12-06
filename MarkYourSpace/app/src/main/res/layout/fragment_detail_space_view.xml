@@ -33,7 +33,9 @@
         android:id="@+id/textFloor"
         android:layout_above="@+id/imgBuildingAddress"
         android:layout_toRightOf="@+id/imgBuildingCity"
-        android:layout_toEndOf="@+id/imgBuildingCity" />
+        android:layout_toEndOf="@+id/imgBuildingCity"
+        android:layout_alignParentEnd="false"
+        android:layout_alignParentStart="false" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -45,6 +47,19 @@
         android:layout_alignBottom="@+id/imgBuildingAddress"
         android:layout_toRightOf="@+id/imgBuildingAddress"
         android:layout_toEndOf="@+id/imgBuildingAddress" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:src="@android:drawable/ic_dialog_map"
+        android:id="@+id/goToBuilding"
+        android:tint="#ffffff"
+        android:layout_weight="0"
+        android:layout_margin="@dimen/fab_margin"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentStart="false"
+        android:layout_below="@+id/imgBuildingCity"
+        android:visibility="gone" />
 
     <LinearLayout
         android:orientation="vertical"

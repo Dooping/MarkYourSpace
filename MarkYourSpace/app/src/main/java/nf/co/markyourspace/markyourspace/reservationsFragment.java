@@ -166,10 +166,9 @@ public class reservationsFragment extends Fragment implements AbsListView.OnItem
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         if (null != mListener) {
-            // Notify the active callbacks interface (the activity, if the
-            // fragment is attached to one) that an item has been selected.
-            String reservation = parent.getItemAtPosition(position).toString();
-            Toast.makeText(getActivity(), reservation, Toast.LENGTH_LONG).show();
+            MyReservation reservation = (MyReservation)parent.getItemAtPosition(position);
+            MyBuilding building = ((MYSApp) getActivity().getApplication()).getBuildingFromSpaceGuid(reservation.getSpaceGuid());
+            ((AppMenu) getActivity()).spaceDetailViewFragment(building.getGuid(),reservation.getSpaceName(),reservation.getSpaceGuid());
         }
     }
 

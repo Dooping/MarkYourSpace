@@ -88,7 +88,8 @@
                 android:tint="#ffffff"
                 android:layout_weight="0"
                 android:layout_marginLeft="@dimen/fab_margin"
-                android:layout_marginRight="@dimen/fab_margin" />
+                android:layout_marginRight="@dimen/fab_margin"
+                android:visibility="gone" />
         </LinearLayout>
 
         <TextView
@@ -123,7 +124,8 @@
                 android:id="@+id/createNewSpace"
                 android:layout_margin="@dimen/fab_margin"
                 android:layout_alignParentBottom="true"
-                android:layout_alignParentRight="true" />
+                android:layout_alignParentRight="true"
+                android:visibility="gone" />
         </RelativeLayout>
 
 

@@ -216,6 +216,16 @@ public class MYSApp extends Application {
                 return b;
         return null;
     }
+
+    public MyBuilding getBuildingFromSpaceGuid(String guid){
+        ArrayList<MyBuilding> buildings = getBuildings();
+        for (MyBuilding b : buildings)
+            for(MySpace s : b.getSpaces())
+                if(s.getGuid().equals(guid))
+                    return b;
+        return null;
+    }
+
      public List<MySpace> searchSpaces(Date startDate, Date endDate, int numberOfSeats, List<String> activities, List<String> features){
          List<MySpace> spacesFound = new ArrayList();
          ArrayList<MyBuilding> buildings = getBuildings();
