@@ -191,6 +191,19 @@ public class newSpace extends Fragment {
                         .setIcon(android.R.drawable.ic_dialog_alert)
                         .show();
             }
+        if(newS.getName().equals("")){
+            create = false;
+            new AlertDialog.Builder(getActivity())
+                    .setTitle("New Space")
+                    .setMessage("Space name is mandatory")
+                    .setNeutralButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+
+                        }
+                    })
+                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .show();
+        }
         if(create) {
             ((MYSApp) (getActivity().getApplication())).addSpace(getArguments().getString("buildingGuid"), newS);
             getFragmentManager().popBackStack();

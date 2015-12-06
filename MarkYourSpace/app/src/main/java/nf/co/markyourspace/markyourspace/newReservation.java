@@ -233,6 +233,7 @@ public class newReservation extends Fragment {
     }
 
     private void buttonAddClicked(){
+        boolean create = true;
         Date sDate = null,eDate=null,sTime=null,eTime=null, ssDate = null, eeDate=null;
         SimpleDateFormat formatterDate,formatterTime, formatterDateTime ;
         formatterDate = new SimpleDateFormat("dd/MM/yyyy");
@@ -245,21 +246,47 @@ public class newReservation extends Fragment {
             eDate=formatterDate.parse(endDate.getText().toString());
             sTime=formatterTime.parse(startHour.getText().toString());
             eTime=formatterTime.parse(endHour.getText().toString());
+            if(ssDate.after(eeDate)){
+                create = false;
+                new AlertDialog.Builder(getActivity())
+                        .setTitle("Reservation")
+                        .setMessage("End date must be after Start date")
+                        .setNeutralButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+
+                            }
+                        })
+                        .setIcon(android.R.drawable.ic_dialog_alert)
+                        .show();
+            }
         } catch (ParseException e) {
-            e.printStackTrace();
+            create = false;
+            new AlertDialog.Builder(getActivity())
+                .setTitle("Reservation")
+                .setMessage("Invalid Date")
+                .setNeutralButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                })
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .show();
         }
 
-        List<MySpace> spaces = ((MYSApp) getActivity().getApplication()).searchSpaces(ssDate,eeDate,0,new ArrayList<String>(), new ArrayList<String>());
-        for(MySpace s:spaces)
-            if(s.getGuid().equals(getArguments().getString("spaceGuid"))){
-                MyReservation reservation= new MyReservation(getArguments().getString("spaceName"),getArguments().getString("spaceGuid"),getArguments().getString("buildingName"),ssDate,eeDate,(sTime.getHours()*60+sTime.getMinutes()),(eTime.getHours()*60+eTime.getMinutes()));
-                ((MYSApp) getActivity().getApplication()).addReservation(reservation);
-                getFragmentManager().popBackStack();
-                ((AppMenu)getActivity()).reservationsFragment();
-                return;
-            }
+        if(create) {
+            List<MySpace> spaces = ((MYSApp) getActivity().getApplication()).searchSpaces(ssDate, eeDate, 0, new ArrayList<String>(), new ArrayList<String>());
+            for (MySpace s : spaces)
+                if (s.getGuid().equals(getArguments().getString("spaceGuid"))) {
+                    MyReservation reservation = new MyReservation(getArguments().getString("spaceName"), getArguments().getString("spaceGuid"), getArguments().getString("buildingName"), ssDate, eeDate, (sTime.getHours() * 60 + sTime.getMinutes()), (eTime.getHours() * 60 + eTime.getMinutes()));
+                    ((MYSApp) getActivity().getApplication()).addReservation(reservation);
+                    getFragmentManager().popBackStack();
+                    ((AppMenu) getActivity()).reservationsFragment();
+                    return;
+                }
+        }
 
-        new AlertDialog.Builder(getActivity())
+        if(create)
+            new AlertDialog.Builder(getActivity())
                 .setTitle("Reservation")
                 .setMessage("Cannot make this reservation")
                 .setNeutralButton(android.R.string.ok, new DialogInterface.OnClickListener() {

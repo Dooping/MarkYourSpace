@@ -183,13 +183,29 @@ public class newBuildingFragment extends Fragment{
     }
 
     public void buttonAddClicked(){
+        boolean create = true;
         MyLatLng coordinates = null;
         if (!(latitude == 0.0 && longitude == 0.0))
             coordinates = new MyLatLng(latitude, longitude);
         MyBuilding newB = new MyBuilding(name.getText().toString(),address.getText().toString(),city.getText().toString(),type.getText().toString(),zipcode.getText().toString(), coordinates);
-        ((MYSApp) (getActivity().getApplication())).addBuilding(newB);
-        getFragmentManager().popBackStack();
-        ((AppMenu)getActivity()).buildingDetailViewFragment(newB.getName(), newB.getGuid());
+        if(newB.getName().equals("")){
+            create = false;
+            new AlertDialog.Builder(getActivity())
+                .setTitle("New Building")
+                .setMessage("Building name is mandatory")
+                .setNeutralButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                })
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .show();
+        }
+        if(create) {
+            ((MYSApp) (getActivity().getApplication())).addBuilding(newB);
+            getFragmentManager().popBackStack();
+            ((AppMenu) getActivity()).buildingDetailViewFragment(newB.getName(), newB.getGuid());
+        }
     }
 
     public void buttonCancelClicked(){

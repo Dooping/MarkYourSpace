@@ -60,7 +60,7 @@ public class AppMenu extends AppCompatActivity
         android.support.v4.app.Fragment fragment = new reservationsFragment();
         //replaceFragmentFromMenu(fragment);
         getSupportFragmentManager().popBackStack(reservationsFragment.class.getName(), FragmentManager.POP_BACK_STACK_INCLUSIVE);
-        getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, fragment).commit();
+        getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit).add(R.id.fragment_container, fragment).commit();
 
         getSupportFragmentManager().addOnBackStackChangedListener(new FragmentManager.OnBackStackChangedListener() {
 
@@ -190,6 +190,7 @@ public class AppMenu extends AppCompatActivity
         manager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
 
         FragmentTransaction ft = manager.beginTransaction();
+        ft.setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit);
         ft.replace(R.id.fragment_container, fragment);
         ft.addToBackStack(backStateName);
         ft.commit();
@@ -205,6 +206,7 @@ public class AppMenu extends AppCompatActivity
 
         if (!fragmentPopped){ //fragment not in back stack, create it.
             FragmentTransaction ft = manager.beginTransaction();
+            ft.setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit);
             ft.replace(R.id.fragment_container, fragment);
             ft.addToBackStack(backStateName);
             ft.commit();
