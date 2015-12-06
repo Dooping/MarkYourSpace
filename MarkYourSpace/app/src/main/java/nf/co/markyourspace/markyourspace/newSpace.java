@@ -1,6 +1,8 @@
 package nf.co.markyourspace.markyourspace;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -172,9 +174,27 @@ public class newSpace extends Fragment {
         }
 
         String bGuid= getArguments().getString("buildingGuid");
+        boolean create = true;
         MySpace newS = new MySpace(bGuid,editSpaceName.getText().toString(),Integer.parseInt(editSpaceFloor.getText().toString()),Integer.parseInt(editSpaceNumberOfSeats.getText().toString()), activities, features);
-        ((MYSApp) (getActivity().getApplication())).addSpace(getArguments().getString("buildingGuid"),newS);
-        getFragmentManager().popBackStack();
+        MyBuilding building = ((MYSApp) (getActivity().getApplication())).getBuilding(bGuid);
+        for (MySpace s : building.getSpaces())
+            if(s.getName().equals(newS.getName())) {
+                create = false;
+                new AlertDialog.Builder(getActivity())
+                        .setTitle("New Space")
+                        .setMessage("This building already has a space with that name")
+                        .setNeutralButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+
+                            }
+                        })
+                        .setIcon(android.R.drawable.ic_dialog_alert)
+                        .show();
+            }
+        if(create) {
+            ((MYSApp) (getActivity().getApplication())).addSpace(getArguments().getString("buildingGuid"), newS);
+            getFragmentManager().popBackStack();
+        }
         //((AppMenu)getActivity()).buildingDetailViewFragment(newS.getName(), newS.getGuid());
 
     }
