@@ -14,7 +14,7 @@
     -->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:name=".MYSApp"
@@ -25,9 +25,9 @@
         android:theme="@style/AppTheme.NoActionBar" >
         <activity
             android:name=".LoginActivity"
-            android:label="@string/app_name"
             android:configChanges="orientation"
-            android:screenOrientation="portrait">
+            android:label="@string/app_name"
+            android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -36,8 +36,8 @@
         </activity>
         <activity
             android:name=".AppMenu"
-            android:label="@string/title_activity_app_menu"
             android:configChanges="orientation"
+            android:label="@string/title_activity_app_menu"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" >
         </activity>
@@ -55,9 +55,9 @@
 
         <activity
             android:name=".MapsActivity"
-            android:label="@string/title_activity_maps"
             android:configChanges="orientation"
-            android:screenOrientation="portrait">
+            android:label="@string/title_activity_maps"
+            android:screenOrientation="portrait" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="nf.co.markyourspace.markyourspace.AppMenu" />

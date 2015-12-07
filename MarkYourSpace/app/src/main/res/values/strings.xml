@@ -139,4 +139,5 @@
     <string name="remove_space">Remove Space</string>
     <string name="really_remove_space">Dp you really want to remove this space?</string>
     <string name="title_activity_maps">Map</string>
+    <string name="title_activity_maps2">Map</string>
 </resources>
